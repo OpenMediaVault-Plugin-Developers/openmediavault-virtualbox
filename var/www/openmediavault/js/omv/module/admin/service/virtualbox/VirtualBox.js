@@ -101,6 +101,20 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                     text  : _("Show advanced configuration options in phpVirtualBox web interface")
                 }]
             }]
+		},{
+			xtype    : "fieldset",
+			title    : "Note",
+			defaults : {
+				labelSeparator : ""
+			},
+			items : [{
+				xtype      : "textfield",
+				name       : "note",
+				fieldLabel : _(""),
+				value      : _("Make sure to change the password in phpVirtualBox!"),
+				allowNone  : true,
+				readOnly   : true
+			}]
         }];
     }
 });
