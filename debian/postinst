@@ -1,0 +1,54 @@
+#!/bin/sh
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
+
+case "$1" in
+configure)
+    if ! omv_config_exists "/config/services/virtualbox"; then
+        echo "Initial configuration."
+        object="<enable>0</enable>"
+        object="${object}<enable-advanced></enable-advanced>"
+        object="${object}<vm-folder></vm-folder>"
+        omv_config_add_element "/config/services" "virtualbox" "${object}" true
+    fi
+
+    DEFAULT_FILE=/etc/default/openmediavault-virtualbox
+
+    if [ ! -e ${DEFAULT_FILE} ]; then
+        if [ $(groups ${OMV_VBOX_USER} 2>/dev/null | wc -l) -eq 0 ]; then
+
+            # Generate password, add user and store it
+            NPSWD=$(makepasswd --crypt-md5 --chars=10)
+            NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
+            NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
+
+            useradd -d /home/${OMV_VBOX_USER} -c "openmediavault-virtualbox" -m -p ${NPSWD_CRYPT} -N -g vboxusers ${OMV_VBOX_USER}
+
+            echo "${NPSWD_CLEAR}" > ${DEFAULT_FILE}
+
+        fi
+    fi
+
+    chown root:root ${DEFAULT_FILE}
+    chmod 0644 ${DEFAULT_FILE}
+
+    omv_install_fixperms
+
+    /etc/init.d/apache2 reload
+    ;;
+abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+*)
+    echo "postinst called with unknown argument" >&2
+    exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

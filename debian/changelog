@@ -1,0 +1,5 @@
+openmediavault-virtualbox (0.5) stable; urgency=low
+
+  * Initial release for OMV 0.5
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.prg>  Sat, 28 Sep 2013 01:14:12 +0200

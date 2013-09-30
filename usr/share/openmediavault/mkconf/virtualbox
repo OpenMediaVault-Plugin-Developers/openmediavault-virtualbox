@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
+# Copyright (C)      2013 OpenMediaVault Plugin Developers
+#
+# This file is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this file. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+
+OMV_VBOX_CONFIG=${OMV_VBOX_CONFIG:-"/etc/default/virtualbox"}
+OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
+
+# Enable/disable service
+if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+    exit 0
+fi
+
+# Create vboxweb-service config file
+cat <<EOF > ${OMV_VBOX_CONFIG}
+# defaults for virtualbox
+# sourced by vboxweb-service on startup
+
+VBOXWEB_USER=${OMV_VBOX_USER}
+VBOXWEB_HOST=127.0.0.1
+
+EOF
+
+# Get /set machine folder
+MAF="$(omv_config_get "//services/virtualbox/vm-folder")"
+
+if [ "${MAF}" != "" ] && [ ! -d "${MAF}" ]; then
+    /bin/mkdir "${MAF}"
+    chown ${OMV_VBOX_USER}:vboxusers "${MAF}"
+fi
+
+if [ "${MAF}" != "" ] && [ -d "${MAF}" ]; then
+    su ${OMV_VBOX_USER} -c "VBoxManage setproperty machinefolder '${MAF}'"
+    else
+    echo "Virtual Machine folder ${MAF} does not exist."
+    exit 1
+fi

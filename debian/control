@@ -1,0 +1,11 @@
+Source: openmediavault-virtualbox
+Section: net
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+
+Package: openmediavault-virtualbox
+Architecture: all
+Depends: openmediavault (>= 0.5), virtualbox-4.2, makepasswd ${misc:Depends}
+Description: VirtualBox plugin for OpenMediaVault.
