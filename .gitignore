@@ -53,6 +53,6 @@ Desktop.ini
 debian/openmediavault-virtualbox
 debian/files
 debian/*.debhelper.log
-debian/*.debheper
+debian/*.debhelper
 debian/*substvars
 phpvirtualbox
