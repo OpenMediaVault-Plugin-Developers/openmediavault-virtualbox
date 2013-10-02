@@ -111,7 +111,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 				xtype      : "textfield",
 				name       : "note",
 				fieldLabel : _(""),
-				value      : _("Make sure to change the password in phpVirtualBox!"),
+				value      : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password."),
 				allowNone  : true,
 				readOnly   : true
 			}]
@@ -422,6 +422,7 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
         Ext.create("OMV.module.admin.service.virtualbox.EditVM", {
             uuid         : record.get('uuid'),
             sessionState : record.get('sessionState'),
+            startupMode  : record.get('startupMode'),
             listeners    : {
                 success : function() {
                     me.doReload();
@@ -452,6 +453,8 @@ Ext.define("OMV.module.admin.service.virtualbox.EditVM", {
     }],
 
     getFormItems : function() {
+        var me = this;
+
         return [{
             xtype      : "textfield",
             name       : "name",
@@ -477,7 +480,7 @@ Ext.define("OMV.module.admin.service.virtualbox.EditVM", {
             allowBlank    : false,
             editable      : false,
             triggerAction : "all",
-            value         : "manual"
+            value         : Ext.isEmpty(me.startupMode) ? "manual" : me.startupMode
         }];
     },
 
