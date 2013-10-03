@@ -31,6 +31,21 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+    initComponent : function() {
+        var me = this;
+
+        me.on('load', function() {
+            var checked = me.findField('enable').checked;
+            var parent = me.ownerCt;
+            var panel = parent.query('panel[title=' + _("Virtual Machines") + ']');
+
+            if (panel.length > 0)
+                checked ? panel[0].enable() : panel[0].disable();
+        });
+
+        me.callParent(arguments);
+    },
+
     getFormItems : function() {
         var me = this;
         return [{
@@ -101,20 +116,18 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                     text  : _("Show advanced configuration options in phpVirtualBox web interface")
                 }]
             }]
-		},{
-			xtype    : "fieldset",
-			title    : "Note",
-			defaults : {
-				labelSeparator : ""
-			},
-			items : [{
-				xtype      : "textfield",
-				name       : "note",
-				fieldLabel : _(""),
-				value      : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password."),
-				allowNone  : true,
-				readOnly   : true
-			}]
+        },{
+            xtype    : "fieldset",
+            title    : _("Note"),
+            defaults : {
+                labelSeparator : ""
+            },
+            items : [{
+            xtype      : "textfield",
+                value       : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password."),
+                readOnly    : true,
+                isFormField : false
+            }]
         }];
     }
 });
@@ -197,6 +210,27 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
                 }
             })
         });
+
+        me.on('activate', function() {
+            var me = this;
+            if(Ext.isEmpty(me.reloadTask)) {
+                me.reloadTask = Ext.util.TaskManager.start({
+                    run         : me.doReload,
+                    scope       : me,
+                    interval    : me.reloadInterval,
+                    fireOnStart : true
+                });
+            }
+        }, me);
+
+        me.on('deactivate', function() {
+            var me = this;
+
+            if(!Ext.isEmpty(me.reloadTask)) {
+                Ext.util.TaskManager.stop(me.reloadTask);
+                delete me.reloadTask;
+            }
+        }, me);
 
         me.callParent(arguments);
     },
