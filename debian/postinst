@@ -40,6 +40,13 @@ configure)
     omv_install_fixperms
 
     /etc/init.d/apache2 reload
+	
+	version=$(wget -qO- http://download.virtualbox.org/virtualbox/LATEST.TXT)
+
+	wget -P /tmp "http://download.virtualbox.org/virtualbox/$version/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
+	VBoxManage extpack install --replace /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+	rm -f /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+
     ;;
 abort-upgrade|abort-remove|abort-deconfigure)
     ;;
