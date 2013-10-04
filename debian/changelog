@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.4) stable; urgency=low
+
+  * Fix requires in Javascript 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 04 Oct 2013 20:43:40 +0200
+
 openmediavault-virtualbox (0.5.3) stable; urgency=low
 
   * limit to i386 and amd64 architectures - no virtualbox for other architectures
