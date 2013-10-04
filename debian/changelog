@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.3) stable; urgency=low
+
+  * limit to i386 and amd64 architectures - no virtualbox for other architectures
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.prg>  Fri, 04 Oct 2013 07:20:12 -0500
+
 openmediavault-virtualbox (0.5.2) stable; urgency=low
 
   * added extpack download

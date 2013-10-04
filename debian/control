@@ -6,6 +6,6 @@ Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
 Package: openmediavault-virtualbox
-Architecture: all
+Architecture: amd64 i386
 Depends: openmediavault (>= 0.5), virtualbox-4.2, makepasswd ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.
