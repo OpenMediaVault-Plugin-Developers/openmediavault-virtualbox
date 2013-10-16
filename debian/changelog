@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.7) stable; urgency=low
+
+  * Add phpVirtualBox tab using iframe
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 16 Oct 2013 09:37:27 -0500
+
 openmediavault-virtualbox (0.5.6) stable; urgency=low
 
   * Update to phpvirtualbox 4.2.8

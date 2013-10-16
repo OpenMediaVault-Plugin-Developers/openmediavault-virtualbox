@@ -19,12 +19,27 @@
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
 // require("js/omv/workspace/grid/Panel.js")
+// require("js/omv/workspace/panel/Panel.js")
 // require("js/omv/workspace/window/Form.js")
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 // require("js/omv/form/field/SharedFolderComboBox.js")
+
+Ext.define("OMV.module.admin.service.virtualbox.Phpvirtualbox", {
+	extend: "OMV.workspace.panel.Panel",
+	
+	initComponent: function() {
+		var me = this;
+		
+		me.html = "<form style='overflow: auto; height: 100%;'>";
+		me.html += "  <iframe src='/virtualbox/' name='phpvirtualbox' longsec='phpVirtualBox' width='100%' height='100%'/>";
+		me.html += "<br/></form>";
+		
+		me.callParent(arguments);
+	}
+});
 
 Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     extend : "OMV.workspace.form.Panel",
@@ -44,6 +59,11 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             var checked = me.findField('enable').checked;
             var parent = me.ownerCt;
             var panel = parent.query('panel[title=' + _("Virtual Machines") + ']');
+
+            if (panel.length > 0)
+                checked ? panel[0].enable() : panel[0].disable();
+
+            panel = parent.query('panel[title=' + _("phpVirtualBox") + ']');
 
             if (panel.length > 0)
                 checked ? panel[0].enable() : panel[0].disable();
@@ -559,4 +579,12 @@ OMV.WorkspaceManager.registerPanel({
     text      : _("Virtual Machines"),
     position  : 20,
     className : "OMV.module.admin.service.virtualbox.MachinesGrid"
+});
+
+OMV.WorkspaceManager.registerPanel({
+    id        : "phpvirtualbox",
+    path      : "/service/virtualbox",
+    text      : _("phpVirtualBox"),
+    position  : 30,
+    className : "OMV.module.admin.service.virtualbox.Phpvirtualbox"
 });
