@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.6) stable; urgency=low
+
+  * Update to phpvirtualbox 4.2.8
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 16 Oct 2013 07:37:40 -0500
+
 openmediavault-virtualbox (0.5.5) stable; urgency=low
 
   * Fix code that determines correct extpack
