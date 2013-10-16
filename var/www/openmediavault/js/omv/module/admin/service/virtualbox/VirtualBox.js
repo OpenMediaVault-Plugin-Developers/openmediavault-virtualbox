@@ -27,12 +27,12 @@
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 // require("js/omv/form/field/SharedFolderComboBox.js")
 
-Ext.define("OMV.module.admin.service.virtualbox.Phpvirtualbox", {
+Ext.define("OMV.module.admin.service.virtualbox.PhpVirtualBox", {
 	extend: "OMV.workspace.panel.Panel",
-	
+
 	initComponent: function() {
 		var me = this;
-		
+
 		me.html = "<iframe src='/virtualbox/' name='phpvirtualbox' longsec='phpVirtualBox' width='100%' height='100%' />";
 		me.callParent(arguments);
 	}
@@ -54,16 +54,18 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
         me.on('load', function() {
             var checked = me.findField('enable').checked;
-            var parent = me.ownerCt;
-            var panel = parent.query('panel[title=' + _("Virtual Machines") + ']');
+            var parent = me.up('tabpanel');
 
-            if (panel.length > 0)
-                checked ? panel[0].enable() : panel[0].disable();
+            if (!parent)
+                return;
 
-            panel = parent.query('panel[title=' + _("phpVirtualBox") + ']');
+            var gridPanel = parent.down('grid');
+            var phpVirtualBoxPanel = parent.down('panel[title=' + _("phpVirtualBox") + ']');
 
-            if (panel.length > 0)
-                checked ? panel[0].enable() : panel[0].disable();
+            if (gridPanel)
+                checked ? gridPanel.enable() : gridPanel.disable();
+            if (phpVirtualBoxPanel)
+                checked ? phpVirtualBoxPanel.enable() : phpVirtualBoxPanel.disable();
         });
 
         me.callParent(arguments);
@@ -71,6 +73,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
     getFormItems : function() {
         var me = this;
+
         return [{
             xtype    : "fieldset",
             title    : "General settings",
@@ -163,47 +166,58 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
         "OMV.data.proxy.Rpc"
     ],
 
-    disabled          : false,
-    hidePagingToolbar : true,
-    hideAddButton     : true,
-    hideEditButton    : false,
-    hideDeleteButton  : true,
-    autoReload        : true,
+    disabled           : true,
+    hidePagingToolbar  : true,
+    hideAddButton      : true,
+    hideEditButton     : false,
+    hideDeleteButton   : true,
+    autoReload         : true,
+    stateChangeWaitMsg : _('Changing VM state.'),
 
-    constructor : function(config) {
-        var me = this;
-
-        config = Ext.apply({
-            columns : [{
-                header    : _("UUID"),
-                hidden    : true,
-                dataIndex : "uuid",
-                id        : "uuid"
-            },{
-                header    : _("Virtual Machine"),
-                sortable  : true,
-                dataIndex : "name",
-                id        : "name"
-            },{
-                header    : "State",
-                sortable  : true,
-                dataIndex : "state",
-                id        : "state",
-                renderer  : me.stateRenderer,
-                scope     : me
-            },{
-                header    : "Startup Mode",
-                sortable  : true,
-                dataIndex : "startupMode",
-                id        : "startupMode",
-                renderer  : me.startModeRenderer,
-                scope     : me
-            }],
-
-        }, config || {});
-
-        me.callParent([config]);
-    },
+    columns : [{
+        header    : _("UUID"),
+        hidden    : true,
+        dataIndex : "uuid",
+    },{
+        header    : _("Virtual Machine"),
+        sortable  : true,
+        dataIndex : "name",
+    },{
+        header    : "State",
+        sortable  : true,
+        dataIndex : "state",
+        renderer  : function(value, metaData, record) {
+            switch(value) {
+                case 'PoweredOff':
+                    return 'Powered Off';
+                case 'LiveSnapshotting':
+                    return 'Live Snapshotting';
+                case 'TeleportingPausedVM':
+                    return 'Teleporting Paused VM';
+                case 'TeleportingIn':
+                    return 'Teleporting In';
+                case 'TakingLiveSnapshot':
+                    return 'Taking Live Snapshot';
+                case 'RestoringSnapshot':
+                    return 'Restoring Snapshot';
+                case 'DeletingSnapshot':
+                    return 'Deleting Snapshot';
+                case 'SettingUp':
+                    return 'Setting Up';
+                default:
+                    return value;
+            }
+        }
+    },{
+        header    : "Startup Mode",
+        sortable  : true,
+        dataIndex : "startupMode",
+        renderer  : function(value, metaData, record) {
+            if(value == 'auto')
+                return 'Automatic';
+            return 'Manual';
+        }
+    }],
 
     initComponent : function() {
         var me = this;
@@ -233,27 +247,6 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
                 }
             })
         });
-
-        me.on('activate', function() {
-            var me = this;
-            if(Ext.isEmpty(me.reloadTask)) {
-                me.reloadTask = Ext.util.TaskManager.start({
-                    run         : me.doReload,
-                    scope       : me,
-                    interval    : me.reloadInterval,
-                    fireOnStart : true
-                });
-            }
-        }, me);
-
-        me.on('deactivate', function() {
-            var me = this;
-
-            if(!Ext.isEmpty(me.reloadTask)) {
-                Ext.util.TaskManager.stop(me.reloadTask);
-                delete me.reloadTask;
-            }
-        }, me);
 
         me.callParent(arguments);
     },
@@ -327,7 +320,7 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
         Ext.Array.insert(items, items.length, [{
             xtype : "tbseparator"
         },{
-            id: me.getId() + "-phpvbx",
+            id      : me.getId() + "-phpvbx",
             xtype   : "button",
             text    : _("phpVirtualBox"),
             icon    : "/virtualbox/images/vbox/OSE/VirtualBox_16px.png",
@@ -412,33 +405,12 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
         }
     },
 
-    /* Renderers */
-    stateRenderer : function(val, cell, record, row, col, store) {
-        switch(val) {
-            case 'PoweredOff': return 'Powered Off';
-            case 'LiveSnapshotting': return 'Live Snapshotting';
-            case 'TeleportingPausedVM': return 'Teleporting Paused VM';
-            case 'TeleportingIn': return 'Teleporting In';
-            case 'TakingLiveSnapshot': return 'Taking Live Snapshot';
-            case 'RestoringSnapshot': return 'Restoring Snapshot';
-            case 'DeletingSnapshot': return 'Deleting Snapshot';
-            case 'SettingUp': return 'Setting Up';
-            default: return val;
-        }
-    },
-
-    startModeRenderer : function(val, cell, record, row, col, store) {
-        if(val == 'auto')
-            return 'Automatic';
-        return 'Manual';
-    },
-
     /* Handlers */
     onStateChangeButton : function(item, event) {
         var me = this;
         var record = me.getSelected();
 
-        OMV.MessageBox.wait(null, _('Changing VM state.'));
+        OMV.MessageBox.wait(null, me.stateChangeWaitMsg);
         console.log(item);
         me.doStateChange(record, item.action);
     },
@@ -481,7 +453,7 @@ Ext.define('OMV.module.admin.service.virtualbox.MachinesGrid', {
             sessionState : record.get('sessionState'),
             startupMode  : record.get('startupMode'),
             listeners    : {
-                success : function() {
+                submit : function() {
                     me.doReload();
                 },
                 scope   : me
@@ -502,7 +474,6 @@ Ext.define("OMV.module.admin.service.virtualbox.EditVM", {
     rpcSetMethod : "setMachine",
 
     hideResetButton : true,
-    width           : 500,
     title           : _("Edit Virtual Machine"),
 
     plugins: [{
@@ -583,5 +554,5 @@ OMV.WorkspaceManager.registerPanel({
     path      : "/service/virtualbox",
     text      : _("phpVirtualBox"),
     position  : 30,
-    className : "OMV.module.admin.service.virtualbox.Phpvirtualbox"
+    className : "OMV.module.admin.service.virtualbox.PhpVirtualBox"
 });
