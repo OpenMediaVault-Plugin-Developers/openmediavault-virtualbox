@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.5) stable; urgency=low
+
+  * Fix code that determines correct extpack
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 15 Oct 2013 20:43:40 -0500
+
 openmediavault-virtualbox (0.5.4) stable; urgency=low
 
   * Fix requires in Javascript 
