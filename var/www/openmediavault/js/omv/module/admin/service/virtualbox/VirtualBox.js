@@ -33,10 +33,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Phpvirtualbox", {
 	initComponent: function() {
 		var me = this;
 		
-		me.html = "<form style='overflow: auto; height: 100%;'>";
-		me.html += "  <iframe src='/virtualbox/' name='phpvirtualbox' longsec='phpVirtualBox' width='100%' height='100%'/>";
-		me.html += "<br/></form>";
-		
+		me.html = "<iframe src='/virtualbox/' name='phpvirtualbox' longsec='phpVirtualBox' width='100%' height='100%' />";
 		me.callParent(arguments);
 	}
 });
