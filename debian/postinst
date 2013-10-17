@@ -14,6 +14,7 @@ configure)
         object="<enable>0</enable>"
         object="${object}<enable-advanced></enable-advanced>"
         object="${object}<vm-folder></vm-folder>"
+		object="${object}<showtab></showtab>"
         omv_config_add_element "/config/services" "virtualbox" "${object}" true
     fi
 

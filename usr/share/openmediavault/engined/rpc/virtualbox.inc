@@ -71,7 +71,8 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         // Modify result data
         $object['enable']                        = boolval($object['enable']);
         $object['enable-advanced']               = boolval($object['enable-advanced']);
-
+		$object['showtab']                       = boolval($object['showtab']);
+		
         return $object;
     }
 
@@ -94,7 +95,8 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
                 "enable":{"type":"boolean"},
                 "enable-advanced":{"type":"boolean"},
                 "vm-folder":{"type":"string","optional":true},
-                "mntentref":{' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . '}
+                "mntentref":{' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . '},
+				"showtab":{"type":"boolean"}
             }
         }');
 
@@ -126,6 +128,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
             "enable-advanced"                    => array_boolval($params, 'enable-advanced'),
             "vm-folder"                          => $params['vm-folder'],
             "mntentref"                          => $params['mntentref'],
+			"showtab"                             => array_boolval($params, 'showtab')
         );
 
 

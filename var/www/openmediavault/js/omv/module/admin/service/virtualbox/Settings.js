@@ -37,6 +37,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
         me.on('load', function() {
             var checked = me.findField('enable').checked;
+			var showtab = me.findField('showtab').checked;
             var parent = me.up('tabpanel');
 
             if (!parent)
@@ -47,8 +48,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
             if (gridPanel)
                 checked ? gridPanel.enable() : gridPanel.disable();
-            if (phpVirtualBoxPanel)
+            if (phpVirtualBoxPanel) {
                 checked ? phpVirtualBoxPanel.enable() : phpVirtualBoxPanel.disable();
+				showtab ? phpVirtualBoxPanel.tab.show() : phpVirtualBoxPanel.tab.hide();
+			}
         });
 
         me.callParent(arguments);
@@ -123,6 +126,15 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 plugins    : [{
                     ptype : "fieldinfo",
                     text  : _("Show advanced configuration options in phpVirtualBox web interface")
+                }]
+            },{
+                xtype      : "checkbox",
+                name       : "showtab",
+                fieldLabel : _("Show Tab"),
+                checked    : false,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Show tab containing phpVirtualBox frame")
                 }]
             }]
         },{
