@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.8) stable; urgency=low
+
+  * Add setting to show/hide phpVirtualBox iframe tab
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 17 Oct 2013 12:44:27 -0500
+
 openmediavault-virtualbox (0.5.7) stable; urgency=low
 
   * Add phpVirtualBox tab using iframe
