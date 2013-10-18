@@ -32,12 +32,12 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
-    initComponent : function () {
+    initComponent : function() {
         var me = this;
 
         me.on('load', function () {
             var checked = me.findField('enable').checked;
-			var showtab = me.findField('showtab').checked;
+            var showtab = me.findField('showtab').checked;
             var parent = me.up('tabpanel');
 
             if (!parent)
@@ -50,8 +50,8 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 checked ? gridPanel.enable() : gridPanel.disable();
             if (phpVirtualBoxPanel) {
                 checked ? phpVirtualBoxPanel.enable() : phpVirtualBoxPanel.disable();
-				showtab ? phpVirtualBoxPanel.tab.show() : phpVirtualBoxPanel.tab.hide();
-			}
+                showtab ? phpVirtualBoxPanel.tab.show() : phpVirtualBoxPanel.tab.hide();
+            }
         });
 
         me.callParent(arguments);
@@ -137,11 +137,11 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             }]
         },{
             xtype	: "fieldset",
-			layout	: 'fit',
+            layout	: "fit",
             title	: _("Note"),
-            items : [{
-				border      : false,
-                html        : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.<br /><br />")
+            items   : [{
+                border : false,
+                html   : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.<br /><br />")
             }]
         }];
     }
