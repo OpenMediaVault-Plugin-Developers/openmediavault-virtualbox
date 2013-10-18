@@ -32,10 +32,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
-    initComponent : function() {
+    initComponent : function () {
         var me = this;
 
-        me.on('load', function() {
+        me.on('load', function () {
             var checked = me.findField('enable').checked;
 			var showtab = me.findField('showtab').checked;
             var parent = me.up('tabpanel');
@@ -58,8 +58,6 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     },
 
     getFormItems : function() {
-        var me = this;
-
         return [{
             xtype    : "fieldset",
             title    : "General settings",
@@ -70,7 +68,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 xtype      : "checkbox",
                 name       : "enable",
                 fieldLabel : _("Enable"),
-                checked    : false,
+                checked    : false
             },{
                 xtype         : "combo",
                 name          : "mntentref",
@@ -144,10 +142,8 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 labelSeparator : ""
             },
             items : [{
-            xtype      : "textfield",
-                value       : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password."),
-                readOnly    : true,
-                isFormField : false
+				border      : false,
+                html        : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.<br /><br />")
             }]
         }];
     }

@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.9) stable; urgency=low
+
+  * Fixed note format
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 18 Oct 2013 06:27:27 -0500
+
 openmediavault-virtualbox (0.5.8) stable; urgency=low
 
   * Add setting to show/hide phpVirtualBox iframe tab

@@ -43,11 +43,11 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
     columns : [{
         header    : _("UUID"),
         hidden    : true,
-        dataIndex : "uuid",
+        dataIndex : "uuid"
     },{
         header    : _("Virtual Machine"),
         sortable  : true,
-        dataIndex : "name",
+        dataIndex : "name"
     },{
         header    : "State",
         sortable  : true,
@@ -160,7 +160,7 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
                 icon     : "/virtualbox/images/vbox/pause_16px.png",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : 'pause',
+                action   : 'pause'
             },{
                 id       : me.getId() + '-stop-powerDown',
                 vmstates : ['Running','Paused','Stuck'],
