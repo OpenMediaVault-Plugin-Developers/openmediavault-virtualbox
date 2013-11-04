@@ -1,0 +1,90 @@
+# openmediavault-virtualbox
+# Copyright (C) 2013
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Cyryl Sochacki <cyrylsochacki@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-virtualbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-28 09:22-0500\n"
+"PO-Revision-Date: 2013-11-01 11:54+0000\n"
+"Last-Translator: Cyryl Sochacki <cyrylsochacki@gmail.com>\n"
+"Language-Team: Polish (Poland) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/pl_PL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl_PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Advanced configuration"
+msgstr "Ustawienia zaawansowane"
+
+msgid "Automatic"
+msgstr "Automatycznie"
+
+msgid "Edit Virtual Machine"
+msgstr "Edytuj maszynę wirtualną"
+
+msgid "Enable"
+msgstr "Włacz"
+
+msgid ""
+"Make sure to change the password in phpVirtualBox! The default login "
+"credentials are 'admin' for both the username and password.<br /><br />"
+msgstr "Upewnij się, aby zmienić hasło w phpVirtualBox! Z domyślnych danymi logowania są 'admin'  username i password.<br><br>"
+
+msgid "Manual"
+msgstr "Ręcznie"
+
+msgid "Name"
+msgstr "Nazwa"
+
+msgid "Note"
+msgstr "Opis"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
+
+msgid "Select a volume ..."
+msgstr "Wybierz katalog ...."
+
+msgid "Settings"
+msgstr "Ustawienia"
+
+msgid "Show advanced configuration options in phpVirtualBox web interface"
+msgstr "Pokaż zaawansowane opcje konfiguracji w panelu phpVirtualBox"
+
+msgid "Show Tab"
+msgstr "Pokaż kartę"
+
+msgid "Show tab containing phpVirtualBox frame"
+msgstr "Pokaż phpVirtualBox w zakładce"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Startup Mode"
+msgstr "Opcja uruchamiania"
+
+msgid "Stop"
+msgstr "Stop"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
+
+msgid "Virtual Machine"
+msgstr "Maszyna wirtualna"
+
+msgid "Virtual Machine Folder"
+msgstr "Katalog maszyny wirtualnej"
+
+msgid "Virtual Machines"
+msgstr "Maszyny wirtualne"
+
+msgid "Virtual Machine Volume"
+msgstr "Dysk  Maszyny wirtualnej"

@@ -1,0 +1,90 @@
+# openmediavault-virtualbox
+# Copyright (C) 2013
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# zubr139 <zubr139@ukr.net>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-virtualbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-28 09:22-0500\n"
+"PO-Revision-Date: 2013-10-29 11:03+0000\n"
+"Last-Translator: zubr139 <zubr139@ukr.net>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/uk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Advanced configuration"
+msgstr "Розширені налаштування"
+
+msgid "Automatic"
+msgstr "Автоматично"
+
+msgid "Edit Virtual Machine"
+msgstr "Редагувати віртуальну машину"
+
+msgid "Enable"
+msgstr "Увімкнути"
+
+msgid ""
+"Make sure to change the password in phpVirtualBox! The default login "
+"credentials are 'admin' for both the username and password.<br /><br />"
+msgstr ""
+
+msgid "Manual"
+msgstr "Керівництво"
+
+msgid "Name"
+msgstr "Ім'я"
+
+msgid "Note"
+msgstr "Нотатка"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
+
+msgid "Select a volume ..."
+msgstr ""
+
+msgid "Settings"
+msgstr "Налаштування"
+
+msgid "Show advanced configuration options in phpVirtualBox web interface"
+msgstr "Показати додаткові опції конфігурації в phpVirtualBox веб-інтерфейс"
+
+msgid "Show Tab"
+msgstr "Показати вкладку"
+
+msgid "Show tab containing phpVirtualBox frame"
+msgstr "Показати вкладку, що містить кадр phpVirtualBox"
+
+msgid "Start"
+msgstr "Старт"
+
+msgid "Startup Mode"
+msgstr "Режим запуску"
+
+msgid "Stop"
+msgstr "Стоп"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
+
+msgid "Virtual Machine"
+msgstr "Віртуальна машина"
+
+msgid "Virtual Machine Folder"
+msgstr "Теки віртуальної машини"
+
+msgid "Virtual Machines"
+msgstr "Віртуальні машини"
+
+msgid "Virtual Machine Volume"
+msgstr ""

@@ -1,0 +1,90 @@
+# openmediavault-virtualbox
+# Copyright (C) 2013
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# davidh2k <davidh1990@gmx.de>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-virtualbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-28 09:22-0500\n"
+"PO-Revision-Date: 2013-10-28 22:47+0000\n"
+"Last-Translator: davidh2k <davidh1990@gmx.de>\n"
+"Language-Team: German (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Advanced configuration"
+msgstr "Erweiterte Konfiguration"
+
+msgid "Automatic"
+msgstr "Automatisch"
+
+msgid "Edit Virtual Machine"
+msgstr "Virtuelle Machine bearbeiten"
+
+msgid "Enable"
+msgstr "Aktivieren"
+
+msgid ""
+"Make sure to change the password in phpVirtualBox! The default login "
+"credentials are 'admin' for both the username and password.<br /><br />"
+msgstr "Stelle sicher dass du das password in phpVirtualBox änderst! Die standard Logindaten sind 'admin' für Benutzername und Passwort.<br /><br />"
+
+msgid "Manual"
+msgstr "Anleitung"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Note"
+msgstr "Notiz"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
+
+msgid "Select a volume ..."
+msgstr "Datenträger auswähle ..."
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Show advanced configuration options in phpVirtualBox web interface"
+msgstr "Zeige erweiterte Konfigurationsoptionen im phpVirtualBox Webinterface."
+
+msgid "Show Tab"
+msgstr "Zeige Tab"
+
+msgid "Show tab containing phpVirtualBox frame"
+msgstr "Zeige Tab welches phpVirtualBox beinhaltet"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "Startup Mode"
+msgstr "Startup Mode"
+
+msgid "Stop"
+msgstr "Stop"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
+
+msgid "Virtual Machine"
+msgstr "Virtuelle Maschine"
+
+msgid "Virtual Machine Folder"
+msgstr "Verzeichnis der Virtuellen Machine"
+
+msgid "Virtual Machines"
+msgstr "Virtuelle Machinen"
+
+msgid "Virtual Machine Volume"
+msgstr "Datenträger der Virtuellen Machine"
