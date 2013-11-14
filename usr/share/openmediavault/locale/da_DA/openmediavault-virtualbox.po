@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# davidh2k <davidh1990@gmx.de>, 2013
+# Stefan Thrane Overby <stoverby@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
@@ -11,24 +11,24 @@ msgstr ""
 "POT-Creation-Date: 2013-11-14 14:03-0600\n"
 "PO-Revision-Date: 2013-11-14 20:03+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/de/)\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Advanced configuration"
-msgstr "Erweiterte Konfiguration"
+msgstr "Avanceret Konfiguration"
 
 msgid "Automatic"
-msgstr "Automatisch"
+msgstr "Automatisk"
 
 msgid "Edit Virtual Machine"
-msgstr "Virtuelle Machine bearbeiten"
+msgstr "Rediger Virtual Maskine"
 
 msgid "Enable"
-msgstr "Aktivieren"
+msgstr "Aktiver"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
@@ -36,34 +36,34 @@ msgid ""
 msgstr ""
 
 msgid "Manual"
-msgstr "Anleitung"
+msgstr "Manuelt"
 
 msgid "Name"
-msgstr "Name"
+msgstr "Navn"
 
 msgid "Note"
-msgstr "Notiz"
+msgstr "Notat"
 
 msgid "Select a volume ..."
-msgstr "Datenträger auswähle ..."
+msgstr "Vælg et drev ..."
 
 msgid "Settings"
-msgstr "Einstellungen"
+msgstr "Indstillinger"
 
 msgid "Show Tab"
-msgstr "Zeige Tab"
+msgstr "Vis Fane"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface"
-msgstr "Zeige erweiterte Konfigurationsoptionen im phpVirtualBox Webinterface."
+msgstr "Vis avanceret konfigurations valgmuligheder på phpVirtualBox webinterface."
 
 msgid "Show tab containing phpVirtualBox frame"
-msgstr "Zeige Tab welches phpVirtualBox beinhaltet"
+msgstr "Vis fane indeholdende phpVirtualBox ramme"
 
 msgid "Start"
 msgstr "Start"
 
 msgid "Startup Mode"
-msgstr "Startup Mode"
+msgstr "Opstarts Modus"
 
 msgid "Stop"
 msgstr "Stop"
@@ -72,16 +72,16 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "Virtual Machine"
-msgstr "Virtuelle Maschine"
+msgstr "Virtual Maskine"
 
 msgid "Virtual Machine Folder"
-msgstr "Verzeichnis der Virtuellen Machine"
+msgstr "Virtual Maskine Mappe"
 
 msgid "Virtual Machine Volume"
-msgstr "Datenträger der Virtuellen Machine"
+msgstr "Virtual Maskine Drev"
 
 msgid "Virtual Machines"
-msgstr "Virtuelle Machinen"
+msgstr "Virtual Maskiner"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"

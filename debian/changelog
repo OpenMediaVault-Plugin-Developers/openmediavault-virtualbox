@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.10) stable; urgency=low
+
+  * add locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 14 Nov 2013 14:05:27 -0500
+
 openmediavault-virtualbox (0.5.9) stable; urgency=low
 
   * Fixed note format

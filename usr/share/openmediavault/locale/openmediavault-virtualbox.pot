@@ -1,5 +1,5 @@
-# openmediavault-virtualbox
-# Copyright (C) 2013
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-28 09:22-0500\n"
+"POT-Creation-Date: 2013-11-14 14:03-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,71 +18,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Advanced configuration"
-msgstr "Advanced configuration"
+msgstr ""
 
 msgid "Automatic"
-msgstr "Automatic"
+msgstr ""
 
 msgid "Edit Virtual Machine"
-msgstr "Edit Virtual Machine"
+msgstr ""
 
 msgid "Enable"
-msgstr "Enable"
+msgstr ""
 
-msgid "Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.<br /><br />"
-msgstr "Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.<br /><br />"
+msgid "Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password."
+msgstr ""
 
 msgid "Manual"
-msgstr "Manual"
+msgstr ""
 
 msgid "Name"
-msgstr "Name"
+msgstr ""
 
 msgid "Note"
-msgstr "Note"
-
-msgid "phpVirtualBox"
-msgstr "phpVirtualBox"
+msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Select a volume ..."
+msgstr ""
 
 msgid "Settings"
-msgstr "Settings"
-
-msgid "Show advanced configuration options in phpVirtualBox web interface"
-msgstr "Show advanced configuration options in phpVirtualBox web interface"
+msgstr ""
 
 msgid "Show Tab"
-msgstr "Show Tab"
+msgstr ""
+
+msgid "Show advanced configuration options in phpVirtualBox web interface"
+msgstr ""
 
 msgid "Show tab containing phpVirtualBox frame"
-msgstr "Show tab containing phpVirtualBox frame"
+msgstr ""
 
 msgid "Start"
-msgstr "Start"
+msgstr ""
 
 msgid "Startup Mode"
-msgstr "Startup Mode"
+msgstr ""
 
 msgid "Stop"
-msgstr "Stop"
+msgstr ""
 
 msgid "UUID"
-msgstr "UUID"
-
-msgid "VirtualBox"
-msgstr "VirtualBox"
+msgstr ""
 
 msgid "Virtual Machine"
-msgstr "Virtual Machine"
+msgstr ""
 
 msgid "Virtual Machine Folder"
-msgstr "Virtual Machine Folder"
-
-msgid "Virtual Machines"
-msgstr "Virtual Machines"
+msgstr ""
 
 msgid "Virtual Machine Volume"
-msgstr "Virtual Machine Volume"
+msgstr ""
 
+msgid "Virtual Machines"
+msgstr ""
+
+msgid "VirtualBox"
+msgstr ""
+
+msgid "VirtualBox WebService"
+msgstr ""
+
+msgid "phpVirtualBox"
+msgstr ""

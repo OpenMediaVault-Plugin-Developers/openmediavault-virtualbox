@@ -141,7 +141,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             title  : _("Note"),
             items  : [{
                 border : false,
-                html   : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.<br /><br />")
+                html   : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "<br /><br />"
             }]
         }];
     }
