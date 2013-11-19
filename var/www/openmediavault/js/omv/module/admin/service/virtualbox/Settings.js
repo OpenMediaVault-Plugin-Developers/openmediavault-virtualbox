@@ -16,10 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
+
 
 Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     extend : "OMV.workspace.form.Panel",
@@ -28,23 +30,29 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
         "OMV.data.Store"
     ],
 
+
     rpcService   : "VirtualBox",
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+
     initComponent : function() {
         var me = this;
+
 
         me.on('load', function () {
             var checked = me.findField('enable').checked;
             var showtab = me.findField('showtab').checked;
             var parent = me.up('tabpanel');
 
+
             if (!parent)
                 return;
 
+
             var gridPanel = parent.down('grid');
             var phpVirtualBoxPanel = parent.down('panel[title=' + _("phpVirtualBox") + ']');
+
 
             if (gridPanel)
                 checked ? gridPanel.enable() : gridPanel.disable();
@@ -54,8 +62,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             }
         });
 
+
         me.callParent(arguments);
     },
+
 
     getFormItems : function() {
         return [{
@@ -120,20 +130,14 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 xtype      : "checkbox",
                 name       : "enable-advanced",
                 fieldLabel : _("Advanced configuration"),
-                checked    : false,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Show advanced configuration options in phpVirtualBox web interface")
-                }]
+                boxLabel: _("Show advanced configuration options in phpVirtualBox web interface."),
+                checked    : false
             },{
                 xtype      : "checkbox",
                 name       : "showtab",
                 fieldLabel : _("Show Tab"),
-                checked    : false,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Show tab containing phpVirtualBox frame")
-                }]
+                boxLabel: _("Show tab containing phpVirtualBox frame."),
+                checked    : false
             }]
         },{
             xtype  : "fieldset",
@@ -147,6 +151,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     }
 });
 
+
 OMV.WorkspaceManager.registerPanel({
     id        : "settings",
     path      : "/service/virtualbox",
@@ -154,3 +159,4 @@ OMV.WorkspaceManager.registerPanel({
     position  : 10,
     className : "OMV.module.admin.service.virtualbox.Settings"
 });
+
