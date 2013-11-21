@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.11) stable; urgency=low
+
+  * Fix service status bug
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 21 Nov 2013 06:53:27 -0500
+
 openmediavault-virtualbox (0.5.10) stable; urgency=low
 
   * Update locales

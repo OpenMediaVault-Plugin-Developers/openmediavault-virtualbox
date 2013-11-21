@@ -51,7 +51,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
         if (is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
 
-        $cmd = "sudo /etc/init.d/vboxweb-service-status";
+        $cmd = "sudo /etc/init.d/vboxweb-service status";
         $this->exec($cmd, $output);
 
         return array(
