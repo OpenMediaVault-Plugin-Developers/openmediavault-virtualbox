@@ -3,3 +3,4 @@ etc/apache2/openmediavault-webgui.d/phpvirtualbox.conf   etc/apache2/openmediava
 usr/share/openmediavault/*                               usr/share/openmediavault
 usr/share/phpvirtualbox/config.php                       usr/share/phpvirtualbox
 phpvirtualbox/*                                          usr/share/phpvirtualbox
+usr/local/bin/*                                          usr/local/bin

@@ -48,6 +48,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         $this->registerMethod('getMachine');
         $this->registerMethod('setMachine');
         $this->registerMethod('setMachineState');
+        $this->registerMethod('fixModule');
     }
 
     /**
@@ -307,6 +308,32 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         return $response['data'];
     }
 
+    function fixModule($params, $context) {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/usr/local/bin/fixmodule";
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
 }
 
 // Register the RPC service.

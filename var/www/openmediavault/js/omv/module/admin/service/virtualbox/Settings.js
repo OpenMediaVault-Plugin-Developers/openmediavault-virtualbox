@@ -119,6 +119,18 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 fieldLabel : _("Virtual Machine Folder"),
                 allowNone  : true,
                 readOnly   : true
+            },{
+                border : false,
+                html   : "<br />"
+            },{
+                xtype   : "button",
+                name    : "fixmodule",
+                text    : _("Fix module for 3.2 Kernel"),
+                scope   : this,
+                handler : Ext.Function.bind(me.onFixModuleButton, me, [ me ])
+            },{
+                border : false,
+                html   : _("This will recompile the vboxdrv for the 3.2 backports kernel.")
             }]
         },{
             xtype    : "fieldset",
@@ -148,6 +160,22 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 html   : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "<br /><br />"
             }]
         }];
+    },
+
+    onFixModuleButton: function() {
+        var me = this;
+        Ext.create("OMV.window.Execute", {
+            title: _("Recompile vboxdrv module for 3.2 kernel ..."),
+            rpcService: "VirtualBox",
+            rpcMethod: "fixModule",
+            hideStopButton: true,
+            listeners: {
+                scope: me,
+                exception: function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                }
+            }
+        }).show();
     }
 });
 
