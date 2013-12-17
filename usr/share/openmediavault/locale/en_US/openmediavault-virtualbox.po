@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-20 11:04-0600\n"
-"PO-Revision-Date: 2013-11-20 17:04+0000\n"
+"POT-Creation-Date: 2013-12-17 07:24-0600\n"
+"PO-Revision-Date: 2013-12-17 13:24+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,9 @@ msgstr "Edit Virtual Machine"
 msgid "Enable"
 msgstr "Enable"
 
+msgid "Fix module for 3.2 Kernel"
+msgstr "Fix module for 3.2 Kernel"
+
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
@@ -42,6 +45,9 @@ msgstr "Name"
 
 msgid "Note"
 msgstr "Note"
+
+msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgstr "Recompile vboxdrv module for 3.2 kernel ..."
 
 msgid "Select a volume ..."
 msgstr "Select a volume ..."
@@ -66,6 +72,9 @@ msgstr "Startup Mode"
 
 msgid "Stop"
 msgstr "Stop"
+
+msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
+msgstr "This will recompile the vboxdrv for the 3.2 backports kernel."
 
 msgid "UUID"
 msgstr "UUID"

@@ -26,5 +26,8 @@ else
 
     echo "Load module"
     modprobe vboxdrv
+    
+    echo "Restart vboxweb-service"
+    /etc/init.d/vboxweb-service restart
 fi
 

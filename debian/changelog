@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.5.12) stable; urgency=low
+
+  * Add fix module button
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 17 Dec 2013 07:23:27 -0500
+
 openmediavault-virtualbox (0.5.11) stable; urgency=low
 
   * Fix service status bug

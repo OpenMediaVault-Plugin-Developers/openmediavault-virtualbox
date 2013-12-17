@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-20 11:04-0600\n"
-"PO-Revision-Date: 2013-11-20 17:04+0000\n"
+"POT-Creation-Date: 2013-12-17 07:24-0600\n"
+"PO-Revision-Date: 2013-12-17 13:24+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,9 @@ msgstr "Редагувати віртуальну машину"
 msgid "Enable"
 msgstr "Увімкнути"
 
+msgid "Fix module for 3.2 Kernel"
+msgstr ""
+
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
@@ -44,6 +47,9 @@ msgstr "Ім'я"
 msgid "Note"
 msgstr "Нотатка"
 
+msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgstr ""
+
 msgid "Select a volume ..."
 msgstr "Оберіть том ..."
 
@@ -54,10 +60,10 @@ msgid "Show Tab"
 msgstr "Показати вкладку"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr ""
+msgstr "Показати додаткові опції конфігурації у веб-інтерфейс phpVirtualBox."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr ""
+msgstr "Показати вкладку, що містить phpVirtualBox кадр."
 
 msgid "Start"
 msgstr "Старт"
@@ -67,6 +73,9 @@ msgstr "Режим запуску"
 
 msgid "Stop"
 msgstr "Стоп"
+
+msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
+msgstr ""
 
 msgid "UUID"
 msgstr "UUID"
