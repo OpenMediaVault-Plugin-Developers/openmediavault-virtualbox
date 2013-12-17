@@ -56,22 +56,22 @@ openmediavault-virtualbox (0.5.3) stable; urgency=low
 
   * limit to i386 and amd64 architectures - no virtualbox for other architectures
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.prg>  Fri, 04 Oct 2013 07:20:12 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 04 Oct 2013 07:20:12 -0500
 
 openmediavault-virtualbox (0.5.2) stable; urgency=low
 
   * added extpack download
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.prg>  Thu, 03 Oct 2013 17:01:12 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 03 Oct 2013 17:01:12 +0200
 
 openmediavault-virtualbox (0.5.1) stable; urgency=low
 
   * web interface tweaks
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.prg>  Thu, 03 Oct 2013 14:54:12 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 03 Oct 2013 14:54:12 +0200
 
 openmediavault-virtualbox (0.5) stable; urgency=low
 
   * Initial release for OMV 0.5
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.prg>  Sat, 28 Sep 2013 01:14:12 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 28 Sep 2013 01:14:12 +0200

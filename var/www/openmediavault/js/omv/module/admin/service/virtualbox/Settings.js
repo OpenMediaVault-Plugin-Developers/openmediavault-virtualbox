@@ -15,13 +15,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
-
 
 Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     extend : "OMV.workspace.form.Panel",
@@ -30,29 +27,23 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
         "OMV.data.Store"
     ],
 
-
     rpcService   : "VirtualBox",
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
-
     initComponent : function() {
         var me = this;
-
 
         me.on('load', function () {
             var checked = me.findField('enable').checked;
             var showtab = me.findField('showtab').checked;
             var parent = me.up('tabpanel');
 
-
             if (!parent)
                 return;
 
-
             var gridPanel = parent.down('grid');
             var phpVirtualBoxPanel = parent.down('panel[title=' + _("phpVirtualBox") + ']');
-
 
             if (gridPanel)
                 checked ? gridPanel.enable() : gridPanel.disable();
@@ -62,12 +53,11 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             }
         });
 
-
         me.callParent(arguments);
     },
 
-
     getFormItems : function() {
+        var me = this;
         return [{
             xtype    : "fieldset",
             title    : "General settings",
@@ -130,7 +120,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 handler : Ext.Function.bind(me.onFixModuleButton, me, [ me ])
             },{
                 border : false,
-                html   : _("This will recompile the vboxdrv for the 3.2 backports kernel.")
+                html   : "<ul><li>" + _("This will recompile the vboxdrv for the 3.2 backports kernel.") + "</li></ul>"
             }]
         },{
             xtype    : "fieldset",
