@@ -18,8 +18,9 @@ ifneq ($(shell [ -d phpvirtualbox ]; printf $$?), 0)
 ifdef PVBX_TRUNK
 	svn export svn://svn.code.sf.net/p/phpvirtualbox/code/trunk/ phpvirtualbox
 else
-	wget http://sourceforge.net/projects/phpvirtualbox/files/latest/download -O phpvirtualbox.zip
-	unzip -d phpvirtualbox/ phpvirtualbox.zip
+	wget http://sourceforge.net/projects/phpvirtualbox/files/phpvirtualbox-4.3-1.zip/download -O phpvirtualbox.zip
+	unzip phpvirtualbox.zip
+	mv phpvirtualbox-4.3-1 phpvirtualbox
 	/bin/rm -f phpvirtualbox.zip
 	find . -maxdepth 1 -name "phpvirtualbox-*" -type d -exec /bin/mv {} phpvirtualbox \;
 endif
