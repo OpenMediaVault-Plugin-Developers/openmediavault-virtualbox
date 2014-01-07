@@ -4,7 +4,7 @@ openmediavault-virtualbox (0.5.13) stable; urgency=low
   * Updated phpvirtualbox version to 4.3.1
   * Update locales
   * Update copyrights
-  * Fix module on installation if 3.2 kernel installed
+  * Add build-essential as Depends for recompiling module
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 07 Jan 2014 02:06:27 +0400
 

@@ -48,8 +48,6 @@ configure)
     VBoxManage extpack install --replace /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
     rm -f /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
 
-    /usr/local/bin/fixmodule
-
     ;;
     
 abort-upgrade|abort-remove|abort-deconfigure)
