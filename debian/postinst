@@ -14,7 +14,7 @@ configure)
         object="<enable>0</enable>"
         object="${object}<enable-advanced></enable-advanced>"
         object="${object}<vm-folder></vm-folder>"
-		object="${object}<showtab></showtab>"
+        object="${object}<showtab></showtab>"
         omv_config_add_element "/config/services" "virtualbox" "${object}" true
     fi
 
@@ -42,15 +42,19 @@ configure)
 
     /etc/init.d/apache2 reload
 
-	version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
+    version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
 
-	wget -P /tmp "http://download.virtualbox.org/virtualbox/$version/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
-	VBoxManage extpack install --replace /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
-	rm -f /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+    wget -P /tmp "http://download.virtualbox.org/virtualbox/$version/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
+    VBoxManage extpack install --replace /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+    rm -f /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+
+    /usr/local/bin/fixmodule
 
     ;;
+    
 abort-upgrade|abort-remove|abort-deconfigure)
     ;;
+    
 *)
     echo "postinst called with unknown argument" >&2
     exit 1
