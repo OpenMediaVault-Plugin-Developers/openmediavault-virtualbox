@@ -2,6 +2,8 @@ openmediavault-virtualbox (0.5.13) stable; urgency=low
 
   * Updated Virtualbox version to 4.3
   * Updated phpvirtualbox version to 4.3.1
+  * Update locales
+  * Update copyrights
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 07 Jan 2014 02:06:27 +0400
 
@@ -55,7 +57,7 @@ openmediavault-virtualbox (0.5.5) stable; urgency=low
 
 openmediavault-virtualbox (0.5.4) stable; urgency=low
 
-  * Fix requires in Javascript 
+  * Fix requires in Javascript
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 04 Oct 2013 20:43:40 +0200
 

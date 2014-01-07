@@ -2,7 +2,7 @@
 
 /**
  * Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
- * Copyright (C)      2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,20 +28,16 @@ require_once("/usr/share/phpvirtualbox/lib/config.php");
 require_once("/usr/share/phpvirtualbox/lib/utils.php");
 require_once("/usr/share/phpvirtualbox/lib/vboxconnector.php");
 
-class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
-{
-    private function getXpath()
-    {
+class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
+    private function getXpath() {
         return "//services/virtualbox";
     }
 
-    public function getName()
-    {
+    public function getName() {
         return 'virtualbox';
     }
 
-    public function initialize()
-    {
+    public function initialize() {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
         $this->registerMethod('getMachines');
@@ -54,8 +50,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
     /**
      * Get main settings
      */
-    function getSettings($params, $context)
-    {
+    function getSettings($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -70,18 +65,17 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
                 $this->getXpath());
 
         // Modify result data
-        $object['enable']                        = boolval($object['enable']);
-        $object['enable-advanced']               = boolval($object['enable-advanced']);
-		$object['showtab']                       = boolval($object['showtab']);
-		
+        $object['enable']          = boolval($object['enable']);
+        $object['enable-advanced'] = boolval($object['enable-advanced']);
+        $object['showtab']         = boolval($object['showtab']);
+
         return $object;
     }
 
     /**
      * Set main settings
      */
-    function setSettings($params, $context)
-    {
+    function setSettings($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -91,13 +85,13 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type":"object",
-            "properties":{
-                "enable":{"type":"boolean"},
-                "enable-advanced":{"type":"boolean"},
-                "vm-folder":{"type":"string","optional":true},
-                "mntentref":{' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . '},
-				"showtab":{"type":"boolean"}
+            "type"       : "object",
+            "properties" : {
+                "enable"          : { "type" : "boolean" },
+                "enable-advanced" : { "type" : "boolean" },
+                "vm-folder"       : { "type" : "string", "optional" : true },
+                "mntentref"       : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' },
+                "showtab"         : { "type" : "boolean" }
             }
         }');
 
@@ -111,7 +105,6 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         $oldConfig = $xmlConfig->get($this->getXpath());
 
         if ($oldConfig['vm-folder'] != $vmFolder) {
-
             $output = array();
             $cmd = 'sudo /bin/sh -c \'. /etc/default/openmediavault; OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}; echo ${OMV_VBOX_USER}\'';
             $this->exec($cmd, $output);
@@ -125,14 +118,12 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Prepare configuration data
         $object = array(
-            "enable"                             => array_boolval($params, 'enable'),
-            "enable-advanced"                    => array_boolval($params, 'enable-advanced'),
-            "vm-folder"                          => $params['vm-folder'],
-            "mntentref"                          => $params['mntentref'],
-			"showtab"                             => array_boolval($params, 'showtab')
+            "enable"          => array_boolval($params, 'enable'),
+            "enable-advanced" => array_boolval($params, 'enable-advanced'),
+            "vm-folder"       => $params['vm-folder'],
+            "mntentref"       => $params['mntentref'],
+            "showtab"         => array_boolval($params, 'showtab')
         );
-
-
 
         // Set configuration object
         if (false === $xmlConfig->replace($this->getXpath(), $object))
@@ -145,8 +136,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         return $object;
     }
 
-    public function getMachines($params, $context)
-    {
+    public function getMachines($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -156,12 +146,12 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-        "type":"object",
-            "properties":{
-                "start":{"type":"integer"},
-                "limit":{' . $GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'] . '},
-                "sortfield":{' . $GLOBALS['OMV_JSONSCHEMA_SORTFIELD'] . '},
-                "sortdir":{' . $GLOBALS['OMV_JSONSCHEMA_SORTDIR'] . '}
+            "type"       : "object",
+            "properties" : {
+                "start"     : { "type" : "integer" },
+                "limit"     : { ' . $GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'] . ' },
+                "sortfield" : { ' . $GLOBALS['OMV_JSONSCHEMA_SORTFIELD'] . ' },
+                "sortdir"   : { ' . $GLOBALS['OMV_JSONSCHEMA_SORTDIR'] . ' }
             }
         }');
 
@@ -193,8 +183,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         );
     }
 
-    public function getMachine($params, $context)
-    {
+    public function getMachine($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -204,9 +193,9 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type":"object",
-            "properties": {
-                "uuid":{' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . '}
+            "type"       : "object",
+            "properties" : {
+                "uuid" : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' }
             }
         }');
 
@@ -231,8 +220,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         return $object;
     }
 
-    public function setMachine($params, $context)
-    {
+    public function setMachine($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -242,11 +230,11 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type":"object",
-            "properties": {
-                "uuid":{' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . '},
-                "name":{"type":"string","optional":true},
-                "startupMode":{"type":"string","enum":["auto","manual"]}
+            "type"       : "object",
+            "properties" : {
+                "uuid"        : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' },
+                "name"        : { "type" : "string", "optional" : true },
+                "startupMode" : { "type" : "string", "enum" : [ "auto", "manual" ] }
             }
         }');
 
@@ -275,8 +263,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         unset($vb);
     }
 
-    public function setMachineState($params, $context)
-    {
+    public function setMachineState($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -286,10 +273,10 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
-            "type":"object",
-            "properties": {
-                "uuid":{' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . '},
-                "state":{"type":"string"}
+            "type"       : "object",
+            "properties" : {
+                "uuid"  : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' },
+                "state" : { "type" : "string" }
             }
         }');
 
@@ -328,7 +315,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
             $cmd = "/usr/local/bin/fixmodule";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
-            
+
         } catch(Exception $e) {
             $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
             exit(1);

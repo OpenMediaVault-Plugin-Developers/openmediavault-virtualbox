@@ -2,7 +2,7 @@
 
 /**
  * Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
- * Copyright (C)      2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,24 +26,21 @@ require_once("openmediavault/initscript.inc");
 
 class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotifyListener, OMVIModuleServiceStatus {
 
-    private function getXPath()
-    {
+    private function getXPath() {
         return '//services/virtualbox';
     }
 
-	/**
-	 * Get the module name.
-	 */
-	public function getName()
-	{
-		return "virtualbox";
-	}
+    /**
+     * Get the module name.
+     */
+    public function getName() {
+        return "virtualbox";
+    }
 
     /**
      * Get the module status
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
@@ -55,32 +52,31 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
         $this->exec($cmd, $output);
 
         return array(
-            "name" => $this->getName(),
-            "title" => gettext("VirtualBox WebService"),
+            "name"    => $this->getName(),
+            "title"   => gettext("VirtualBox WebService"),
             "enabled" => boolval($object['enable']),
             "running" => (strpos($output[0], '...running') > 0)
         );
     }
 
-	/**
-	 * Create and update the configuration
-	 */
-	public function applyConfig()
-	{
-	    global $xmlConfig;
+    /**
+     * Create and update the configuration
+     */
+    public function applyConfig()
+    {
+        global $xmlConfig;
 
-	    $cmd = "sudo omv-mkconf virtualbox 2>&1";
+        $cmd = "sudo omv-mkconf virtualbox 2>&1";
 
         if (0 !== $this->exec($cmd, $output))
             throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
                 $cmd, implode("\n", $output));
-	}
+    }
 
     /**
      * Start the managed service
      */
-    public function startService()
-    {
+    public function startService() {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
@@ -99,8 +95,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
     /**
      * Stop the managed service
      */
-    public function stopService()
-    {
+    public function stopService() {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
@@ -122,15 +117,15 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
                 $cmd, implode("\n", $output));
     }
 
-	/**
-	 * Bind listeners.
-	 */
-	public function bindListeners(OMVNotifyDispatcher $dispatcher) {
-	    $dispatcher->addListener(
+    /**
+     * Bind listeners.
+     */
+    public function bindListeners(OMVNotifyDispatcher $dispatcher) {
+        $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             "org.openmediavault.services.virtualbox",
             array($this, "setDirty"));
-	}
+    }
 }
 
 // Register module

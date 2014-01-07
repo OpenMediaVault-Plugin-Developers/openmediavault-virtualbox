@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
- * Copyright (C)      2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -152,16 +152,16 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
         }];
     },
 
-    onFixModuleButton: function() {
+    onFixModuleButton : function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("Recompile vboxdrv module for 3.2 kernel ..."),
-            rpcService: "VirtualBox",
-            rpcMethod: "fixModule",
-            hideStopButton: true,
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title          : _("Recompile vboxdrv module for 3.2 kernel ..."),
+            rpcService     : "VirtualBox",
+            rpcMethod      : "fixModule",
+            hideStopButton : true,
+            listeners      : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
