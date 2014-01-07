@@ -3,100 +3,100 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2013
+# dezi121 <by@songming.me>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-17 07:24-0600\n"
-"PO-Revision-Date: 2013-12-23 08:34+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/da/)\n"
+"PO-Revision-Date: 2013-12-23 05:12+0000\n"
+"Last-Translator: dezi121 <by@songming.me>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Advanced configuration"
-msgstr "Avanceret konfiguration"
+msgstr "高级配置"
 
 msgid "Automatic"
-msgstr "Automatisk"
+msgstr "自动"
 
 msgid "Edit Virtual Machine"
-msgstr "Rediger Virtual Maskine"
+msgstr "编辑虚拟机"
 
 msgid "Enable"
-msgstr "Aktiver"
+msgstr "启用"
 
 msgid "Fix module for 3.2 Kernel"
-msgstr "Ret modul for 3.2 Kerne"
+msgstr "修复 3.2 内核模块"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "Vær sikker på, at ændre adgangskoden i phphVirtualBox! Standard log ind legitimationsoplysninger er 'admin' for både brugernavn og adgangskode."
+msgstr "确认要改变 phpVirtualBox 密码！默认登录帐号和密码是 'admin'。"
 
 msgid "Manual"
-msgstr "Manuelt"
+msgstr "手册"
 
 msgid "Name"
-msgstr "Navn"
+msgstr "名称"
 
 msgid "Note"
-msgstr "Notat"
+msgstr "注释"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "Rekompiler vboxdrv modul for 3.2 kerne ..."
+msgstr "重编译3.2内核 vboxdrv 模块 ..."
 
 msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
+msgstr "选择卷 ..."
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "设置"
 
 msgid "Show Tab"
-msgstr "Vis Fane"
+msgstr "显示标签页"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "Vis avanceret konfiguration valgmuligheder på phpVirtualBox webinterface."
+msgstr "显示  phpVirtualBox web 后台的高级配置选项。"
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "Vis fane indeholdende phpVirtualBox ramme"
+msgstr "标签页显示 phpVirtualBox 管理页"
 
 msgid "Start"
-msgstr "Start"
+msgstr "开始"
 
 msgid "Startup Mode"
-msgstr "Opstarts Modus"
+msgstr "启动模式"
 
 msgid "Stop"
-msgstr "Stop"
+msgstr "停止"
 
 msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
-msgstr "Dette vil rekompiler vboxdrv for 3.2 backports kernen."
+msgstr "这会重编译  3.2 backports 内核 vboxdrv 模块。"
 
 msgid "UUID"
 msgstr "UUID"
 
 msgid "Virtual Machine"
-msgstr "Virtual Maskine"
+msgstr "虚拟机"
 
 msgid "Virtual Machine Folder"
-msgstr "Virtual Maskine Mappe"
+msgstr "虚拟机文件夹"
 
 msgid "Virtual Machine Volume"
-msgstr "Virtual Maskine Drev"
+msgstr "虚拟机卷"
 
 msgid "Virtual Machines"
-msgstr "Virtual Maskiner"
+msgstr "虚拟机"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox Web Tjeneste"
+msgstr "VirtualBox Web服务器"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"
