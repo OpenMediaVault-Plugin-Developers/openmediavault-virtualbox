@@ -43,22 +43,22 @@ configure)
     /etc/init.d/apache2 reload
 
     version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
+    file="Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
 
-    wget -P /tmp "http://download.virtualbox.org/virtualbox/$version/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
-    VBoxManage extpack install --replace /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
-    rm -f /tmp/Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack
+    rm -f "/tmp/$file*"
+    wget -O "/tmp/$file" "http://download.virtualbox.org/virtualbox/$version/$file"
+    VBoxManage extpack install --replace "/tmp/$file"
+    rm -f "/tmp/$file"
 
     ;;
-    
+
 abort-upgrade|abort-remove|abort-deconfigure)
     ;;
-    
+
 *)
     echo "postinst called with unknown argument" >&2
     exit 1
     ;;
 esac
-
-#DEBHELPER#
 
 exit 0
