@@ -50,6 +50,12 @@ configure)
     VBoxManage extpack install --replace "/tmp/$file"
     rm -f "/tmp/$file"
 
+    insserv openmediavault-virtualbox
+
+    if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+        update-rc.d openmediavault-virtualbox disable
+    fi
+
     ;;
 
 abort-upgrade|abort-remove|abort-deconfigure)
