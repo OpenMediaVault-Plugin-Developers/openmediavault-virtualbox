@@ -75,8 +75,8 @@ Ext.define("OMV.module.admin.service.virtualbox.MachineEditWindow", {
         me.callParent(arguments);
 
         me.on("load", function() {
-            if (me.sessionState != 'Unlocked')
-                me.findField('name').setReadOnly(true);
+            if (me.sessionState != "Unlocked")
+                me.findField("name").setReadOnly(true);
         }, me);
     }
 

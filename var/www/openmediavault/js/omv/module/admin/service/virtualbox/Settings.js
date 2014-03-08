@@ -34,16 +34,16 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     initComponent : function() {
         var me = this;
 
-        me.on('load', function () {
-            var checked = me.findField('enable').checked;
-            var showtab = me.findField('showtab').checked;
-            var parent = me.up('tabpanel');
+        me.on("load", function () {
+            var checked = me.findField("enable").checked;
+            var showtab = me.findField("showtab").checked;
+            var parent = me.up("tabpanel");
 
             if (!parent)
                 return;
 
-            var gridPanel = parent.down('grid');
-            var phpVirtualBoxPanel = parent.down('panel[title=' + _("phpVirtualBox") + ']');
+            var gridPanel = parent.down("grid");
+            var phpVirtualBoxPanel = parent.down("panel[title=" + _("phpVirtualBox") + "]");
 
             if (gridPanel)
                 checked ? gridPanel.enable() : gridPanel.disable();

@@ -18,16 +18,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once("openmediavault/module.inc");
-require_once("openmediavault/config.inc");
-require_once("openmediavault/error.inc");
-require_once("openmediavault/util.inc");
-require_once("openmediavault/initscript.inc");
+require_once "openmediavault/module.inc";
+require_once "openmediavault/config.inc";
+require_once "openmediavault/error.inc";
+require_once "openmediavault/util.inc";
+require_once "openmediavault/initscript.inc";
 
 class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotifyListener, OMVIModuleServiceStatus {
 
     private function getXPath() {
-        return '//services/virtualbox';
+        return "//services/virtualbox";
     }
 
     /**
@@ -54,8 +54,8 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
         return array(
             "name"    => $this->getName(),
             "title"   => gettext("VirtualBox WebService"),
-            "enabled" => boolval($object['enable']),
-            "running" => (strpos($output[0], '...running') > 0)
+            "enabled" => boolval($object["enable"]),
+            "running" => (strpos($output[0], "...running") > 0)
         );
     }
 
@@ -84,7 +84,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
         if (is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
 
-        if (boolval($object['enable']) === true) {
+        if (boolval($object["enable"]) === true) {
             $initd = new OMVSysVInitScript("vboxweb-service", true);
             $initd->exec();
             $initd = new OMVSysVInitScript("openmediavault-virtualbox", true);
@@ -103,7 +103,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
         if (is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
 
-        if (boolval($object['enable']) === false) {
+        if (boolval($object["enable"]) === false) {
             $initd = new OMVSysVInitScript("openmediavault-virtualbox", false);
             $initd->exec();
             $initd = new OMVSysVInitScript("vboxweb-service", false);

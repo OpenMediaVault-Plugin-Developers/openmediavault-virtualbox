@@ -21,18 +21,18 @@ class phpVBoxConfig
 {
 
     /* STATIC CONFIG ITEMS */
-    public $location = 'http://127.0.0.1:18083/';
-    public $language = 'en';
+    public $location = "http://127.0.0.1:18083/";
+    public $language = "en";
     public $startStopConfig = true;
-    public $username = '';
-    public $password = '';
+    public $username = "";
+    public $password = "";
     public $enableAdvancedConfig = false;
 
     /* AUTOMATIC CONFIG ITEMS */
     public function __construct()
     {
         $out = array();
-        exec('/bin/sh -c \'. /etc/default/openmediavault; . /usr/share/openmediavault/scripts/helper-functions; echo $(omv_config_get "//services/virtualbox/enable"); OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}; echo ${OMV_VBOX_USER}; cat /etc/default/openmediavault-virtualbox; echo $(omv_config_get "//services/virtualbox/enable-advanced")\'', $out);
+        exec("/bin/sh -c '. /etc/default/openmediavault; . /usr/share/openmediavault/scripts/helper-functions; echo $(omv_config_get \"//services/virtualbox/enable\"); OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}; cat /etc/default/openmediavault-virtualbox; echo $(omv_config_get \"//services/virtualbox/enable-advanced\")'", $out);
         if($out[0] != "1") die("alert('phpVirtualBox disabled by OpenMediaVault configuration.');");
         $this->username = $out[1];
         $this->password = $out[2];

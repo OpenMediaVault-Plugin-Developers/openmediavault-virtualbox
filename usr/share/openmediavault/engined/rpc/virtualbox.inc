@@ -18,15 +18,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once ("openmediavault/object.inc");
-require_once ("openmediavault/error.inc");
-require_once ("openmediavault/util.inc");
-require_once ("openmediavault/rpc.inc");
-require_once ("openmediavault/notify.inc");
+require_once "openmediavault/object.inc";
+require_once "openmediavault/error.inc";
+require_once "openmediavault/util.inc";
+require_once "openmediavault/rpc.inc";
+require_once "openmediavault/notify.inc";
 
-require_once("/usr/share/phpvirtualbox/lib/config.php");
-require_once("/usr/share/phpvirtualbox/lib/utils.php");
-require_once("/usr/share/phpvirtualbox/lib/vboxconnector.php");
+require_once "/usr/share/phpvirtualbox/lib/config.php";
+require_once "/usr/share/phpvirtualbox/lib/utils.php";
+require_once "/usr/share/phpvirtualbox/lib/vboxconnector.php";
 
 class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
     private function getXpath() {
@@ -34,17 +34,17 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
     }
 
     public function getName() {
-        return 'virtualbox';
+        return "virtualbox";
     }
 
     public function initialize() {
-        $this->registerMethod('getSettings');
-        $this->registerMethod('setSettings');
-        $this->registerMethod('getMachines');
-        $this->registerMethod('getMachine');
-        $this->registerMethod('setMachine');
-        $this->registerMethod('setMachineState');
-        $this->registerMethod('fixModule');
+        $this->registerMethod("getSettings");
+        $this->registerMethod("setSettings");
+        $this->registerMethod("getMachines");
+        $this->registerMethod("getMachine");
+        $this->registerMethod("setMachine");
+        $this->registerMethod("setMachineState");
+        $this->registerMethod("fixModule");
     }
 
     /**
@@ -65,9 +65,9 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
                 $this->getXpath());
 
         // Modify result data
-        $object['enable']          = boolval($object['enable']);
-        $object['enable-advanced'] = boolval($object['enable-advanced']);
-        $object['showtab']         = boolval($object['showtab']);
+        $object["enable"]          = boolval($object["enable"]);
+        $object["enable-advanced"] = boolval($object["enable-advanced"]);
+        $object["showtab"]         = boolval($object["showtab"]);
 
         return $object;
     }
@@ -90,23 +90,23 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
                 "enable"          : { "type" : "boolean" },
                 "enable-advanced" : { "type" : "boolean" },
                 "vm-folder"       : { "type" : "string", "optional" : true },
-                "mntentref"       : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' },
+                "mntentref"       : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID_NONE"] . ' },
                 "showtab"         : { "type" : "boolean" }
             }
         }');
 
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
+        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params["mntentref"]);
         $deviceDir = $xmlConfig->get($xpath);
-        $deviceDir = $deviceDir['dir'];
+        $deviceDir = $deviceDir["dir"];
 
         $vmFolder = "{$deviceDir}/virtualbox-machines";
-        $params['vm-folder'] = $vmFolder;
+        $params["vm-folder"] = $vmFolder;
 
         $oldConfig = $xmlConfig->get($this->getXpath());
 
-        if ($oldConfig['vm-folder'] != $vmFolder) {
+        if ($oldConfig["vm-folder"] != $vmFolder) {
             $output = array();
-            $cmd = 'sudo /bin/sh -c \'. /etc/default/openmediavault; OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}; echo ${OMV_VBOX_USER}\'';
+            $cmd = "sudo /bin/sh -c '. /etc/default/openmediavault; OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}'";
             $this->exec($cmd, $output);
             $vboxUser = $output[0];
             $cmd = "sudo /bin/sh -c '[ -d $vmFolder ] || /bin/mkdir -p $vmFolder; chown $vboxUser $vmFolder; chmod u+rwx $vmFolder'";
@@ -118,11 +118,11 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
 
         // Prepare configuration data
         $object = array(
-            "enable"          => array_boolval($params, 'enable'),
-            "enable-advanced" => array_boolval($params, 'enable-advanced'),
-            "vm-folder"       => $params['vm-folder'],
-            "mntentref"       => $params['mntentref'],
-            "showtab"         => array_boolval($params, 'showtab')
+            "enable"          => array_boolval($params, "enable"),
+            "enable-advanced" => array_boolval($params, "enable-advanced"),
+            "vm-folder"       => $params["vm-folder"],
+            "mntentref"       => $params["mntentref"],
+            "showtab"         => array_boolval($params, "showtab")
         );
 
         // Set configuration object
@@ -149,9 +149,9 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "start"     : { "type" : "integer" },
-                "limit"     : { ' . $GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'] . ' },
-                "sortfield" : { ' . $GLOBALS['OMV_JSONSCHEMA_SORTFIELD'] . ' },
-                "sortdir"   : { ' . $GLOBALS['OMV_JSONSCHEMA_SORTDIR'] . ' }
+                "limit"     : { ' . $GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"] . ' },
+                "sortfield" : { ' . $GLOBALS["OMV_JSONSCHEMA_SORTFIELD"] . ' },
+                "sortdir"   : { ' . $GLOBALS["OMV_JSONSCHEMA_SORTDIR"] . ' }
             }
         }');
 
@@ -163,12 +163,12 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
 
         foreach ($vb->vbox->machines as $machine) {
             $objects[] = array(
-                'uuid'         => $machine->id,
-                'name'         => $machine->name,
-                'state'        => $machine->state->__toString(),
-                'startupMode'  => $machine->getExtraData('pvbx/startupMode'),
-                'OSTypeId'     => $machine->getOSTypeId(),
-                'sessionState' => $machine->sessionState->__toString()
+                "uuid"         => $machine->id,
+                "name"         => $machine->name,
+                "state"        => $machine->state->__toString(),
+                "startupMode"  => $machine->getExtraData("pvbx/startupMode"),
+                "OSTypeId"     => $machine->getOSTypeId(),
+                "sessionState" => $machine->sessionState->__toString()
             );
         }
 
@@ -176,10 +176,10 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
 
         return $this->applyFilter(
             $objects,
-            $params['start'],
-            $params['count'],
-            $params['sortfield'],
-            $params['sortdir']
+            $params["start"],
+            $params["count"],
+            $params["sortfield"],
+            $params["sortdir"]
         );
     }
 
@@ -195,7 +195,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "uuid" : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' }
+                "uuid" : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID_NONE"] . ' }
             }
         }');
 
@@ -205,14 +205,14 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
         $vb->skipSessionCheck = true;
         $vb->connect();
 
-        $machine = $vb->vbox->findMachine($params['uuid']);
+        $machine = $vb->vbox->findMachine($params["uuid"]);
         $object = array(
-            'uuid'         => $machine->id,
-            'name'         => $machine->name,
-            'state'        => $machine->state->__toString(),
-            'startupMode'  => $machine->getExtraData('pvbx/startupMode'),
-            'OSTypeId'     => $machine->getOSTypeId(),
-            'sessionState' => $machine->sessionState->__toString()
+            "uuid"         => $machine->id,
+            "name"         => $machine->name,
+            "state"        => $machine->state->__toString(),
+            "startupMode"  => $machine->getExtraData("pvbx/startupMode"),
+            "OSTypeId"     => $machine->getOSTypeId(),
+            "sessionState" => $machine->sessionState->__toString()
         );
 
         unset($vb);
@@ -232,7 +232,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "uuid"        : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' },
+                "uuid"        : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID_NONE"] . ' },
                 "name"        : { "type" : "string", "optional" : true },
                 "startupMode" : { "type" : "string", "enum" : [ "auto", "manual" ] }
             }
@@ -242,19 +242,19 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
         $vb->skipSessionCheck = true;
         $vb->connect();
 
-        $machine = $vb->vbox->findMachine($params['uuid']);
-        $vmRunning = ($machine->state->__toString() == 'Running');
+        $machine = $vb->vbox->findMachine($params["uuid"]);
+        $vmRunning = ($machine->state->__toString() == "Running");
 
         $vb->session = $vb->websessionManager->getSessionObject($vb->vbox->handle);
-        $machine->lockMachine($vb->session->handle, ($vmRunning ? 'Shared' : 'Write'));
+        $machine->lockMachine($vb->session->handle, ($vmRunning ? "Shared" : "Write"));
 
         $m = &$vb->session->machine;
 
-        if(!$vmRunning && isset($params['name']) && !empty($params['name']) && $m->name != $params['name']) {
-            $m->name = $params['name'];
+        if(!$vmRunning && isset($params["name"]) && !empty($params["name"]) && $m->name != $params["name"]) {
+            $m->name = $params["name"];
         }
 
-        $m->setExtraData('pvbx/startupMode', $params['startupMode']);
+        $m->setExtraData("pvbx/startupMode", $params["startupMode"]);
 
         $vb->session->machine->saveSettings();
         $vb->session->unlockMachine();
@@ -275,7 +275,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "uuid"  : { ' . $GLOBALS['OMV_JSONSCHEMA_UUID_NONE'] . ' },
+                "uuid"  : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID_NONE"] . ' },
                 "state" : { "type" : "string" }
             }
         }');
@@ -284,15 +284,15 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract {
         $vb->skipSessionCheck = true;
 
         $args = array(
-            'vm'    => $params['uuid'],
-            'state' => $params['state']
+            "vm"    => $params["uuid"],
+            "state" => $params["state"]
         );
 
         $response = array();
         $vb->machineSetState($args, array(&$response));
         unset($vb);
 
-        return $response['data'];
+        return $response["data"];
     }
 
     function fixModule($params, $context) {

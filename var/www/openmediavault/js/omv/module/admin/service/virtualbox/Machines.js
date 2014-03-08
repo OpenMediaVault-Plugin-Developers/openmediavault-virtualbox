@@ -23,7 +23,7 @@
 // require("js/omv/data/proxy/Rpc.js")
 // require("js/omv/module/admin/service/virtualbox/MachineEditWindow.js")
 
-Ext.define('OMV.module.admin.service.virtualbox.Machines', {
+Ext.define("OMV.module.admin.service.virtualbox.Machines", {
     extend   : "OMV.workspace.grid.Panel",
     requires : [
         "OMV.data.Store",
@@ -38,7 +38,7 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
     hideEditButton     : false,
     hideDeleteButton   : true,
     autoReload         : true,
-    stateChangeWaitMsg : _('Changing VM state.'),
+    stateChangeWaitMsg : _("Changing VM state."),
 
     columns : [{
         header    : _("UUID"),
@@ -54,22 +54,22 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
         dataIndex : "state",
         renderer  : function(value, metaData, record) {
             switch(value) {
-                case 'PoweredOff':
-                    return 'Powered Off';
-                case 'LiveSnapshotting':
-                    return 'Live Snapshotting';
-                case 'TeleportingPausedVM':
-                    return 'Teleporting Paused VM';
-                case 'TeleportingIn':
-                    return 'Teleporting In';
-                case 'TakingLiveSnapshot':
-                    return 'Taking Live Snapshot';
-                case 'RestoringSnapshot':
-                    return 'Restoring Snapshot';
-                case 'DeletingSnapshot':
-                    return 'Deleting Snapshot';
-                case 'SettingUp':
-                    return 'Setting Up';
+                case "PoweredOff":
+                    return "Powered Off";
+                case "LiveSnapshotting":
+                    return "Live Snapshotting";
+                case "TeleportingPausedVM":
+                    return "Teleporting Paused VM";
+                case "TeleportingIn":
+                    return "Teleporting In";
+                case "TakingLiveSnapshot":
+                    return "Taking Live Snapshot";
+                case "RestoringSnapshot":
+                    return "Restoring Snapshot";
+                case "DeletingSnapshot":
+                    return "Deleting Snapshot";
+                case "SettingUp":
+                    return "Setting Up";
                 default:
                     return value;
             }
@@ -79,9 +79,9 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
         sortable  : true,
         dataIndex : "startupMode",
         renderer  : function(value, metaData, record) {
-            if(value == 'auto')
-                return 'Automatic';
-            return 'Manual';
+            if(value == "auto")
+                return "Automatic";
+            return "Manual";
         }
     }],
 
@@ -93,22 +93,22 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
                 autoload   : true,
                 remoteSort : false,
                 model      : OMV.data.Model.createImplicit({
-                    idProperty : 'uuid',
-                    totalPoperty : 'total',
+                    idProperty : "uuid",
+                    totalPoperty : "total",
                     fields : [
-                        { name : 'uuid' },
-                        { name : 'name' },
-                        { name : 'state' },
-                        { name : 'startupMode' },
-                        { name : 'OSTypeId' },
-                        { name : 'sessionState' }
+                        { name : "uuid" },
+                        { name : "name" },
+                        { name : "state" },
+                        { name : "startupMode" },
+                        { name : "OSTypeId" },
+                        { name : "sessionState" }
                     ]
                 }),
                 proxy : {
-                    type    : 'rpc',
+                    type    : "rpc",
                     rpcData : {
-                        "service" : "VirtualBox",
-                        "method"  : "getMachines"
+                        service : "VirtualBox",
+                        method  : "getMachines"
                     }
                 }
             })
@@ -130,7 +130,7 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
             handler  : me.onStateChangeButton,
             disabled : true,
             scope    : me,
-            action   : 'powerUp'
+            action   : "powerUp"
         },{
             id       : me.getId() + "-stop",
             xtype    : "button",
@@ -138,45 +138,45 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
             icon     : "/virtualbox/images/vbox/state_powered_off_16px.png",
             disabled : true,
             menu     : [{
-                id       : me.getId() + '-stop-saveState',
-                vmstates : ['Running'],
-                text     : _('Save the machine state'),
+                id       : me.getId() + "-stop-saveState",
+                vmstates : ["Running"],
+                text     : _("Save the machine state"),
                 icon     : "/virtualbox/images/vbox/fd_16px.png",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : 'saveState'
+                action   : "saveState"
             },{
-                id       : me.getId() + '-stop-powerButton',
-                vmstates : ['Running'],
-                text     : _('ACPI Shutdown'),
+                id       : me.getId() + "-stop-powerButton",
+                vmstates : ["Running"],
+                text     : _("ACPI Shutdown"),
                 icon     : "/virtualbox/images/vbox/acpi_16px.png",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : 'powerButton'
+                action   : "powerButton"
             },{
-                id       : me.getId() + '-stop-pause',
-                vmstates : ['Running'],
-                text     : _('Pause'),
+                id       : me.getId() + "-stop-pause",
+                vmstates : ["Running"],
+                text     : _("Pause"),
                 icon     : "/virtualbox/images/vbox/pause_16px.png",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : 'pause'
+                action   : "pause"
             },{
-                id       : me.getId() + '-stop-powerDown',
-                vmstates : ['Running','Paused','Stuck'],
-                text     : _('Power off the machine'),
+                id       : me.getId() + "-stop-powerDown",
+                vmstates : ["Running", "Paused", "Stuck"],
+                text     : _("Power off the machine"),
                 icon     : "/virtualbox/images/vbox/poweroff_16px.png",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : 'powerDown'
+                action   : "powerDown"
             },{
-                id       : me.getId() + '-stop-reset',
-                vmstates : ['Running'],
-                text     : _('Reset'),
+                id       : me.getId() + "-stop-reset",
+                vmstates : ["Running"],
+                text     : _("Reset"),
                 icon     : "/virtualbox/images/vbox/reset_16px.png",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : 'reset'
+                action   : "reset"
             }],
             scope: me
         },{
@@ -212,7 +212,8 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
     },
 
     changeButtonStatus : function(records) {
-        var me = this;
+        var me = this,
+            i;
 
         var tbarBtnName = [
             "start",
@@ -231,24 +232,24 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
             var record = me.getSelected();
             var state = record.get("state");
 
-            if(['PoweredOff','Paused','Saved','Aborted','Teleported'].indexOf(state) > -1) {
-                tbarBtnEnabled['start'] = true;
+            if(["PoweredOff", "Paused", "Saved", "Aborted", "Teleported"].indexOf(state) > -1) {
+                tbarBtnEnabled["start"] = true;
             } else {
-                tbarBtnEnabled['start'] = false;
+                tbarBtnEnabled["start"] = false;
             }
 
-            if(['Running','Paused','Stuck'].indexOf(state) > -1) {
-                tbarBtnEnabled['stop'] = true;
+            if(["Running", "Paused", "Stuck"].indexOf(state) > -1) {
+                tbarBtnEnabled["stop"] = true;
             } else {
-                tbarBtnEnabled['stop'] = false;
+                tbarBtnEnabled["stop"] = false;
             }
 
-            tbarBtnEnabled['edit'] = true;
+            tbarBtnEnabled["edit"] = true;
 
             var stopButton = me.queryById(me.getId() + "-" + "stop");
 
             var menu = stopButton.menu.items;
-            for(var i = 0; i < menu.items.length; i++) {
+            for(i = 0; i < menu.items.length; i++) {
                 if(menu.items[i].vmstates.indexOf(state) > -1) {
                     menu.items[i].enable();
                 } else {
@@ -257,7 +258,7 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
             }
         }
 
-        for (var i = 0, j = tbarBtnName.length; i < j; i++) {
+        for (i = 0, j = tbarBtnName.length; i < j; i++) {
             var tbarBtnCtrl = me.queryById(me.getId() + "-" +
                 tbarBtnName[i]);
 
@@ -286,7 +287,7 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
 
         if (!success) {
             OMV.MessageBox.hide();
-            OMV.MessageBox.error(_('Progress error', response));
+            OMV.MessageBox.error(_("Progress error", response));
         }
 
         OMV.MessageBox.hide();
@@ -315,9 +316,9 @@ Ext.define('OMV.module.admin.service.virtualbox.Machines', {
         var record = me.getSelected();
 
         Ext.create("OMV.module.admin.service.virtualbox.MachineEditWindow", {
-            uuid         : record.get('uuid'),
-            sessionState : record.get('sessionState'),
-            startupMode  : record.get('startupMode'),
+            uuid         : record.get("uuid"),
+            sessionState : record.get("sessionState"),
+            startupMode  : record.get("startupMode"),
             listeners    : {
                 submit : function() {
                     me.doReload();
