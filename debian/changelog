@@ -1,8 +1,8 @@
-openmediavault-virtualbox (1.0.0) stable; urgency=medium
+openmediavault-virtualbox (0.6) stable; urgency=medium
 
-  * OMV 1.0 compatibility 
+  * OMV kralizec compatibility 
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 08 Feb 2014 03:10:59 +0100
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 16 Mar 2014 14:56:59 -0500
 
 openmediavault-virtualbox (0.5.15) stable; urgency=low
 
