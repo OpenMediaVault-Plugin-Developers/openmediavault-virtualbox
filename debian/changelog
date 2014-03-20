@@ -1,3 +1,10 @@
+openmediavault-virtualbox (0.6.1) stable; urgency=medium
+
+  * Change label for fix modules
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 20 Mar 2014 07:47:59 -0500
+
 openmediavault-virtualbox (0.6) stable; urgency=medium
 
   * OMV kralizec compatibility 

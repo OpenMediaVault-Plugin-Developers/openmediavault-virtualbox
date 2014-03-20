@@ -115,12 +115,12 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             },{
                 xtype   : "button",
                 name    : "fixmodule",
-                text    : _("Fix module for 3.2 Kernel"),
+                text    : _("Fix module for backports kernels"),
                 scope   : this,
                 handler : Ext.Function.bind(me.onFixModuleButton, me, [ me ])
             },{
                 border : false,
-                html   : "<ul><li>" + _("This will recompile the vboxdrv for the 3.2 backports kernel.") + "</li></ul>"
+                html   : "<ul><li>" + _("This will recompile the vboxdrv for the backports kernel.") + "</li></ul>"
             }]
         },{
             xtype    : "fieldset",
