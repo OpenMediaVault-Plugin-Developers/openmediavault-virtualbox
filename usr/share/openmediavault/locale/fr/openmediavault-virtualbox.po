@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 07:24-0600\n"
-"PO-Revision-Date: 2013-12-17 13:24+0000\n"
+"POT-Creation-Date: 2014-03-20 07:47-0500\n"
+"PO-Revision-Date: 2014-03-20 12:47+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -18,10 +18,16 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+msgid "ACPI Shutdown"
+msgstr ""
+
 msgid "Advanced configuration"
 msgstr ""
 
 msgid "Automatic"
+msgstr ""
+
+msgid "Changing VM state."
 msgstr ""
 
 msgid "Edit Virtual Machine"
@@ -30,7 +36,7 @@ msgstr ""
 msgid "Enable"
 msgstr "Activer"
 
-msgid "Fix module for 3.2 Kernel"
+msgid "Fix module for backports kernels"
 msgstr ""
 
 msgid ""
@@ -47,7 +53,22 @@ msgstr "Nom"
 msgid "Note"
 msgstr "Note"
 
+msgid "Pause"
+msgstr ""
+
+msgid "Power off the machine"
+msgstr ""
+
+msgid "Progress error"
+msgstr ""
+
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Save the machine state"
 msgstr ""
 
 msgid "Select a volume ..."
@@ -74,7 +95,7 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
-msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
+msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
 
 msgid "UUID"

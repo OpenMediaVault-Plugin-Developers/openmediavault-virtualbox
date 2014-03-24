@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2013
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
@@ -11,30 +11,30 @@ msgstr ""
 "POT-Creation-Date: 2014-03-20 07:47-0500\n"
 "PO-Revision-Date: 2014-03-20 12:47+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/da/)\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
 msgstr ""
 
 msgid "Advanced configuration"
-msgstr "Avanceret konfiguration"
+msgstr "Configuración avanzada"
 
 msgid "Automatic"
-msgstr "Automatisk"
+msgstr "Automática"
 
 msgid "Changing VM state."
 msgstr ""
 
 msgid "Edit Virtual Machine"
-msgstr "Rediger Virtual Maskine"
+msgstr "Editar Máquina Virtual"
 
 msgid "Enable"
-msgstr "Aktiver"
+msgstr "Habilitar"
 
 msgid "Fix module for backports kernels"
 msgstr ""
@@ -42,16 +42,16 @@ msgstr ""
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "Vær sikker på, at ændre adgangskoden i phphVirtualBox! Standard log ind legitimationsoplysninger er 'admin' for både brugernavn og adgangskode."
+msgstr "Esegurese de cambiar la contraseña en phpVirtualBox. el usuario/contraseña por defecto es admin/admin."
 
 msgid "Manual"
-msgstr "Manuelt"
+msgstr "Manual"
 
 msgid "Name"
-msgstr "Navn"
+msgstr "Nombre"
 
 msgid "Note"
-msgstr "Notat"
+msgstr "Nota"
 
 msgid "Pause"
 msgstr ""
@@ -63,7 +63,7 @@ msgid "Progress error"
 msgstr ""
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "Rekompiler vboxdrv modul for 3.2 kerne ..."
+msgstr "Recompilando el modulo vboxdrv para el kernel 3.2 ..."
 
 msgid "Reset"
 msgstr ""
@@ -72,28 +72,28 @@ msgid "Save the machine state"
 msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
+msgstr "Seleccionar un disco ..."
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Opciones"
 
 msgid "Show Tab"
-msgstr "Vis Fane"
+msgstr "Mostrar pestaña"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "Vis avanceret konfiguration valgmuligheder på phpVirtualBox webinterface."
+msgstr "Mostar configuración avanzada en el interfaz web de phpVirtualBox."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "Vis fane indeholdende phpVirtualBox ramme"
+msgstr "Mostar la pestaña que contiene la web de phpVirtualBox"
 
 msgid "Start"
-msgstr "Start"
+msgstr "Arrancar"
 
 msgid "Startup Mode"
-msgstr "Opstarts Modus"
+msgstr "Modo de arranque"
 
 msgid "Stop"
-msgstr "Stop"
+msgstr "Parar"
 
 msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
@@ -102,22 +102,22 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "Virtual Machine"
-msgstr "Virtual Maskine"
+msgstr "Máquina Virtual"
 
 msgid "Virtual Machine Folder"
-msgstr "Virtual Maskine Mappe"
+msgstr "Carpeta de la Máquina Virtual"
 
 msgid "Virtual Machine Volume"
-msgstr "Virtual Maskine Drev"
+msgstr "Disco de la Máquina Virtual"
 
 msgid "Virtual Machines"
-msgstr "Virtual Maskiner"
+msgstr "Máquinas Virtuales"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox Web Tjeneste"
+msgstr "VirtualBox WebService"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"

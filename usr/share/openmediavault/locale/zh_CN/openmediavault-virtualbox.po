@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# dezi121 <by@songming.me>, 2013
+# dezi121 <by@songming.me>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 07:24-0600\n"
-"PO-Revision-Date: 2013-12-23 05:12+0000\n"
+"POT-Creation-Date: 2014-03-20 07:47-0500\n"
+"PO-Revision-Date: 2014-03-20 13:02+0000\n"
 "Last-Translator: dezi121 <by@songming.me>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,17 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "ACPI Shutdown"
+msgstr "ACPI关机"
+
 msgid "Advanced configuration"
 msgstr "高级配置"
 
 msgid "Automatic"
 msgstr "自动"
+
+msgid "Changing VM state."
+msgstr "更改VM状态。"
 
 msgid "Edit Virtual Machine"
 msgstr "编辑虚拟机"
@@ -30,8 +36,8 @@ msgstr "编辑虚拟机"
 msgid "Enable"
 msgstr "启用"
 
-msgid "Fix module for 3.2 Kernel"
-msgstr "修复 3.2 内核模块"
+msgid "Fix module for backports kernels"
+msgstr "修复backports内核模块"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
@@ -47,8 +53,23 @@ msgstr "名称"
 msgid "Note"
 msgstr "注释"
 
+msgid "Pause"
+msgstr "暂停"
+
+msgid "Power off the machine"
+msgstr "关闭本机"
+
+msgid "Progress error"
+msgstr ""
+
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
 msgstr "重编译3.2内核 vboxdrv 模块 ..."
+
+msgid "Reset"
+msgstr "重置"
+
+msgid "Save the machine state"
+msgstr "保存机器状态"
 
 msgid "Select a volume ..."
 msgstr "选择卷 ..."
@@ -74,8 +95,8 @@ msgstr "启动模式"
 msgid "Stop"
 msgstr "停止"
 
-msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
-msgstr "这会重编译  3.2 backports 内核 vboxdrv 模块。"
+msgid "This will recompile the vboxdrv for the backports kernel."
+msgstr ""
 
 msgid "UUID"
 msgstr "UUID"

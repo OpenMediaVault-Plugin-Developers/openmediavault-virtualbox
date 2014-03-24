@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Paolo Velati <paolo.velati@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 07:24-0600\n"
-"PO-Revision-Date: 2013-12-17 13:24+0000\n"
+"POT-Creation-Date: 2014-03-20 07:47-0500\n"
+"PO-Revision-Date: 2014-03-20 12:47+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -17,85 +18,106 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Advanced configuration"
+msgid "ACPI Shutdown"
 msgstr ""
 
+msgid "Advanced configuration"
+msgstr "Configurazione Avanzata"
+
 msgid "Automatic"
+msgstr "Automatico"
+
+msgid "Changing VM state."
 msgstr ""
 
 msgid "Edit Virtual Machine"
-msgstr ""
+msgstr "Modifica Macchina Virtuale"
 
 msgid "Enable"
-msgstr ""
+msgstr "Abilita"
 
-msgid "Fix module for 3.2 Kernel"
+msgid "Fix module for backports kernels"
 msgstr ""
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr ""
+msgstr "Assicurati di cambiare la password in phpVirtualBox! Le credenziali di default sono 'admin' sia per username che per password."
 
 msgid "Manual"
-msgstr ""
+msgstr "Manuale"
 
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 msgid "Note"
+msgstr "Note"
+
+msgid "Pause"
+msgstr ""
+
+msgid "Power off the machine"
+msgstr ""
+
+msgid "Progress error"
 msgstr ""
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgstr "Ricompila il modulo vboxdrv per il kernel 3.2 ..."
+
+msgid "Reset"
+msgstr ""
+
+msgid "Save the machine state"
 msgstr ""
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "Seleziona un volume ..."
 
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 msgid "Show Tab"
-msgstr ""
+msgstr "Mostra Pannello"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr ""
+msgstr "Mostra le opzioni di configurazione avanzata nell'interfaccia web phpVirtualBox."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr ""
+msgstr "Mostra pannello contenente phpVirtualBox."
 
 msgid "Start"
-msgstr ""
+msgstr "Avvia"
 
 msgid "Startup Mode"
-msgstr ""
+msgstr "Modalità di Avvio"
 
 msgid "Stop"
-msgstr ""
+msgstr "Ferma"
 
-msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
+msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Virtual Machine"
-msgstr ""
+msgstr "Macchina Virtuale"
 
 msgid "Virtual Machine Folder"
-msgstr ""
+msgstr "Cartella Macchina Virtuale"
 
 msgid "Virtual Machine Volume"
-msgstr ""
+msgstr "Volume Macchina Virtuale"
 
 msgid "Virtual Machines"
-msgstr ""
+msgstr "Macchine Virtuale"
 
 msgid "VirtualBox"
-msgstr ""
+msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr ""
+msgstr "VirtualBox WebService"
 
 msgid "phpVirtualBox"
-msgstr ""
+msgstr "phpVirtualBox"

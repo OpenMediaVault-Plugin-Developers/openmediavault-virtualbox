@@ -4,12 +4,13 @@
 # 
 # Translators:
 # davidh2k <davidh1990@gmx.de>, 2013
+# JanN <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 07:24-0600\n"
-"PO-Revision-Date: 2013-12-17 13:24+0000\n"
+"POT-Creation-Date: 2014-03-20 07:47-0500\n"
+"PO-Revision-Date: 2014-03-20 12:47+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +19,17 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "ACPI Shutdown"
+msgstr ""
+
 msgid "Advanced configuration"
 msgstr "Erweiterte Konfiguration"
 
 msgid "Automatic"
 msgstr "Automatisch"
+
+msgid "Changing VM state."
+msgstr ""
 
 msgid "Edit Virtual Machine"
 msgstr "Virtuelle Machine bearbeiten"
@@ -30,7 +37,7 @@ msgstr "Virtuelle Machine bearbeiten"
 msgid "Enable"
 msgstr "Aktivieren"
 
-msgid "Fix module for 3.2 Kernel"
+msgid "Fix module for backports kernels"
 msgstr ""
 
 msgid ""
@@ -47,7 +54,22 @@ msgstr "Name"
 msgid "Note"
 msgstr "Notiz"
 
+msgid "Pause"
+msgstr ""
+
+msgid "Power off the machine"
+msgstr ""
+
+msgid "Progress error"
+msgstr ""
+
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgstr "Rekompiliere vboxdrv-Modul für den 3.2-Kernel ..."
+
+msgid "Reset"
+msgstr ""
+
+msgid "Save the machine state"
 msgstr ""
 
 msgid "Select a volume ..."
@@ -60,10 +82,10 @@ msgid "Show Tab"
 msgstr "Zeige Tab"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr ""
+msgstr "Erweiterte Konfigurationsoptionen in der phpVirtualBox-Weboberfläche anzeigen."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr ""
+msgstr "Tab mit dem php-VirtualBox-Frame anzeigen."
 
 msgid "Start"
 msgstr "Start"
@@ -74,7 +96,7 @@ msgstr "Startup Mode"
 msgid "Stop"
 msgstr "Stop"
 
-msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
+msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
 
 msgid "UUID"

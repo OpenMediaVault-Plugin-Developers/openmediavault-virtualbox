@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 07:24-0600\n"
+"POT-Creation-Date: 2014-03-20 07:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "ACPI Shutdown"
+msgstr ""
+
 msgid "Advanced configuration"
 msgstr ""
 
 msgid "Automatic"
+msgstr ""
+
+msgid "Changing VM state."
 msgstr ""
 
 msgid "Edit Virtual Machine"
@@ -29,7 +35,7 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-msgid "Fix module for 3.2 Kernel"
+msgid "Fix module for backports kernels"
 msgstr ""
 
 msgid "Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password."
@@ -44,7 +50,22 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
+msgid "Pause"
+msgstr ""
+
+msgid "Power off the machine"
+msgstr ""
+
+msgid "Progress error"
+msgstr ""
+
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Save the machine state"
 msgstr ""
 
 msgid "Select a volume ..."
@@ -71,7 +92,7 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
-msgid "This will recompile the vboxdrv for the 3.2 backports kernel."
+msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
 
 msgid "UUID"

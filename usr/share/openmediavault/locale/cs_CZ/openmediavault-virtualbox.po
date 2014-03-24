@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2013
+# mejatysek <mejatysek@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
@@ -11,30 +11,30 @@ msgstr ""
 "POT-Creation-Date: 2014-03-20 07:47-0500\n"
 "PO-Revision-Date: 2014-03-20 12:47+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/da/)\n"
+"Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: cs_CZ\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 msgid "ACPI Shutdown"
 msgstr ""
 
 msgid "Advanced configuration"
-msgstr "Avanceret konfiguration"
+msgstr "Pokročilá nástavení"
 
 msgid "Automatic"
-msgstr "Automatisk"
+msgstr "Automaticky"
 
 msgid "Changing VM state."
 msgstr ""
 
 msgid "Edit Virtual Machine"
-msgstr "Rediger Virtual Maskine"
+msgstr "Upravit Virtuální Stroj"
 
 msgid "Enable"
-msgstr "Aktiver"
+msgstr "Povolit"
 
 msgid "Fix module for backports kernels"
 msgstr ""
@@ -42,16 +42,16 @@ msgstr ""
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "Vær sikker på, at ændre adgangskoden i phphVirtualBox! Standard log ind legitimationsoplysninger er 'admin' for både brugernavn og adgangskode."
+msgstr "Nezapomeň si změnit heslo v phpVirtualBox! Výchozí přihlašovací údaj je 'admin' pro login i heslo."
 
 msgid "Manual"
-msgstr "Manuelt"
+msgstr "Ručně"
 
 msgid "Name"
-msgstr "Navn"
+msgstr "Jméno"
 
 msgid "Note"
-msgstr "Notat"
+msgstr "Poznámka"
 
 msgid "Pause"
 msgstr ""
@@ -63,7 +63,7 @@ msgid "Progress error"
 msgstr ""
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "Rekompiler vboxdrv modul for 3.2 kerne ..."
+msgstr "Znovu zkompilovat vboxdrv modul pro kernel 3.2 ..."
 
 msgid "Reset"
 msgstr ""
@@ -72,28 +72,28 @@ msgid "Save the machine state"
 msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
+msgstr "Vyberte svazek ..."
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Nastavení"
 
 msgid "Show Tab"
-msgstr "Vis Fane"
+msgstr "Zobrazit panel"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "Vis avanceret konfiguration valgmuligheder på phpVirtualBox webinterface."
+msgstr "Zobrazit pokročilá nastavení ve webovém rozhraní phpVirtualBox. "
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "Vis fane indeholdende phpVirtualBox ramme"
+msgstr "Zobrazit panel obsahující vnořený phpVirtualBox."
 
 msgid "Start"
-msgstr "Start"
+msgstr "Zapnout"
 
 msgid "Startup Mode"
-msgstr "Opstarts Modus"
+msgstr "Způsob zapínání"
 
 msgid "Stop"
-msgstr "Stop"
+msgstr "Vypnou"
 
 msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
@@ -102,22 +102,22 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "Virtual Machine"
-msgstr "Virtual Maskine"
+msgstr "Virtuální stroj"
 
 msgid "Virtual Machine Folder"
-msgstr "Virtual Maskine Mappe"
+msgstr "Složka virtuálních strojů"
 
 msgid "Virtual Machine Volume"
-msgstr "Virtual Maskine Drev"
+msgstr "Oddíl virtuálních strojů"
 
 msgid "Virtual Machines"
-msgstr "Virtual Maskiner"
+msgstr "Virtuální stroje"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox Web Tjeneste"
+msgstr "VirtualBox webová služba"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"
