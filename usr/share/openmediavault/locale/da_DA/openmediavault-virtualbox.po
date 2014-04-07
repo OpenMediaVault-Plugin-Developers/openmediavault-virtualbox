@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2013
+# Stefan Thrane Overby <stoverby@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-20 07:47-0500\n"
-"PO-Revision-Date: 2014-03-20 12:47+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-03-25 11:22+0000\n"
+"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr ""
+msgstr "ACPI Nedlukning"
 
 msgid "Advanced configuration"
 msgstr "Avanceret konfiguration"
@@ -28,7 +28,7 @@ msgid "Automatic"
 msgstr "Automatisk"
 
 msgid "Changing VM state."
-msgstr ""
+msgstr "Ændr VM tilstand."
 
 msgid "Edit Virtual Machine"
 msgstr "Rediger Virtual Maskine"
@@ -37,7 +37,7 @@ msgid "Enable"
 msgstr "Aktiver"
 
 msgid "Fix module for backports kernels"
-msgstr ""
+msgstr "Ret modul til backports kerner"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
@@ -54,22 +54,22 @@ msgid "Note"
 msgstr "Notat"
 
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 msgid "Power off the machine"
-msgstr ""
+msgstr "Luk ned for maskinen"
 
 msgid "Progress error"
-msgstr ""
+msgstr "Forløbs fejl"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
 msgstr "Rekompiler vboxdrv modul for 3.2 kerne ..."
 
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 msgid "Save the machine state"
-msgstr ""
+msgstr "Gem maskinens tilstand"
 
 msgid "Select a volume ..."
 msgstr "Vælg et drev ..."
@@ -96,7 +96,7 @@ msgid "Stop"
 msgstr "Stop"
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr ""
+msgstr "Dette vil rekompiler vboxdrv til backports kernen."
 
 msgid "UUID"
 msgstr "UUID"

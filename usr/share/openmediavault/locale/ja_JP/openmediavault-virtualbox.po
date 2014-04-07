@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# kansuke <kansuke4649@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-20 07:47-0500\n"
-"PO-Revision-Date: 2014-03-20 12:47+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-03-24 00:25+0000\n"
+"Last-Translator: kansuke <kansuke4649@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "ACPI Shutdown"
-msgstr ""
+msgstr "ACPI シャットダウン"
 
 msgid "Advanced configuration"
 msgstr "高度な設定"
@@ -27,7 +28,7 @@ msgid "Automatic"
 msgstr "オートマチック"
 
 msgid "Changing VM state."
-msgstr ""
+msgstr "VMの状態を変更します。"
 
 msgid "Edit Virtual Machine"
 msgstr "バーチャルマシンの編集"
@@ -36,7 +37,7 @@ msgid "Enable"
 msgstr "有効"
 
 msgid "Fix module for backports kernels"
-msgstr ""
+msgstr "バックポートカーネルのためのモジュールを修正します"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
@@ -53,22 +54,22 @@ msgid "Note"
 msgstr "ノート"
 
 msgid "Pause"
-msgstr ""
+msgstr "一時停止"
 
 msgid "Power off the machine"
-msgstr ""
+msgstr "マシンの電源をオフします"
 
 msgid "Progress error"
-msgstr ""
+msgstr "進捗エラー"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
 msgstr "3.2カーネル用vboxdrvモジュールを再コンパイルします ..."
 
 msgid "Reset"
-msgstr ""
+msgstr "リセット"
 
 msgid "Save the machine state"
-msgstr ""
+msgstr "マシンの状態を保存します"
 
 msgid "Select a volume ..."
 msgstr "ボリュームを選択 ..."
@@ -95,7 +96,7 @@ msgid "Stop"
 msgstr "停止"
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr ""
+msgstr "バックポートカーネルのvboxdrvを再コンパイルします。"
 
 msgid "UUID"
 msgstr "UUID"

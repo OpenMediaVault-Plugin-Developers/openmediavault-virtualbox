@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-20 07:47-0500\n"
-"PO-Revision-Date: 2014-03-20 12:47+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-03-24 22:34+0000\n"
+"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr ""
+msgstr "Arresto ACPI"
 
 msgid "Advanced configuration"
 msgstr "Configurazione Avanzata"
@@ -28,7 +28,7 @@ msgid "Automatic"
 msgstr "Automatico"
 
 msgid "Changing VM state."
-msgstr ""
+msgstr "Modifica dello stato della VM."
 
 msgid "Edit Virtual Machine"
 msgstr "Modifica Macchina Virtuale"
@@ -37,7 +37,7 @@ msgid "Enable"
 msgstr "Abilita"
 
 msgid "Fix module for backports kernels"
-msgstr ""
+msgstr "Correggi il modulo per i kernel backport"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
@@ -54,22 +54,22 @@ msgid "Note"
 msgstr "Note"
 
 msgid "Pause"
-msgstr ""
+msgstr "Pausa"
 
 msgid "Power off the machine"
-msgstr ""
+msgstr "Spegni la macchina"
 
 msgid "Progress error"
-msgstr ""
+msgstr "Errore progresso"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
 msgstr "Ricompila il modulo vboxdrv per il kernel 3.2 ..."
 
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 msgid "Save the machine state"
-msgstr ""
+msgstr "Salva lo stato della macchina"
 
 msgid "Select a volume ..."
 msgstr "Seleziona un volume ..."
@@ -96,7 +96,7 @@ msgid "Stop"
 msgstr "Ferma"
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr ""
+msgstr "Questo ricompilerà vboxdrv per i kernel backport."
 
 msgid "UUID"
 msgstr "UUID"

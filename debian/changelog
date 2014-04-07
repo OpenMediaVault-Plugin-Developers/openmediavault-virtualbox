@@ -1,3 +1,10 @@
+openmediavault-virtualbox (0.6.2) stable; urgency=medium
+
+  * New icons
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 06 Apr 2014 19:09:59 -0500
+
 openmediavault-virtualbox (0.6.1) stable; urgency=medium
 
   * Change label for fix modules
