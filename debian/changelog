@@ -1,3 +1,9 @@
+openmediavault-virtualbox (0.6.2.1) UNRELEASED; urgency=low
+
+  * Conform to OMV 0.6.0.6 trigger standards
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 16 Apr 2014 02:21:30 +0200
+
 openmediavault-virtualbox (0.6.2) stable; urgency=medium
 
   * New icons
