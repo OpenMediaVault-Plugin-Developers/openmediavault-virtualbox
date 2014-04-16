@@ -8,62 +8,66 @@ set -e
 OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
 
 case "$1" in
-configure)
-    if ! omv_config_exists "/config/services/virtualbox"; then
-        echo "Initial configuration."
-        object="<enable>0</enable>"
-        object="${object}<enable-advanced></enable-advanced>"
-        object="${object}<vm-folder></vm-folder>"
-        object="${object}<showtab></showtab>"
-        omv_config_add_element "/config/services" "virtualbox" "${object}" true
-    fi
-
-    DEFAULT_FILE=/etc/default/openmediavault-virtualbox
-
-    if [ ! -e ${DEFAULT_FILE} ]; then
-        if [ $(groups ${OMV_VBOX_USER} 2>/dev/null | wc -l) -eq 0 ]; then
-
-            # Generate password, add user and store it
-            NPSWD=$(makepasswd --crypt-md5 --chars=10)
-            NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
-            NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
-
-            useradd -d /home/${OMV_VBOX_USER} -c "openmediavault-virtualbox" -m -p ${NPSWD_CRYPT} -N -g vboxusers ${OMV_VBOX_USER}
-
-            echo "${NPSWD_CLEAR}" > ${DEFAULT_FILE}
-
+    configure)
+        if ! omv_config_exists "/config/services/virtualbox"; then
+            echo "Initial configuration."
+            object="<enable>0</enable>"
+            object="${object}<enable-advanced></enable-advanced>"
+            object="${object}<vm-folder></vm-folder>"
+            object="${object}<showtab></showtab>"
+            omv_config_add_element "/config/services" "virtualbox" "${object}" true
         fi
-    fi
 
-    chown root:root ${DEFAULT_FILE}
-    chmod 0644 ${DEFAULT_FILE}
+        DEFAULT_FILE=/etc/default/openmediavault-virtualbox
 
-    omv_install_fixperms
+        if [ ! -e ${DEFAULT_FILE} ]; then
+            if [ $(groups ${OMV_VBOX_USER} 2>/dev/null | wc -l) -eq 0 ]; then
 
-    /etc/init.d/apache2 reload
+                # Generate password, add user and store it
+                NPSWD=$(makepasswd --crypt-md5 --chars=10)
+                NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
+                NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
 
-    version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
-    file="Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
+                useradd -d /home/${OMV_VBOX_USER} -c "openmediavault-virtualbox" -m -p ${NPSWD_CRYPT} -N -g vboxusers ${OMV_VBOX_USER}
 
-    rm -f "/tmp/$file*"
-    wget -O "/tmp/$file" "http://download.virtualbox.org/virtualbox/$version/$file"
-    VBoxManage extpack install --replace "/tmp/$file"
-    rm -f "/tmp/$file"
+                echo "${NPSWD_CLEAR}" > ${DEFAULT_FILE}
 
-    insserv openmediavault-virtualbox
+            fi
+        fi
 
-    if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
-        update-rc.d openmediavault-virtualbox disable
-    fi
+        chown root:root ${DEFAULT_FILE}
+        chmod 0644 ${DEFAULT_FILE}
 
+        omv_install_fixperms
+
+        /etc/init.d/apache2 reload
+
+        version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
+        file="Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
+
+        rm -f "/tmp/$file*"
+        wget -O "/tmp/$file" "http://download.virtualbox.org/virtualbox/$version/$file"
+        VBoxManage extpack install --replace "/tmp/$file"
+        rm -f "/tmp/$file"
+
+        insserv openmediavault-virtualbox
+
+        if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+            update-rc.d openmediavault-virtualbox disable
+        fi
+
+        # Activate package triggers. These triggers are only set during the
+        # package installation.
+        dpkg-trigger update-fixperms
+        dpkg-trigger update-locale
     ;;
 
-abort-upgrade|abort-remove|abort-deconfigure)
+    abort-upgrade|abort-remove|abort-deconfigure)
     ;;
 
-*)
-    echo "postinst called with unknown argument" >&2
-    exit 1
+    *)
+        echo "postinst called with unknown argument" >&2
+        exit 1
     ;;
 esac
 
