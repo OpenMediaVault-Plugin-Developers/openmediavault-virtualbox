@@ -2,8 +2,7 @@
 
 include ./openmediavault.mk
 
-# Use latest version of phpVirtualBox
-#PVBX_TRUNK=1
+PLUGIN_NAME=virtualbox
 
 clean:
 	dh_testdir
@@ -15,21 +14,17 @@ install:
 	dh_testroot
 	dh_prep
 ifneq ($(shell [ -d phpvirtualbox ]; printf $$?), 0)
-ifdef PVBX_TRUNK
-	svn export svn://svn.code.sf.net/p/phpvirtualbox/code/trunk/ phpvirtualbox
-else
 	wget http://sourceforge.net/projects/phpvirtualbox/files/phpvirtualbox-4.3-1.zip/download -O phpvirtualbox.zip
 	unzip phpvirtualbox.zip
 	mv phpvirtualbox-4.3-1 phpvirtualbox
 	/bin/rm -f phpvirtualbox.zip
 	find . -maxdepth 1 -name "phpvirtualbox-*" -type d -exec /bin/mv {} phpvirtualbox \;
 endif
-endif
 	dh_installdirs
 	dh_installinit
 	dh_install
-	#chmod +x $(CURDIR)/debian/openmediavault-virtualbox/etc/init.d/openmediavault-virtualbox
-	chmod +x $(CURDIR)/debian/openmediavault-virtualbox/usr/share/openmediavault/mkconf/virtualbox
+	chmod +x $(CURDIR)/debian/openmediavault-${PLUGIN_NAME}/usr/share/openmediavault/mkconf/${PLUGIN_NAME}
+	chmod +x $(CURDIR)/debian/openmediavault-${PLUGIN_NAME}/usr/share/openmediavault/mkconf/nginx.d/90-virtualbox
 
 binary-indep: install omv_clean_scm
 	dh_testdir

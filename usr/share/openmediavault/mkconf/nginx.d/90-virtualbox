@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
+# Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+#
+# This file is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this file. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+VIRTUALBOX_SITE_CONF="/etc/nginx/openmediavault-webgui.d/openmediavault-virtualbox.conf"
+
+if [ -e "${VIRTUALBOX_SITE_CONF}" ]; then
+    rm ${VIRTUALBOX_SITE_CONF}
+fi
+
+if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+    exit 0
+fi
+
+cat <<EOF > "${VIRTUALBOX_SITE_CONF}"
+location /virtualbox/ {
+    alias /usr/share/phpvirtualbox/;
+    index index.html;
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php5-fpm-openmediavault-webgui.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+    }
+}
+EOF
+
+exit 0

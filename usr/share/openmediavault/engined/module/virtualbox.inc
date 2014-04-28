@@ -24,7 +24,12 @@ require_once "openmediavault/error.inc";
 require_once "openmediavault/util.inc";
 require_once "openmediavault/initscript.inc";
 
-class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotifyListener, OMVIModuleServiceStatus {
+class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotifyListener, OMVIModuleServiceStatus
+{
+    private function getEventMessagePath()
+    {
+        return "org.openmediavault.services.virtualbox";
+    }
 
     private function getXPath() {
         return "//services/virtualbox";
@@ -121,10 +126,17 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
      * Bind listeners.
      */
     public function bindListeners(OMVNotifyDispatcher $dispatcher) {
+        $moduleMgr = &OMVModuleMgr::getInstance();
+
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
-            "org.openmediavault.services.virtualbox",
+            $this->getEventMessagePath(),
             array($this, "setDirty"));
+
+        $dispatcher->addListener(
+            OMV_NOTIFY_MODIFY,
+            $this->getEventMessagePath(),
+            array($moduleMgr->getModule("webserver"), "setDirty"));
     }
 }
 
