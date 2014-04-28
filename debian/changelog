@@ -1,8 +1,9 @@
-openmediavault-virtualbox (0.6.2.1) UNRELEASED; urgency=low
+openmediavault-virtualbox (0.6.2.1) stable; urgency=low
 
   * Conform to OMV 0.6.0.6 trigger standards
+  * Update to work with Nginx 
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 16 Apr 2014 02:21:30 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 28 Apr 2014 23:22:10 +0200
 
 openmediavault-virtualbox (0.6.2) stable; urgency=medium
 
