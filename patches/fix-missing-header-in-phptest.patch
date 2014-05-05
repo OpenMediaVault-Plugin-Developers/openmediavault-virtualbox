@@ -1,0 +1,20 @@
+Index: openmediavault-virtualbox/phpvirtualbox/js/phptest.php
+===================================================================
+--- openmediavault-virtualbox.orig/phpvirtualbox/js/phptest.php	2011-09-26 23:21:30.000000000 +0200
++++ openmediavault-virtualbox/phpvirtualbox/js/phptest.php	2014-05-05 11:29:33.344241009 +0200
+@@ -4,8 +4,12 @@
+  * Test to ensure PHP is being parsed correctly.
+  *
+  */
+-<?php if(true): ?>
++<?php 
++header("Content-type: text/javascript; charset=utf-8", true);
++
++if(true): 
++?>
+ var __vboxPHP = true;
+ <?php else: ?>
+ var __vboxPHP = false;
+-<?php endif; ?>
+\ No newline at end of file
++<?php endif; ?>
