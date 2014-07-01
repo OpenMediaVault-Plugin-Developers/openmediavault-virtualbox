@@ -18,40 +18,49 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "openmediavault/module.inc";
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
-require_once "openmediavault/util.inc";
 require_once "openmediavault/initscript.inc";
+require_once "openmediavault/module.inc";
+require_once "openmediavault/util.inc";
 
-class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotifyListener, OMVIModuleServiceStatus
+class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
+    OMVINotifyListener,
+    OMVIModuleServiceStatus
 {
     private function getEventMessagePath()
     {
         return "org.openmediavault.services.virtualbox";
     }
 
-    private function getXPath() {
+    private function getXPath()
+    {
         return "//services/virtualbox";
     }
 
     /**
      * Get the module name.
      */
-    public function getName() {
+    public function getName()
+    {
         return "virtualbox";
     }
 
     /**
      * Get the module status
      */
-    public function getStatus() {
+    public function getStatus()
+    {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
 
-        if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
+        if (is_null($object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
         $cmd = "sudo /etc/init.d/vboxweb-service status";
         $this->exec($cmd, $output);
@@ -73,21 +82,30 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
 
         $cmd = "sudo omv-mkconf virtualbox 2>&1";
 
-        if (0 !== $this->exec($cmd, $output))
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
-                $cmd, implode("\n", $output));
+        if (0 !== $this->exec($cmd, $output)) {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
     }
 
     /**
      * Start the managed service
      */
-    public function startService() {
+    public function startService()
+    {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
 
-        if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
+        if (is_null($object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
         if (boolval($object["enable"]) === true) {
             $initd = new OMVSysVInitScript("vboxweb-service", true);
@@ -100,13 +118,18 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
     /**
      * Stop the managed service
      */
-    public function stopService() {
+    public function stopService()
+    {
         global $xmlConfig;
 
         $object = $xmlConfig->get($this->getXPath());
 
-        if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
+        if (is_null($object)) {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
         if (boolval($object["enable"]) === false) {
             $initd = new OMVSysVInitScript("openmediavault-virtualbox", false);
@@ -117,26 +140,33 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements OMVINotify
 
         $cmd = "/bin/rm -f /etc/default/virtualbox";
 
-        if (0 !== $this->exec($cmd, $output))
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED,
-                $cmd, implode("\n", $output));
+        if (0 !== $this->exec($cmd, $output)) {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
     }
 
     /**
      * Bind listeners.
      */
-    public function bindListeners(OMVNotifyDispatcher $dispatcher) {
+    public function bindListeners(OMVNotifyDispatcher $dispatcher)
+    {
         $moduleMgr = &OMVModuleMgr::getInstance();
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->getEventMessagePath(),
-            array($this, "setDirty"));
+            array($this, "setDirty")
+        );
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->getEventMessagePath(),
-            array($moduleMgr->getModule("webserver"), "setDirty"));
+            array($moduleMgr->getModule("webserver"), "setDirty")
+        );
     }
 }
 
