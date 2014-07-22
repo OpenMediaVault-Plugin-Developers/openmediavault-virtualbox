@@ -46,6 +46,8 @@ class phpVBoxConfig
 
     private function getSettings()
     {
+        // Normally we should use OMVRpc::exec for this but since pulling
+        // it in caused issues in OMV we just call the RPC from the shell.
         $data = shell_exec("/usr/sbin/omv-rpc VirtualBox getSettings");
 
         if (!$data) {
