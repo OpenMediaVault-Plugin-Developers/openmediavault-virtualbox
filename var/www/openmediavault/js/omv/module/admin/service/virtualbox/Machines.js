@@ -280,7 +280,6 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         var record = me.getSelected();
 
         OMV.MessageBox.wait(null, me.stateChangeWaitMsg);
-        console.log(item);
         me.doStateChange(record, item.action);
     },
 
