@@ -5,21 +5,22 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+DEFAULT_FILE=/etc/default/openmediavault-virtualbox
 OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
 VIRTUALBOX_SITE_DIR=/usr/share/phpvirtualbox
 
 case "$1" in
     configure)
-        if ! omv_config_exists "/config/services/virtualbox"; then
-            echo "Initial configuration."
-            object="<enable>0</enable>"
-            object="${object}<enable-advanced></enable-advanced>"
-            object="${object}<vm-folder></vm-folder>"
-            object="${object}<showtab></showtab>"
-            omv_config_add_element "/config/services" "virtualbox" "${object}" true
-        fi
+        SERVICE_XPATH_NAME="virtualbox"
+        SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-        DEFAULT_FILE=/etc/default/openmediavault-virtualbox
+        if ! omv_config_exists "${SERVICE_XPATH}"; then
+            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
+            omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "enable_advanced" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "vm_folder"
+            omv_config_add_element "${SERVICE_XPATH}" "show_tab" "0"
+        fi
 
         if [ ! -e ${DEFAULT_FILE} ]; then
             if [ $(groups ${OMV_VBOX_USER} 2>/dev/null | wc -l) -eq 0 ]; then

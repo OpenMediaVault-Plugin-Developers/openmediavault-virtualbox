@@ -41,7 +41,7 @@ VBOXWEB_HOST=127.0.0.1
 EOF
 
 # Get /set machine folder
-MAF="$(omv_config_get "//services/virtualbox/vm-folder")"
+MAF="$(omv_config_get "//services/virtualbox/vm_folder")"
 
 if [ "${MAF}" != "" ] && [ ! -d "${MAF}" ]; then
     /bin/mkdir "${MAF}"

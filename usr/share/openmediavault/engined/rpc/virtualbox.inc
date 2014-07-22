@@ -74,8 +74,8 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Modify result data
         $object["enable"]          = boolval($object["enable"]);
-        $object["enable-advanced"] = boolval($object["enable-advanced"]);
-        $object["showtab"]         = boolval($object["showtab"]);
+        $object["enable_advanced"] = boolval($object["enable_advanced"]);
+        $object["show_tab"]        = boolval($object["show_tab"]);
 
         return $object;
     }
@@ -99,10 +99,10 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
                 "type"       : "object",
                 "properties" : {
                     "enable"          : { "type" : "boolean" },
-                    "enable-advanced" : { "type" : "boolean" },
-                    "vm-folder"       : { "type" : "string", "optional" : true },
+                    "enable_advanced" : { "type" : "boolean" },
+                    "vm_folder"       : { "type" : "string", "optional" : true },
                     "mntentref"       : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID_NONE"] . ' },
-                    "showtab"         : { "type" : "boolean" }
+                    "show_tab"        : { "type" : "boolean" }
                 }
             }'
         );
@@ -112,11 +112,11 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         $deviceDir = $deviceDir["dir"];
 
         $vmFolder = "{$deviceDir}/virtualbox-machines";
-        $params["vm-folder"] = $vmFolder;
+        $params["vm_folder"] = $vmFolder;
 
         $oldConfig = $xmlConfig->get($this->getXpath());
 
-        if ($oldConfig["vm-folder"] != $vmFolder) {
+        if ($oldConfig["vm_folder"] != $vmFolder) {
             $output = array();
             $cmd = "sudo /bin/sh -c '. /etc/default/openmediavault; OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}'";
             $this->exec($cmd, $output);
@@ -132,10 +132,10 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         // Prepare configuration data
         $object = array(
             "enable"          => array_boolval($params, "enable"),
-            "enable-advanced" => array_boolval($params, "enable-advanced"),
-            "vm-folder"       => $params["vm-folder"],
+            "enable_advanced" => array_boolval($params, "enable_advanced"),
+            "vm_folder"       => $params["vm_folder"],
             "mntentref"       => $params["mntentref"],
-            "showtab"         => array_boolval($params, "showtab")
+            "show_tab"        => array_boolval($params, "show_tab")
         );
 
         // Set configuration object

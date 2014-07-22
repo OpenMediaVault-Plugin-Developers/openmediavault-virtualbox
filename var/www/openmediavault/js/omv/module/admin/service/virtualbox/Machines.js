@@ -79,8 +79,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         sortable  : true,
         dataIndex : "startupMode",
         renderer  : function(value, metaData, record) {
-            if(value == "auto")
+            if(value == "auto") {
                 return "Automatic";
+            }
+
             return "Manual";
         }
     }],
@@ -93,9 +95,9 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                 autoload   : true,
                 remoteSort : false,
                 model      : OMV.data.Model.createImplicit({
-                    idProperty : "uuid",
+                    idProperty   : "uuid",
                     totalPoperty : "total",
-                    fields : [
+                    fields       : [
                         { name : "uuid" },
                         { name : "name" },
                         { name : "state" },
@@ -131,54 +133,98 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
             handler  : me.onStateChangeButton,
             disabled : true,
             scope    : me,
-            action   : "powerUp"
+            selectionConfig : {
+                minSelections : 1,
+                maxSelections : 1,
+                enabledFn     : me.vmStateButtonEnabled
+            },
+            action   : "powerUp",
+            vmstates : ["PoweredOff", "Paused", "Saved", "Aborted", "Teleported"]
         },{
             id       : me.getId() + "-stop",
             xtype    : "button",
             text     : _("Stop"),
             icon     : "images/shutdown.png",
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            disabled : true,
+            // TODO: Disabled should be true, but due to a bug in OMV r1341
+            // the selectionConfig isn't run on buttons with submenus in them.
+            disabled : false,
+            selectionConfig : {
+                minSelections : 1,
+                maxSelections : 1,
+                enabledFn     : me.vmStateButtonEnabled
+            },
+            vmstates : ["Running", "Paused", "Stuck"],
             menu     : [{
-                id       : me.getId() + "-stop-saveState",
-                vmstates : ["Running"],
+                id       : me.getId() + "-stop-save-state",
                 text     : _("Save the machine state"),
-                icon     : "/virtualbox/images/vbox/fd_16px.png",
+                icon     : "images/save.png",
+                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : "saveState"
+                selectionConfig : {
+                    minSelections : 1,
+                    maxSelections : 1,
+                    enabledFn     : me.vmStateButtonEnabled
+                },
+                action   : "saveState",
+                vmstates : ["Running"]
             },{
-                id       : me.getId() + "-stop-powerButton",
-                vmstates : ["Running"],
+                id       : me.getId() + "-stop-power-button",
                 text     : _("ACPI Shutdown"),
-                icon     : "/virtualbox/images/vbox/acpi_16px.png",
+                icon     : "images/shutdown.png",
+                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : "powerButton"
+                selectionConfig : {
+                    minSelections : 1,
+                    maxSelections : 1,
+                    enabledFn     : me.vmStateButtonEnabled
+                },
+                action   : "powerButton",
+                vmstates : ["Running"]
             },{
                 id       : me.getId() + "-stop-pause",
-                vmstates : ["Running"],
                 text     : _("Pause"),
-                icon     : "/virtualbox/images/vbox/pause_16px.png",
+                icon     : "images/pause.png",
+                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : "pause"
+                selectionConfig : {
+                    minSelections : 1,
+                    maxSelections : 1,
+                    enabledFn     : me.vmStateButtonEnabled
+                },
+                action   : "pause",
+                vmstates : ["Running"]
             },{
-                id       : me.getId() + "-stop-powerDown",
-                vmstates : ["Running", "Paused", "Stuck"],
+                id       : me.getId() + "-stop-power-down",
                 text     : _("Power off the machine"),
-                icon     : "/virtualbox/images/vbox/poweroff_16px.png",
+                icon     : "images/shutdown.png",
+                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : "powerDown"
+                selectionConfig : {
+                    minSelections : 1,
+                    maxSelections : 1,
+                    enabledFn     : me.vmStateButtonEnabled
+                },
+                action   : "powerDown",
+                vmstates : ["Running", "Paused", "Stuck"]
             },{
                 id       : me.getId() + "-stop-reset",
-                vmstates : ["Running"],
                 text     : _("Reset"),
-                icon     : "/virtualbox/images/vbox/reset_16px.png",
+                icon     : "images/reboot.png",
+                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
                 handler  : me.onStateChangeButton,
                 scope    : me,
-                action   : "reset"
+                selectionConfig : {
+                    minSelections : 1,
+                    maxSelections : 1,
+                    enabledFn     : me.vmStateButtonEnabled
+                },
+                action   : "reset",
+                vmstates : ["Running"]
             }],
             scope: me
         },{
@@ -188,90 +234,27 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         Ext.Array.insert(items, items.length, [{
             xtype : "tbseparator"
         },{
-            id      : me.getId() + "-phpvbx",
+            id      : me.getId() + "-phpvirtualbox",
             xtype   : "button",
             text    : _("phpVirtualBox"),
-            icon    : "/virtualbox/images/vbox/OSE/VirtualBox_16px.png",
+            icon    : "images/virtualbox.png",
+            iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
             handler : function() {
                 window.open("/virtualbox/");
-            },
-            scope: me
+            }
         }]);
 
         return items;
     },
 
-    doReload : function() {
-       var me = this;
-       me.store.reload();
-       me.changeButtonStatus(me.getSelection());
-    },
+    vmStateButtonEnabled : function(item, records) {
+        var state = records[0].get("state");
 
-    onSelectionChange : function(model, records) {
-        var me = this;
-        me.callParent(arguments);
-        me.changeButtonStatus(records);
-    },
-
-    changeButtonStatus : function(records) {
-        var me = this,
-            i;
-
-        var tbarBtnName = [
-            "start",
-            "stop",
-            "edit"
-        ];
-
-        var tbarBtnEnabled = {
-            "start" : false,
-            "stop" : false,
-            "edit" : false
-        };
-
-        if (records.length === 1) {
-
-            var record = me.getSelected();
-            var state = record.get("state");
-
-            if(["PoweredOff", "Paused", "Saved", "Aborted", "Teleported"].indexOf(state) > -1) {
-                tbarBtnEnabled["start"] = true;
-            } else {
-                tbarBtnEnabled["start"] = false;
-            }
-
-            if(["Running", "Paused", "Stuck"].indexOf(state) > -1) {
-                tbarBtnEnabled["stop"] = true;
-            } else {
-                tbarBtnEnabled["stop"] = false;
-            }
-
-            tbarBtnEnabled["edit"] = true;
-
-            var stopButton = me.queryById(me.getId() + "-" + "stop");
-
-            var menu = stopButton.menu.items;
-            for(i = 0; i < menu.items.length; i++) {
-                if(menu.items[i].vmstates.indexOf(state) > -1) {
-                    menu.items[i].enable();
-                } else {
-                    menu.items[i].disable();
-                }
-            }
+        if(item.vmstates.indexOf(state) > -1) {
+            return true;
         }
 
-        for (i = 0, j = tbarBtnName.length; i < j; i++) {
-            var tbarBtnCtrl = me.queryById(me.getId() + "-" +
-                tbarBtnName[i]);
-
-            if (!Ext.isEmpty(tbarBtnCtrl)) {
-                if (tbarBtnEnabled[tbarBtnName[i]] === false) {
-                    tbarBtnCtrl.disable();
-                } else {
-                    tbarBtnCtrl.enable();
-                }
-            }
-        }
+        return false;
     },
 
     /* Handlers */

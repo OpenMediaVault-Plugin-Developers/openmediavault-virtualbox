@@ -36,7 +36,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
         me.on("load", function () {
             var checked = me.findField("enable").checked;
-            var showtab = me.findField("showtab").checked;
+            var showTab = me.findField("show_tab").checked;
             var parent = me.up("tabpanel");
 
             if (!parent)
@@ -49,7 +49,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 checked ? gridPanel.enable() : gridPanel.disable();
             if (phpVirtualBoxPanel) {
                 checked ? phpVirtualBoxPanel.enable() : phpVirtualBoxPanel.disable();
-                showtab ? phpVirtualBoxPanel.tab.show() : phpVirtualBoxPanel.tab.hide();
+                showTab ? phpVirtualBoxPanel.tab.show() : phpVirtualBoxPanel.tab.hide();
             }
         });
 
@@ -105,7 +105,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 })
             },{
                 xtype      : "textfield",
-                name       : "vm-folder",
+                name       : "vm_folder",
                 fieldLabel : _("Virtual Machine Folder"),
                 allowNone  : true,
                 readOnly   : true
@@ -130,13 +130,13 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             },
             items : [{
                 xtype      : "checkbox",
-                name       : "enable-advanced",
+                name       : "enable_advanced",
                 fieldLabel : _("Advanced configuration"),
                 boxLabel: _("Show advanced configuration options in phpVirtualBox web interface."),
                 checked    : false
             },{
                 xtype      : "checkbox",
-                name       : "showtab",
+                name       : "show_tab",
                 fieldLabel : _("Show Tab"),
                 boxLabel: _("Show tab containing phpVirtualBox frame."),
                 checked    : false
@@ -177,4 +177,3 @@ OMV.WorkspaceManager.registerPanel({
     position  : 10,
     className : "OMV.module.admin.service.virtualbox.Settings"
 });
-
