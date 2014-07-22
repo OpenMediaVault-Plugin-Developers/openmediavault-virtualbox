@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.0.7) UNRELEASED; urgency=low
+
+  * Use custom PHP-FPM config
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 22 Jul 2014 14:44:10 +0200
+
 openmediavault-virtualbox (0.6.2.1) stable; urgency=low
 
   * Conform to OMV 0.6.0.6 trigger standards
