@@ -6,6 +6,7 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
+VIRTUALBOX_SITE_DIR=/usr/share/phpvirtualbox
 
 case "$1" in
     configure)
@@ -35,10 +36,10 @@ case "$1" in
             fi
         fi
 
-        chown root:root ${DEFAULT_FILE}
-        chmod 0644 ${DEFAULT_FILE}
+        chown openmediavault:openmediavault ${DEFAULT_FILE}
+        chmod 0600 ${DEFAULT_FILE}
 
-        omv_install_fixperms
+        omv_install_fixperms ${VIRTUALBOX_SITE_DIR}
 
         version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
         file="Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"

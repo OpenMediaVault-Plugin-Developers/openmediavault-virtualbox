@@ -37,7 +37,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
     public function getName()
     {
-        return "virtualbox";
+        return "VirtualBox";
     }
 
     public function initialize()

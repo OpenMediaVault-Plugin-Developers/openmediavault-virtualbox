@@ -6,11 +6,13 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 VIRTUALBOX_SITE_CONF="/etc/nginx/openmediavault-webgui.d/openmediavault-virtualbox.conf"
+VIRTUALBOX_POOL_CONF="/etc/php5/fpm/pool.d/openmediavault-virtualbox.conf"
 
 case "$1" in
     purge)
         omv_config_delete "//services/virtualbox"
     ;;
+
     remove)
         omv_config_delete "//services/virtualbox"
 
@@ -18,10 +20,17 @@ case "$1" in
             rm ${VIRTUALBOX_SITE_CONF}
         fi
 
+        if [ -e "${VIRTUALBOX_POOL_CONF}" ]; then
+            rm ${VIRTUALBOX_POOL_CONF}
+        fi
+
         service nginx reload
+        service php5fpm reload
     ;;
+
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;
+
     *)
         echo "postrm called with unknown argument \`$1'" >&2
         exit 1

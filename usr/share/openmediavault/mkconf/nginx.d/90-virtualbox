@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
 # Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
 #
 # This file is free software: you can redistribute it and/or modify
@@ -37,8 +36,7 @@ location /virtualbox/ {
     index index.html;
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php5-fpm-openmediavault-webgui.sock;
-        fastcgi_index index.php;
+        fastcgi_pass unix:/var/run/php5-fpm-openmediavault-virtualbox.sock;
         include fastcgi_params;
     }
 }

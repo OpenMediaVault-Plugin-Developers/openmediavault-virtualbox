@@ -165,6 +165,12 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->getEventMessagePath(),
+            array($moduleMgr->getModule("php5fpm"), "setDirty")
+        );
+
+        $dispatcher->addListener(
+            OMV_NOTIFY_MODIFY,
+            $this->getEventMessagePath(),
             array($moduleMgr->getModule("webserver"), "setDirty")
         );
     }

@@ -17,31 +17,47 @@
  * along with this file. If not, see <http://www.gnu.org/licenses/>.
  */
 
+require "openmediavault/rpc.inc";
+
+use SplFileInfo as FileInfo;
+use OMVRpc;
+
 class phpVBoxConfig
 {
-    /* STATIC CONFIG ITEMS */
+    // Static config items
     public $location = "http://127.0.0.1:18083/";
     public $language = "en";
     public $startStopConfig = true;
-    public $username = "";
+    public $username = "vbox";
     public $password = "";
     public $enableAdvancedConfig = false;
 
-    /* AUTOMATIC CONFIG ITEMS */
+    // Automatic config items
     public function __construct()
     {
-        $out = array();
-        exec(
-            "/bin/sh -c '. /etc/default/openmediavault; . /usr/share/openmediavault/scripts/helper-functions; echo $(omv_config_get \"//services/virtualbox/enable\"); OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}; cat /etc/default/openmediavault-virtualbox; echo $(omv_config_get \"//services/virtualbox/enable-advanced\")'",
-            $out
+        $settings = OMVRpc::exec(
+            "VirtualBox",
+            "getSettings",
+            array(),
+            array(
+                "username" => "admin",
+                "role" => OMV_ROLE_ADMINISTRATOR
+            ),
+            OMV_RPC_MODE_REMOTE
         );
 
-        if ($out[0] != "1") {
+        if (!$settings["enable"]) {
             die("alert('phpVirtualBox disabled by OpenMediaVault configuration.');");
         }
 
-        $this->username = $out[1];
-        $this->password = $out[2];
-        $this->enableAdvancedConfig = ($out[3] == "1");
+        $this->enableAdvancedConfig = $settings["enable-advanced"];
+
+        $file = new FileInfo("/etc/default/openmediavault-virtualbox");
+        $file = $file->openFile();
+        $password = $file->fgets();
+        $file = null;
+
+        // Trim the password variable since it may contain a newline char
+        $this->password = trim($password);
     }
 }
