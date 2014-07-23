@@ -39,17 +39,33 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             var showTab = me.findField("show_tab").checked;
             var parent = me.up("tabpanel");
 
-            if (!parent)
+            if (!parent) {
                 return;
+            }
 
             var gridPanel = parent.down("grid");
             var phpVirtualBoxPanel = parent.down("panel[title=" + _("phpVirtualBox") + "]");
 
-            if (gridPanel)
-                checked ? gridPanel.enable() : gridPanel.disable();
+            if (gridPanel) {
+                if (checked) {
+                    gridPanel.enable();
+                } else {
+                    gridPanel.disable();
+                }
+            }
+
             if (phpVirtualBoxPanel) {
-                checked ? phpVirtualBoxPanel.enable() : phpVirtualBoxPanel.disable();
-                showTab ? phpVirtualBoxPanel.tab.show() : phpVirtualBoxPanel.tab.hide();
+                if (checked) {
+                    phpVirtualBoxPanel.enable();
+                } else {
+                    phpVirtualBoxPanel.disable();
+                }
+
+                if (showTab) {
+                    phpVirtualBoxPanel.tab.show();
+                } else {
+                    phpVirtualBoxPanel.tab.hide();
+                }
             }
         });
 
@@ -129,6 +145,9 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 labelSeparator : ""
             },
             items : [{
+                border : false,
+                html   : "<p>" + _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "</p>"
+            },{
                 xtype      : "checkbox",
                 name       : "enable_advanced",
                 fieldLabel : _("Advanced configuration"),
@@ -138,16 +157,8 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 xtype      : "checkbox",
                 name       : "show_tab",
                 fieldLabel : _("Show Tab"),
-                boxLabel: _("Show tab containing phpVirtualBox frame."),
+                boxLabel   : _("Show tab containing phpVirtualBox frame."),
                 checked    : false
-            }]
-        },{
-            xtype  : "fieldset",
-            layout : "fit",
-            title  : _("Note"),
-            items  : [{
-                border : false,
-                html   : _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "<br /><br />"
             }]
         }];
     },

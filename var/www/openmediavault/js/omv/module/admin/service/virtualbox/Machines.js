@@ -46,6 +46,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         dataIndex : "uuid"
     },{
         header    : _("Virtual Machine"),
+        flex      : 1,
         sortable  : true,
         dataIndex : "name"
     },{
@@ -146,9 +147,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
             text     : _("Stop"),
             icon     : "images/shutdown.png",
             iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            // TODO: Disabled should be true, but due to a bug in OMV r1341
-            // the selectionConfig isn't run on buttons with submenus in them.
-            disabled : false,
+            disabled : true,
             selectionConfig : {
                 minSelections : 1,
                 maxSelections : 1,
