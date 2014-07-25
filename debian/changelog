@@ -1,10 +1,16 @@
-openmediavault-virtualbox (1.0.7) UNRELEASED; urgency=low
+openmediavault-virtualbox (1.0.8) stable; urgency=low
+
+  * Various Javascript fixes
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 25 Jul 2014 15:05:10 +0200
+
+openmediavault-virtualbox (1.0.7) stable; urgency=low
 
   * Use custom PHP-FPM config
   * Update to latest OMV r1341 selectionchange changes
   * Rewrite code and rename variables
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 22 Jul 2014 14:44:10 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 25 Jul 2014 15:04:51 +0200
 
 openmediavault-virtualbox (0.6.2.1) stable; urgency=low
 

@@ -32,12 +32,12 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         "OMV.module.admin.service.virtualbox.MachineEditWindow"
     ],
 
+    autoReload         : true,
     disabled           : true,
     hidePagingToolbar  : true,
     hideAddButton      : true,
     hideEditButton     : false,
     hideDeleteButton   : true,
-    autoReload         : true,
     stateChangeWaitMsg : _("Changing VM state."),
 
     columns : [{
@@ -88,37 +88,28 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         }
     }],
 
-    initComponent : function() {
-        var me = this;
-
-        Ext.apply(me, {
-            store : Ext.create("OMV.data.Store", {
-                autoload   : true,
-                remoteSort : false,
-                model      : OMV.data.Model.createImplicit({
-                    idProperty   : "uuid",
-                    totalPoperty : "total",
-                    fields       : [
-                        { name : "uuid" },
-                        { name : "name" },
-                        { name : "state" },
-                        { name : "startupMode" },
-                        { name : "OSTypeId" },
-                        { name : "sessionState" }
-                    ]
-                }),
-                proxy : {
-                    type    : "rpc",
-                    rpcData : {
-                        service : "VirtualBox",
-                        method  : "getMachines"
-                    }
-                }
-            })
-        });
-
-        me.callParent(arguments);
-    },
+    store : Ext.create("OMV.data.Store", {
+        autoLoad   : true,
+        remoteSort : false,
+        model      : OMV.data.Model.createImplicit({
+            idProperty : "uuid",
+            fields     : [
+                { name : "uuid" },
+                { name : "name" },
+                { name : "state" },
+                { name : "startupMode" },
+                { name : "OSTypeId" },
+                { name : "sessionState" }
+            ]
+        }),
+        proxy : {
+            type    : "rpc",
+            rpcData : {
+                service : "VirtualBox",
+                method  : "getMachines"
+            }
+        }
+    }),
 
     getTopToolbarItems : function() {
         var me = this;
