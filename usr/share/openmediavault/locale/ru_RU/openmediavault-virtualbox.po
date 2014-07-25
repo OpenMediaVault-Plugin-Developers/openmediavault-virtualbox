@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alexander Savchenko <>, 2013
+# Alexander Savchenko, 2013
+# Alexander Savchenko, 2014
 # артур Мудрых <arturmon82@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-20 07:47-0500\n"
-"PO-Revision-Date: 2014-03-20 12:47+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-06-15 20:52+0000\n"
+"Last-Translator: Alexander Savchenko\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,22 +56,22 @@ msgid "Note"
 msgstr ""
 
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 msgid "Power off the machine"
-msgstr ""
+msgstr "Выключить машину"
 
 msgid "Progress error"
 msgstr ""
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr ""
+msgstr "Перекомпилировать vboxdrv модуль для ядра 3.2 ..."
 
 msgid "Reset"
-msgstr ""
+msgstr "Сбросить"
 
 msgid "Save the machine state"
-msgstr ""
+msgstr "Сохранить состояние машины"
 
 msgid "Select a volume ..."
 msgstr "Выберите том ..."
@@ -118,7 +119,7 @@ msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr ""
+msgstr "VirtualBox WebService"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"
