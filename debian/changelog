@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.0.9) stable; urgency=low
+
+  * Fix misspelled service name in postrm 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 28 Jul 2014 21:51:51 +0200
+
 openmediavault-virtualbox (1.0.8) stable; urgency=low
 
   * Various Javascript fixes
