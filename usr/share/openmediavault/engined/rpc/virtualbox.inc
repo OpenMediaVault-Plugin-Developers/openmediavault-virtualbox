@@ -176,24 +176,33 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
             }'
         );
 
+        $settings = $this->getSettings(array(), $context);
         $objects = array();
 
-        $vb = new vboxconnector();
-        $vb->skipSessionCheck = true;
-        $vb->connect();
+        // Only connect to VirtualBox and get the machines if the plugin is
+        // enabled. Otherwise it seems to consume a lot of resources doing
+        // something that fails.
+        //
+        // We should check the vboxweb-service status but it returns a 0
+        // even when the plugin is not running.
+        if ($settings["enable"]) {
+            $vb = new vboxconnector();
+            $vb->skipSessionCheck = true;
+            $vb->connect();
 
-        foreach ($vb->vbox->machines as $machine) {
-            $objects[] = array(
-                "uuid"         => $machine->id,
-                "name"         => $machine->name,
-                "state"        => $machine->state->__toString(),
-                "startupMode"  => $machine->getExtraData("pvbx/startupMode"),
-                "OSTypeId"     => $machine->getOSTypeId(),
-                "sessionState" => $machine->sessionState->__toString()
-            );
+            foreach ($vb->vbox->machines as $machine) {
+                $objects[] = array(
+                    "uuid"         => $machine->id,
+                    "name"         => $machine->name,
+                    "state"        => $machine->state->__toString(),
+                    "startupMode"  => $machine->getExtraData("pvbx/startupMode"),
+                    "OSTypeId"     => $machine->getOSTypeId(),
+                    "sessionState" => $machine->sessionState->__toString()
+                );
+            }
+
+            unset($vb);
         }
-
-        unset($vb);
 
         return $this->applyFilter(
             $objects,
@@ -224,23 +233,29 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
             }'
         );
 
+        $settings = $this->getSettings(array(), $context);
         $object = array();
 
-        $vb = new vboxconnector();
-        $vb->skipSessionCheck = true;
-        $vb->connect();
+        // Only connect to VirtualBox if the plugin is enabled since an
+        // unsuccessful request will for some reason utilize a lot of
+        // resources.
+        if ($settings["enable"]) {
+            $vb = new vboxconnector();
+            $vb->skipSessionCheck = true;
+            $vb->connect();
 
-        $machine = $vb->vbox->findMachine($params["uuid"]);
-        $object = array(
-            "uuid"         => $machine->id,
-            "name"         => $machine->name,
-            "state"        => $machine->state->__toString(),
-            "startupMode"  => $machine->getExtraData("pvbx/startupMode"),
-            "OSTypeId"     => $machine->getOSTypeId(),
-            "sessionState" => $machine->sessionState->__toString()
-        );
+            $machine = $vb->vbox->findMachine($params["uuid"]);
+            $object = array(
+                "uuid"         => $machine->id,
+                "name"         => $machine->name,
+                "state"        => $machine->state->__toString(),
+                "startupMode"  => $machine->getExtraData("pvbx/startupMode"),
+                "OSTypeId"     => $machine->getOSTypeId(),
+                "sessionState" => $machine->sessionState->__toString()
+            );
 
-        unset($vb);
+            unset($vb);
+        }
 
         return $object;
     }
