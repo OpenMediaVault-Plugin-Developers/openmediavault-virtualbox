@@ -1,8 +1,8 @@
-openmediavault-virtualbox (1.0.9.1) UNRELEASED; urgency=low
+openmediavault-virtualbox (1.0.9.1) stable; urgency=low
 
   * Only fetch machines when the plugin is enabled
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 28 Jul 2014 22:09:59 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 28 Jul 2014 22:24:22 +0200
 
 openmediavault-virtualbox (1.0.9) stable; urgency=low
 
