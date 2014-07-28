@@ -14,8 +14,6 @@ case "$1" in
     ;;
 
     remove)
-        omv_config_delete "//services/virtualbox"
-
         if [ -e "${VIRTUALBOX_SITE_CONF}" ]; then
             rm ${VIRTUALBOX_SITE_CONF}
         fi
@@ -25,7 +23,7 @@ case "$1" in
         fi
 
         service nginx reload
-        service php5fpm reload
+        service php5-fpm reload
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
