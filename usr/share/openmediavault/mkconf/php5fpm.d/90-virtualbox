@@ -28,7 +28,7 @@ if [ -e "${VIRTUALBOX_POOL_CONF}" ]; then
     rm ${VIRTUALBOX_POOL_CONF}
 fi
 
-if [ "$(omv_config_get "//services/mysql/enable-management-site")" != "1" ]; then
+if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
     exit 0
 fi
 
