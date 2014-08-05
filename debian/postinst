@@ -5,15 +5,32 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-DEFAULT_FILE=/etc/default/openmediavault-virtualbox
-OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
-VIRTUALBOX_SITE_DIR=/usr/share/phpvirtualbox
+DEFAULT_FILE="/etc/default/openmediavault-virtualbox"
+OMV_VBOX_USER="vbox"
+PHPVIRTUALBOX_DIR="/usr/share/phpvirtualbox"
+
+create_vbox_user()
+{
+    # Generate password
+    # TODO: use stronger hash? Only md5 seems to be available
+    # with makepasswd
+    NPSWD=$(makepasswd --crypt-md5 --chars=10)
+    NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
+    NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
+
+    # Create the user
+    useradd -d /home/${OMV_VBOX_USER} -c "openmediavault-virtualbox" -m -p ${NPSWD_CRYPT} -N -g vboxusers ${OMV_VBOX_USER}
+
+    # Store the password for later use
+    echo "${NPSWD_CLEAR}" > ${DEFAULT_FILE}
+}
 
 case "$1" in
     configure)
         SERVICE_XPATH_NAME="virtualbox"
         SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
+        # Add the default configuration
         if ! omv_config_exists "${SERVICE_XPATH}"; then
             omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
@@ -22,38 +39,25 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "show_tab" "0"
         fi
 
+        # Generate the package default file
         if [ ! -e ${DEFAULT_FILE} ]; then
-            if [ $(groups ${OMV_VBOX_USER} 2>/dev/null | wc -l) -eq 0 ]; then
-
-                # Generate password, add user and store it
-                NPSWD=$(makepasswd --crypt-md5 --chars=10)
-                NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
-                NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
-
-                useradd -d /home/${OMV_VBOX_USER} -c "openmediavault-virtualbox" -m -p ${NPSWD_CRYPT} -N -g vboxusers ${OMV_VBOX_USER}
-
-                echo "${NPSWD_CLEAR}" > ${DEFAULT_FILE}
-
+            if ! getent passwd ${OMV_VBOX_USER}; then
+                create_vbox_user
             fi
         fi
 
+        # Set the correct permissions on files
         chown openmediavault:openmediavault ${DEFAULT_FILE}
         chmod 0600 ${DEFAULT_FILE}
+        chown www-data:www-data ${PHPVIRTUALBOX_DIR}
 
-        omv_install_fixperms ${VIRTUALBOX_SITE_DIR}
+        # Manage vboxinit (origin: phpvirtualbox)
+        if [ -x "/etc/init.d/vboxinit" ]; then
+            update-rc.d openmediavault-virtualbox defaults
 
-        version=$(dpkg -s virtualbox-4.3 | grep ^Version: | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')
-        file="Oracle_VM_VirtualBox_Extension_Pack-$version.vbox-extpack"
-
-        rm -f "/tmp/$file*"
-        wget -O "/tmp/$file" "http://download.virtualbox.org/virtualbox/$version/$file"
-        VBoxManage extpack install --replace "/tmp/$file"
-        rm -f "/tmp/$file"
-
-        insserv openmediavault-virtualbox
-
-        if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
-            update-rc.d openmediavault-virtualbox disable
+            if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+                update-rc.d openmediavault-virtualbox disable
+            fi
         fi
 
         # Activate package triggers. These triggers are only set during the
@@ -70,5 +74,7 @@ case "$1" in
         exit 1
     ;;
 esac
+
+#DEBHELPER#
 
 exit 0

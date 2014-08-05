@@ -62,14 +62,17 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
             );
         }
 
-        $cmd = "sudo /etc/init.d/vboxweb-service status";
+        // TODO: Wait and hope that they finally fix the init script so
+        // that it returns correct exit status.
+        $cmd = "invoke-rc.d vboxweb-service status";
         $this->exec($cmd, $output);
+        $running = strpos($output[0], "...running") > 0;
 
         return array(
             "name"    => $this->getName(),
             "title"   => gettext("VirtualBox WebService"),
             "enabled" => boolval($object["enable"]),
-            "running" => (strpos($output[0], "...running") > 0)
+            "running" => $running
         );
     }
 
@@ -80,7 +83,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     {
         global $xmlConfig;
 
-        $cmd = "sudo omv-mkconf virtualbox 2>&1";
+        $cmd = "omv-mkconf virtualbox 2>&1";
 
         if (0 !== $this->exec($cmd, $output)) {
             throw new OMVException(
@@ -107,10 +110,10 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
             );
         }
 
-        if (boolval($object["enable"]) === true) {
+        if (boolval($object["enable"])) {
             $initd = new OMVSysVInitScript("vboxweb-service", true);
             $initd->exec();
-            $initd = new OMVSysVInitScript("openmediavault-virtualbox", true);
+            $initd = new OMVSysVInitScript("vboxinit", true);
             $initd->exec();
         }
     }
@@ -131,22 +134,14 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
             );
         }
 
-        if (boolval($object["enable"]) === false) {
-            $initd = new OMVSysVInitScript("openmediavault-virtualbox", false);
+        if (!boolval($object["enable"])) {
+            $initd = new OMVSysVInitScript("vboxinit");
             $initd->exec();
-            $initd = new OMVSysVInitScript("vboxweb-service", false);
+            $initd = new OMVSysVInitScript("vboxweb-service");
             $initd->exec();
         }
 
-        $cmd = "/bin/rm -f /etc/default/virtualbox";
-
-        if (0 !== $this->exec($cmd, $output)) {
-            throw new OMVException(
-                OMVErrorMsg::E_EXEC_FAILED,
-                $cmd,
-                implode("\n", $output)
-            );
-        }
+        unlink("/etc/default/virtualbox");
     }
 
     /**

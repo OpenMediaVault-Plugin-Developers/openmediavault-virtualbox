@@ -21,9 +21,8 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-
-OMV_VBOX_CONFIG=${OMV_VBOX_CONFIG:-"/etc/default/virtualbox"}
-OMV_VBOX_USER=${OMV_VBOX_USER:-"vbox"}
+OMV_VBOX_CONFIG="/etc/default/virtualbox"
+OMV_VBOX_USER="vbox"
 
 # Enable/disable service
 if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
@@ -32,8 +31,8 @@ fi
 
 # Create vboxweb-service config file
 cat <<EOF > ${OMV_VBOX_CONFIG}
-# defaults for virtualbox
-# sourced by vboxweb-service on startup
+# Defaults for virtualbox.
+# Sourced by vboxweb-service on startup
 
 VBOXWEB_USER=${OMV_VBOX_USER}
 VBOXWEB_HOST=127.0.0.1
