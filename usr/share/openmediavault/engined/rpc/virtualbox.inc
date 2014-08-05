@@ -116,6 +116,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         $oldConfig = $xmlConfig->get($this->getXpath());
 
+        // TODO: Clarify what this actually does, and refactor?
         if ($oldConfig["vm_folder"] != $vmFolder) {
             $output = array();
             $cmd = "/bin/sh -c '. /etc/default/openmediavault; OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}'";
