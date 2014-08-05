@@ -118,10 +118,10 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         if ($oldConfig["vm_folder"] != $vmFolder) {
             $output = array();
-            $cmd = "sudo /bin/sh -c '. /etc/default/openmediavault; OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}'";
+            $cmd = "/bin/sh -c '. /etc/default/openmediavault; OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}'";
             $this->exec($cmd, $output);
             $vboxUser = $output[0];
-            $cmd = "sudo /bin/sh -c '[ -d $vmFolder ] || /bin/mkdir -p $vmFolder; chown $vboxUser $vmFolder; chmod u+rwx $vmFolder'";
+            $cmd = "/bin/sh -c '[ -d $vmFolder ] || /bin/mkdir -p $vmFolder; chown $vboxUser $vmFolder; chmod u+rwx $vmFolder'";
             $result = $this->exec($cmd, $output);
 
             if ($result !== 0) {

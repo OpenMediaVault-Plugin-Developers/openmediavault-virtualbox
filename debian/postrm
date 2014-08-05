@@ -22,8 +22,8 @@ case "$1" in
             rm ${VIRTUALBOX_POOL_CONF}
         fi
 
-        service nginx reload
-        service php5-fpm reload
+        invoke-rc.d nginx reload
+        invoke-rc.d php5-fpm reload
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
