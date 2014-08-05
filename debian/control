@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: openmediavault-virtualbox
 Architecture: all
-Depends: openmediavault (>= 1.0.7), virtualbox-4.3, virtualbox-extpack-installer
+Depends: openmediavault (>= 1.0.7), virtualbox-4.3, virtualbox-extpack-installer,
  phpvirtualbox, makepasswd, build-essential ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.
  VirtualBox is a powerful x86 and AMD64/Intel64
