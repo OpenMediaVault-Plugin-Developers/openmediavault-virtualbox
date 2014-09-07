@@ -53,10 +53,10 @@ case "$1" in
 
         # Manage vboxinit (origin: phpvirtualbox)
         if [ -x "/etc/init.d/vboxinit" ]; then
-            update-rc.d openmediavault-virtualbox defaults
+            update-rc.d vboxinit defaults
 
             if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
-                update-rc.d openmediavault-virtualbox disable
+                update-rc.d vboxinit disable
             fi
         fi
 
