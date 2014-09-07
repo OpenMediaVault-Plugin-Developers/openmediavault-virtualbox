@@ -7,7 +7,6 @@ set -e
 
 DEFAULT_FILE="/etc/default/openmediavault-virtualbox"
 OMV_VBOX_USER="vbox"
-PHPVIRTUALBOX_DIR="/usr/share/phpvirtualbox"
 
 create_vbox_user()
 {
@@ -49,7 +48,6 @@ case "$1" in
         # Set the correct permissions on files
         chown openmediavault:openmediavault ${DEFAULT_FILE}
         chmod 0600 ${DEFAULT_FILE}
-        chown www-data:www-data ${PHPVIRTUALBOX_DIR}
 
         # Manage vboxinit (origin: phpvirtualbox)
         if [ -x "/etc/init.d/vboxinit" ]; then
