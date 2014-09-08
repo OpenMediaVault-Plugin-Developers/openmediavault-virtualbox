@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.0.10) stable; urgency=low
+
+  * Split package up into openmediavault-virtualbox, virtualbox-extpack-installer and phpvirtualbox
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 08 Sep 2014 11:31:25 +0200
+
 openmediavault-virtualbox (1.0.9.2) stable; urgency=low
 
   * Fix typo
