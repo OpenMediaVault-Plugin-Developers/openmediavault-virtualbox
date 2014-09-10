@@ -32,12 +32,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     rpcSetMethod : "setSettings",
 
     initComponent : function() {
-        var me = this;
-
-        me.on("load", function () {
-            var checked = me.findField("enable").checked;
-            var showTab = me.findField("show_tab").checked;
-            var parent = me.up("tabpanel");
+        this.on("load", function () {
+            var checked = this.findField("enable").checked;
+            var showTab = this.findField("show_tab").checked;
+            var parent = this.up("tabpanel");
 
             if (!parent) {
                 return;
@@ -67,13 +65,12 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                     phpVirtualBoxPanel.tab.hide();
                 }
             }
-        });
+        }, this);
 
         me.callParent(arguments);
     },
 
     getFormItems : function() {
-        var me = this;
         return [{
             xtype    : "fieldset",
             title    : "General settings",
@@ -86,54 +83,19 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 fieldLabel : _("Enable"),
                 checked    : false
             },{
-                xtype         : "combo",
-                name          : "mntentref",
-                fieldLabel    : _("Virtual Machine Volume"),
-                emptyText     : _("Select a volume ..."),
-                allowBlank    : false,
-                allowNone     : false,
-                editable      : false,
-                triggerAction : "all",
-                displayField  : "description",
-                valueField    : "uuid",
-                store         : Ext.create("OMV.data.Store", {
-                    autoLoad : true,
-                    model    : OMV.data.Model.createImplicit({
-                        idProperty : "uuid",
-                        fields     : [
-                            { name : "uuid", type : "string" },
-                            { name : "devicefile", type : "string" },
-                            { name : "description", type : "string" }
-                        ]
-                    }),
-                    proxy : {
-                        type : "rpc",
-                        rpcData : {
-                            service : "ShareMgmt",
-                            method  : "getCandidates"
-                        },
-                        appendSortParams : false
-                    },
-                    sorters : [{
-                        direction : "ASC",
-                        property  : "devicefile"
-                    }]
-                })
-            },{
-                xtype      : "textfield",
-                name       : "vm_folder",
-                fieldLabel : _("Virtual Machine Folder"),
-                allowNone  : true,
-                readOnly   : true
-            },{
-                border : false,
-                html   : "<br />"
+                xtype      : "sharedfoldercombo",
+                name       : "machines.sharedfolderref",
+                fieldLabel : _("Data directory"),
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("The location where MySQL stores its data.")
+                }]
             },{
                 xtype   : "button",
                 name    : "fixmodule",
                 text    : _("Fix module for backports kernels"),
                 scope   : this,
-                handler : Ext.Function.bind(me.onFixModuleButton, me, [ me ])
+                handler : Ext.Function.bind(this.onFixModuleButton, this)
             },{
                 border : false,
                 html   : "<ul><li>" + _("This will recompile the vboxdrv for the backports kernel.") + "</li></ul>"
@@ -151,7 +113,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 xtype      : "checkbox",
                 name       : "enable_advanced",
                 fieldLabel : _("Advanced configuration"),
-                boxLabel: _("Show advanced configuration options in phpVirtualBox web interface."),
+                boxLabel   : _("Show advanced configuration options in phpVirtualBox web interface."),
                 checked    : false
             },{
                 xtype      : "checkbox",
@@ -164,14 +126,12 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     },
 
     onFixModuleButton : function() {
-        var me = this;
         Ext.create("OMV.window.Execute", {
             title          : _("Recompile vboxdrv module for 3.2 kernel ..."),
             rpcService     : "VirtualBox",
             rpcMethod      : "fixModule",
             hideStopButton : true,
             listeners      : {
-                scope     : me,
                 exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }

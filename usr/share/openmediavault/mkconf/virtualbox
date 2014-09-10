@@ -31,7 +31,7 @@ fi
 
 # Create vboxweb-service config file
 cat <<EOF > ${OMV_VBOX_CONFIG}
-# Defaults for virtualbox.
+# Defaults for VirtualBox.
 # Sourced by vboxweb-service on startup
 
 VBOXWEB_USER=${OMV_VBOX_USER}
@@ -40,16 +40,10 @@ VBOXWEB_HOST=127.0.0.1
 EOF
 
 # Get /set machine folder
-MAF="$(omv_config_get "//services/virtualbox/vm_folder")"
+sharedfolderref=$(omv_config_get "//services/virtualbox/machines.sharedfolderref")
+machines_directory="$(omv_get_sharedfolder_path "${sharedfolderref}")"
 
-if [ "${MAF}" != "" ] && [ ! -d "${MAF}" ]; then
-    /bin/mkdir "${MAF}"
-    chown ${OMV_VBOX_USER}:vboxusers "${MAF}"
-fi
+chown ${OMV_VBOX_USER}:vboxusers "${machines_directory}"
+su ${OMV_VBOX_USER} -c "VBoxManage setproperty machinefolder '${machines_directory}'"
 
-if [ "${MAF}" != "" ] && [ -d "${MAF}" ]; then
-    su ${OMV_VBOX_USER} -c "VBoxManage setproperty machinefolder '${MAF}'"
-    else
-    echo "Virtual Machine folder ${MAF} does not exist."
-    exit 1
-fi
+exit 0

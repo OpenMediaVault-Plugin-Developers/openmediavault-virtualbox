@@ -30,6 +30,11 @@ require_once "openmediavault/util.inc";
 
 class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 {
+    private function getEventMessagePath()
+    {
+        return "org.openmediavault.services.virtualbox";
+    }
+
     private function getXpath()
     {
         return "//services/virtualbox";
@@ -98,45 +103,20 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
             '{
                 "type"       : "object",
                 "properties" : {
-                    "enable"          : { "type" : "boolean" },
-                    "enable_advanced" : { "type" : "boolean" },
-                    "vm_folder"       : { "type" : "string", "optional" : true },
-                    "mntentref"       : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID_NONE"] . ' },
-                    "show_tab"        : { "type" : "boolean" }
+                    "enable"                   : { "type" : "boolean" },
+                    "machines.sharedfolderref" : { ' . $GLOBALS["OMV_JSONSCHEMA_UUID"] . ' },
+                    "enable_advanced"          : { "type" : "boolean" },
+                    "show_tab"                 : { "type" : "boolean" }
                 }
             }'
         );
 
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params["mntentref"]);
-        $deviceDir = $xmlConfig->get($xpath);
-        $deviceDir = $deviceDir["dir"];
-
-        $vmFolder = "{$deviceDir}/virtualbox-machines";
-        $params["vm_folder"] = $vmFolder;
-
-        $oldConfig = $xmlConfig->get($this->getXpath());
-
-        // TODO: Clarify what this actually does, and refactor?
-        if ($oldConfig["vm_folder"] != $vmFolder) {
-            $output = array();
-            $cmd = "/bin/sh -c '. /etc/default/openmediavault; OMV_VBOX_USER=\${OMV_VBOX_USER:-\"vbox\"}; echo \${OMV_VBOX_USER}'";
-            $this->exec($cmd, $output);
-            $vboxUser = $output[0];
-            $cmd = "/bin/sh -c '[ -d $vmFolder ] || /bin/mkdir -p $vmFolder; chown $vboxUser $vmFolder; chmod u+rwx $vmFolder'";
-            $result = $this->exec($cmd, $output);
-
-            if ($result !== 0) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
-        }
-
         // Prepare configuration data
         $object = array(
-            "enable"          => array_boolval($params, "enable"),
-            "enable_advanced" => array_boolval($params, "enable_advanced"),
-            "vm_folder"       => $params["vm_folder"],
-            "mntentref"       => $params["mntentref"],
-            "show_tab"        => array_boolval($params, "show_tab")
+            "enable"                   => array_boolval($params, "enable"),
+            "machines.sharedfolderref" => $params["machines.sharedfolderref"],
+            "enable_advanced"          => array_boolval($params, "enable_advanced"),
+            "show_tab"                 => array_boolval($params, "show_tab")
         );
 
         // Set configuration object
@@ -149,7 +129,11 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
-        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.virtualbox", $object);
+        $dispatcher->notify(
+            OMV_NOTIFY_MODIFY,
+            $this->getEventMessagePath(),
+            $object
+        );
 
         return $object;
     }
@@ -351,7 +335,9 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
     public function fixModule($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext($context, array(
+            "role" => OMV_ROLE_ADMINISTRATOR
+        ));
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
@@ -364,7 +350,11 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         // Child process.
         try {
             $bgOutputFilename = $this->createBgProcOutput();
-            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+            $this->updateBgProcStatus(
+                $bgStatusFilename,
+                "outputfilename",
+                $bgOutputFilename
+            );
 
             $cmd = "/usr/local/bin/fixmodule";
             $this->exec($cmd, $output, $bgOutputFilename);

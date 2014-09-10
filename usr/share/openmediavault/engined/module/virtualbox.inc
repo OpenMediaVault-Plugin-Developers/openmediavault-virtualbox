@@ -47,7 +47,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     }
 
     /**
-     * Get the module status
+     * Get the module status.
      */
     public function getStatus()
     {
@@ -77,7 +77,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     }
 
     /**
-     * Create and update the configuration
+     * Create and update the configuration.
      */
     public function applyConfig()
     {
@@ -95,7 +95,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     }
 
     /**
-     * Start the managed service
+     * Start the managed service.
      */
     public function startService()
     {
@@ -119,7 +119,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     }
 
     /**
-     * Stop the managed service
+     * Stop the managed service.
      */
     public function stopService()
     {
