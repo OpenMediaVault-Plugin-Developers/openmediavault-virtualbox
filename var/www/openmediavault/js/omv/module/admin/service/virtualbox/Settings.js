@@ -67,7 +67,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             }
         }, this);
 
-        me.callParent(arguments);
+        this.callParent(arguments);
     },
 
     getFormItems : function() {
