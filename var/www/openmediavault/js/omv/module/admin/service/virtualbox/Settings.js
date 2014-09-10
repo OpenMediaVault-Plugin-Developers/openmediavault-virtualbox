@@ -108,7 +108,8 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             },
             items : [{
                 border : false,
-                html   : "<p>" + _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "</p>"
+                html   : "<p>" + _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "</p>" +
+                         "<p>" + _("The VirtualBox web interface can be accessed <a href='/virtualbox/' target='_blank'>here</a>.") + "</p>"
             },{
                 xtype      : "checkbox",
                 name       : "enable_advanced",
