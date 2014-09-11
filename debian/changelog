@@ -1,8 +1,8 @@
-openmediavault-virtualbox (1.0.11) UNRELEASED; urgency=low
+openmediavault-virtualbox (1.0.11) stable; urgency=low
 
   * Use shared folder instead of drive for machines 
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 10 Sep 2014 16:59:28 +0200
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 11 Sep 2014 23:51:08 +0200
 
 openmediavault-virtualbox (1.0.10) stable; urgency=low
 
