@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 07:47-0500\n"
-"PO-Revision-Date: 2014-03-20 12:47+0000\n"
+"POT-Creation-Date: 2014-09-14 07:56-0500\n"
+"PO-Revision-Date: 2014-09-14 12:58+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: English (United States) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/en_US/)\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,9 @@ msgstr "Automatic"
 
 msgid "Changing VM state."
 msgstr "Changing VM state."
+
+msgid "Data directory"
+msgstr "Data directory"
 
 msgid "Edit Virtual Machine"
 msgstr "Edit Virtual Machine"
@@ -49,9 +52,6 @@ msgstr "Manual"
 msgid "Name"
 msgstr "Name"
 
-msgid "Note"
-msgstr "Note"
-
 msgid "Pause"
 msgstr "Pause"
 
@@ -69,9 +69,6 @@ msgstr "Reset"
 
 msgid "Save the machine state"
 msgstr "Save the machine state"
-
-msgid "Select a volume ..."
-msgstr "Select a volume ..."
 
 msgid "Settings"
 msgstr "Settings"
@@ -94,6 +91,14 @@ msgstr "Startup Mode"
 msgid "Stop"
 msgstr "Stop"
 
+msgid ""
+"The VirtualBox web interface can be accessed <a href='/virtualbox/' "
+"target='_blank'>here</a>."
+msgstr "The VirtualBox web interface can be accessed <a href='/virtualbox/' target='_blank'>here</a>."
+
+msgid "The location where MySQL stores its data."
+msgstr "The location where MySQL stores its data."
+
 msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr "This will recompile the vboxdrv for the backports kernel."
 
@@ -102,12 +107,6 @@ msgstr "UUID"
 
 msgid "Virtual Machine"
 msgstr "Virtual Machine"
-
-msgid "Virtual Machine Folder"
-msgstr "Virtual Machine Folder"
-
-msgid "Virtual Machine Volume"
-msgstr "Virtual Machine Volume"
 
 msgid "Virtual Machines"
 msgstr "Virtual Machines"

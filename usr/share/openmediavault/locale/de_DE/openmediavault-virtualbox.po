@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 07:47-0500\n"
-"PO-Revision-Date: 2014-03-20 12:47+0000\n"
+"POT-Creation-Date: 2014-09-14 07:56-0500\n"
+"PO-Revision-Date: 2014-09-14 12:58+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,9 @@ msgid "Automatic"
 msgstr "Automatisch"
 
 msgid "Changing VM state."
+msgstr ""
+
+msgid "Data directory"
 msgstr ""
 
 msgid "Edit Virtual Machine"
@@ -51,9 +54,6 @@ msgstr "Anleitung"
 msgid "Name"
 msgstr "Name"
 
-msgid "Note"
-msgstr "Notiz"
-
 msgid "Pause"
 msgstr ""
 
@@ -71,9 +71,6 @@ msgstr ""
 
 msgid "Save the machine state"
 msgstr ""
-
-msgid "Select a volume ..."
-msgstr "Datenträger auswähle ..."
 
 msgid "Settings"
 msgstr "Einstellungen"
@@ -96,6 +93,14 @@ msgstr "Startup Mode"
 msgid "Stop"
 msgstr "Stop"
 
+msgid ""
+"The VirtualBox web interface can be accessed <a href='/virtualbox/' "
+"target='_blank'>here</a>."
+msgstr ""
+
+msgid "The location where MySQL stores its data."
+msgstr ""
+
 msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr ""
 
@@ -104,12 +109,6 @@ msgstr "UUID"
 
 msgid "Virtual Machine"
 msgstr "Virtuelle Maschine"
-
-msgid "Virtual Machine Folder"
-msgstr "Verzeichnis der Virtuellen Machine"
-
-msgid "Virtual Machine Volume"
-msgstr "Datenträger der Virtuellen Machine"
 
 msgid "Virtual Machines"
 msgstr "Virtuelle Machinen"
