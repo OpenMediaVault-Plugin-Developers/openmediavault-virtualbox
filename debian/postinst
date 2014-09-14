@@ -15,6 +15,12 @@ data_drive_to_shared_folder()
     mntentref=$(omv_config_get "//services/virtualbox/mntentref")
     reldirpath="virtualbox-machines"
 
+    if [ -z "${mntentref}" ]; then
+        omv_config_add_element "/config/virtualbox/mysql" "machines.sharedfolderref"
+
+        return 0
+    fi
+
     # Prepare JSON data.
     json="{ \"uuid\": \"undefined\", \"name\": \"${name}\", \"comment\": \"${comment}\", \"mntentref\": \"${mntentref}\", \"reldirpath\": \"${reldirpath}\" }"
 
