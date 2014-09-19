@@ -85,10 +85,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             },{
                 xtype      : "sharedfoldercombo",
                 name       : "machines.sharedfolderref",
-                fieldLabel : _("Data directory"),
+                fieldLabel : _("VM directory"),
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("The location where MySQL stores its data.")
+                    text  : _("The location where VirtualBox stores its virtual machines.")
                 }]
             },{
                 xtype   : "button",
