@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-14 07:56-0500\n"
-"PO-Revision-Date: 2014-09-14 12:58+0000\n"
+"POT-Creation-Date: 2014-09-19 06:00-0500\n"
+"PO-Revision-Date: 2014-09-19 11:02+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: English (United States) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/en_US/)\n"
 "MIME-Version: 1.0\n"
@@ -28,9 +28,6 @@ msgstr "Automatic"
 
 msgid "Changing VM state."
 msgstr "Changing VM state."
-
-msgid "Data directory"
-msgstr "Data directory"
 
 msgid "Edit Virtual Machine"
 msgstr "Edit Virtual Machine"
@@ -96,14 +93,17 @@ msgid ""
 "target='_blank'>here</a>."
 msgstr "The VirtualBox web interface can be accessed <a href='/virtualbox/' target='_blank'>here</a>."
 
-msgid "The location where MySQL stores its data."
-msgstr "The location where MySQL stores its data."
+msgid "The location where VirtualBox stores its virtual machines."
+msgstr "The location where VirtualBox stores its virtual machines."
 
 msgid "This will recompile the vboxdrv for the backports kernel."
 msgstr "This will recompile the vboxdrv for the backports kernel."
 
 msgid "UUID"
 msgstr "UUID"
+
+msgid "VM directory"
+msgstr "VM directory"
 
 msgid "Virtual Machine"
 msgstr "Virtual Machine"
