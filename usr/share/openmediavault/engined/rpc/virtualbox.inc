@@ -192,7 +192,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         return $this->applyFilter(
             $objects,
             $params["start"],
-            $params["count"],
+            $params["limit"],
             $params["sortfield"],
             $params["sortdir"]
         );
