@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.0.12) stable; urgency=low
+
+  * Correctly call applyFilter 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 29 Oct 2014 17:30:34 +0100
+
 openmediavault-virtualbox (1.0.11) stable; urgency=low
 
   * Use shared folder instead of drive for machines 
