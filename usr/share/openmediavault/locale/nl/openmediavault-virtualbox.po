@@ -3,114 +3,114 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Paolo Velati <paolo.velati@gmail.com>, 2014
+# okpail <okpail@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-10-13 22:25+0000\n"
-"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/it/)\n"
+"PO-Revision-Date: 2014-10-23 06:42+0000\n"
+"Last-Translator: okpail <okpail@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr "Arresto ACPI"
+msgstr "Advanced Configuration and Power Interface (ACPI) uitschakelwijze"
 
 msgid "Advanced configuration"
-msgstr "Configurazione Avanzata"
+msgstr "Configuratie voor gevorderden"
 
 msgid "Automatic"
-msgstr "Automatico"
+msgstr "Automatisch"
 
 msgid "Changing VM state."
-msgstr "Modifica dello stato della VM."
+msgstr "Verander de staat van de Virtuele Machine (VM)"
 
 msgid "Edit Virtual Machine"
-msgstr "Modifica Macchina Virtuale"
+msgstr "Edit de Virtuele Machine"
 
 msgid "Enable"
-msgstr "Abilita"
+msgstr "Aanzetten"
 
 msgid "Fix module for backports kernels"
-msgstr "Correggi il modulo per i kernel backport"
+msgstr "Fix module voor backport kernels"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "Assicurati di cambiare la password in phpVirtualBox! Le credenziali di default sono 'admin' sia per username che per password."
+msgstr "Verander het wachtwoord in phpVirtualBox! Anderszins blijft de standaard inlog waarden gelden voor zowel de gebruikersnaam als het paswoord: \"admin\""
 
 msgid "Manual"
-msgstr "Manuale"
+msgstr "Handleiding"
 
 msgid "Name"
-msgstr "Nome"
+msgstr "Naam"
 
 msgid "Pause"
-msgstr "Pausa"
+msgstr "Pauzeer"
 
 msgid "Power off the machine"
-msgstr "Spegni la macchina"
+msgstr "Zet de machine uit"
 
 msgid "Progress error"
-msgstr "Errore progresso"
+msgstr "Voortgangs fout"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "Ricompila il modulo vboxdrv per il kernel 3.2 ..."
+msgstr "Hercompileer de vboxdrv module for een 3.2 kernel"
 
 msgid "Reset"
 msgstr "Reset"
 
 msgid "Save the machine state"
-msgstr "Salva lo stato della macchina"
+msgstr "Sla de staat van de virtuele machine op"
 
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr "Instellingen"
 
 msgid "Show Tab"
-msgstr "Mostra Pannello"
+msgstr "Toon tabblad"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "Mostra le opzioni di configurazione avanzata nell'interfaccia web phpVirtualBox."
+msgstr "Toon geavanceerde configuratie opties in de phpVirtualBox web interface"
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "Mostra pannello contenente phpVirtualBox."
+msgstr "Toon een tabblad met de bedieningsinterface van phpVirtualBox"
 
 msgid "Start"
-msgstr "Avvia"
+msgstr "Start"
 
 msgid "Startup Mode"
-msgstr "Modalità di Avvio"
+msgstr "Opstart Mode"
 
 msgid "Stop"
-msgstr "Ferma"
+msgstr "Stop"
 
 msgid ""
 "The VirtualBox web interface can be accessed <a href='/virtualbox/' "
 "target='_blank'>here</a>."
-msgstr "L'interfaccia web di VirtualBox è <a href='/virtualbox/' target='_blank'>qui</a>."
+msgstr "De VirtualBox web interface kan worden bereikt  <a href='/virtualbox/' target='_blank'>met deze link</a>."
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr "Il luogo dove VirtualBox salva le proprie macchine virtuali."
+msgstr "De locatie waar VirtualBox zijn Virtuele Machines opslaat"
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr "Questo ricompilerà vboxdrv per i kernel backport."
+msgstr "Dit zal de vboxdrv hercompileren voor the backports kernel"
 
 msgid "UUID"
-msgstr "UUID"
+msgstr "Universally Unique Identifier (UUID)"
 
 msgid "VM directory"
-msgstr "Cartella VM"
+msgstr "Directory waar de Virtuele Machines worden opgeslagen"
 
 msgid "Virtual Machine"
-msgstr "Macchina Virtuale"
+msgstr "Virtuele Machine"
 
 msgid "Virtual Machines"
-msgstr "Macchine Virtuale"
+msgstr "Virtuele Machines"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"

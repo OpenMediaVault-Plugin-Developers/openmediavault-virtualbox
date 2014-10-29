@@ -3,120 +3,119 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Paolo Velati <paolo.velati@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-10-13 22:25+0000\n"
-"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/it/)\n"
+"PO-Revision-Date: 2013-10-28 15:03+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Dutch (Belgium) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/nl_BE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
+"Language: nl_BE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr "Arresto ACPI"
+msgstr ""
 
 msgid "Advanced configuration"
-msgstr "Configurazione Avanzata"
+msgstr ""
 
 msgid "Automatic"
-msgstr "Automatico"
+msgstr ""
 
 msgid "Changing VM state."
-msgstr "Modifica dello stato della VM."
+msgstr ""
 
 msgid "Edit Virtual Machine"
-msgstr "Modifica Macchina Virtuale"
+msgstr ""
 
 msgid "Enable"
-msgstr "Abilita"
+msgstr ""
 
 msgid "Fix module for backports kernels"
-msgstr "Correggi il modulo per i kernel backport"
+msgstr ""
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "Assicurati di cambiare la password in phpVirtualBox! Le credenziali di default sono 'admin' sia per username che per password."
+msgstr ""
 
 msgid "Manual"
-msgstr "Manuale"
+msgstr ""
 
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 msgid "Pause"
-msgstr "Pausa"
+msgstr ""
 
 msgid "Power off the machine"
-msgstr "Spegni la macchina"
+msgstr ""
 
 msgid "Progress error"
-msgstr "Errore progresso"
+msgstr ""
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "Ricompila il modulo vboxdrv per il kernel 3.2 ..."
+msgstr ""
 
 msgid "Reset"
-msgstr "Reset"
+msgstr ""
 
 msgid "Save the machine state"
-msgstr "Salva lo stato della macchina"
+msgstr ""
 
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr ""
 
 msgid "Show Tab"
-msgstr "Mostra Pannello"
+msgstr ""
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "Mostra le opzioni di configurazione avanzata nell'interfaccia web phpVirtualBox."
+msgstr ""
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "Mostra pannello contenente phpVirtualBox."
+msgstr ""
 
 msgid "Start"
-msgstr "Avvia"
+msgstr ""
 
 msgid "Startup Mode"
-msgstr "Modalità di Avvio"
+msgstr ""
 
 msgid "Stop"
-msgstr "Ferma"
+msgstr ""
 
 msgid ""
 "The VirtualBox web interface can be accessed <a href='/virtualbox/' "
 "target='_blank'>here</a>."
-msgstr "L'interfaccia web di VirtualBox è <a href='/virtualbox/' target='_blank'>qui</a>."
+msgstr ""
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr "Il luogo dove VirtualBox salva le proprie macchine virtuali."
+msgstr ""
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr "Questo ricompilerà vboxdrv per i kernel backport."
+msgstr ""
 
 msgid "UUID"
-msgstr "UUID"
+msgstr ""
 
 msgid "VM directory"
-msgstr "Cartella VM"
+msgstr ""
 
 msgid "Virtual Machine"
-msgstr "Macchina Virtuale"
+msgstr ""
 
 msgid "Virtual Machines"
-msgstr "Macchine Virtuale"
+msgstr ""
 
 msgid "VirtualBox"
-msgstr "VirtualBox"
+msgstr ""
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox WebService"
+msgstr ""
 
 msgid "phpVirtualBox"
-msgstr "phpVirtualBox"
+msgstr ""

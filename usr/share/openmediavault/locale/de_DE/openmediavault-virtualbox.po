@@ -4,14 +4,15 @@
 # 
 # Translators:
 # David Hönel <davidh1990@gmx.de>, 2013
+# Ettore Atalan <atalanttore@googlemail.com>, 2014
 # Jan Neumann <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-09-19 11:02+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-09-28 11:32+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr ""
+msgstr "ACPI herunterfahren"
 
 msgid "Advanced configuration"
 msgstr "Erweiterte Konfiguration"
@@ -29,7 +30,7 @@ msgid "Automatic"
 msgstr "Automatisch"
 
 msgid "Changing VM state."
-msgstr ""
+msgstr "VM-Status wird geändert."
 
 msgid "Edit Virtual Machine"
 msgstr "Virtuelle Machine bearbeiten"
@@ -52,10 +53,10 @@ msgid "Name"
 msgstr "Name"
 
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 msgid "Power off the machine"
-msgstr ""
+msgstr "Maschine ausschalten"
 
 msgid "Progress error"
 msgstr ""
@@ -64,7 +65,7 @@ msgid "Recompile vboxdrv module for 3.2 kernel ..."
 msgstr "Rekompiliere vboxdrv-Modul für den 3.2-Kernel ..."
 
 msgid "Reset"
-msgstr ""
+msgstr "Zurücksetzen"
 
 msgid "Save the machine state"
 msgstr ""
@@ -105,7 +106,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "VM directory"
-msgstr ""
+msgstr "VM-Verzeichnis"
 
 msgid "Virtual Machine"
 msgstr "Virtuelle Maschine"
