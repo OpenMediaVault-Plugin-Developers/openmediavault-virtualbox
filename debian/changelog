@@ -1,4 +1,4 @@
-openmediavault-virtualbox (1.0.12) stable; urgency=low
+openmediavault-virtualbox (1.0.12.1) stable; urgency=low
 
   * Correctly call applyFilter 
 
