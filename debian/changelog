@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.0.13) stable; urgency=low
+
+  * Add button to show phpVirtualbox in Settings tab and Machine tab
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 31 Oct 2014 14:58:55 -0500
+
 openmediavault-virtualbox (1.0.12.1) stable; urgency=low
 
   * Correctly call applyFilter 

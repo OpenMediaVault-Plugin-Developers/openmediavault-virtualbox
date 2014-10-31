@@ -31,6 +31,18 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+    plugins : [{
+        ptype        : "linkedfields",
+        correlations : [{
+            conditions  : [
+                { name : "enable", value : true }
+            ],
+            properties : function(valid, field) {
+                this.setButtonDisabled("phpvirtualbox", !valid);
+            }
+        }]
+    }],
+    
     initComponent : function() {
         this.on("load", function () {
             var checked = this.findField("enable").checked;
@@ -70,6 +82,24 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
         this.callParent(arguments);
     },
 
+    getButtonItems : function() {
+        var me = this;
+        var items = me.callParent(arguments);
+        items.push({
+            id       : me.getId() + "-phpvirtualbox",
+            xtype    : "button",
+            text     : _("phpVirtualBox"),
+            icon     : "images/virtualbox.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            disabled : true,
+            scope    : me,
+            handler  : function() {
+                window.open("/virtualbox/", "_blank");
+            }
+        });
+        return items;
+    },
+    
     getFormItems : function() {
         return [{
             xtype    : "fieldset",
