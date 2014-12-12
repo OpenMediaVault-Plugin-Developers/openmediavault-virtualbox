@@ -3,120 +3,120 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# songming <by@songming.me>, 2013-2014
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-11-14 19:52+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/zh_CN/)\n"
+"PO-Revision-Date: 2014-12-07 09:38+0000\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
+"Language-Team: Galician (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr "ACPI关机"
+msgstr "Apagado ACPI"
 
 msgid "Advanced configuration"
-msgstr "高级配置"
+msgstr "Configuración avanzada"
 
 msgid "Automatic"
-msgstr "自动"
+msgstr "Automático"
 
 msgid "Changing VM state."
-msgstr "更改VM状态。"
+msgstr "Cambiando o estado da MV."
 
 msgid "Edit Virtual Machine"
-msgstr "编辑虚拟机"
+msgstr "Editar a máquina virtual"
 
 msgid "Enable"
-msgstr "启用"
+msgstr "Activar"
 
 msgid "Fix module for backports kernels"
-msgstr "修复backports内核模块"
+msgstr "Adaptar o módulo ao kernel de backports"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "确认要改变 phpVirtualBox 密码！默认登录帐号和密码是 'admin'。"
+msgstr "Asegúrese de cambiar o contrasinal en phpVirtualBox. Os usuario e contrasinal predeterminados son admin/admin."
 
 msgid "Manual"
-msgstr "手册"
+msgstr "Manual"
 
 msgid "Name"
-msgstr "名称"
+msgstr "Nome"
 
 msgid "Pause"
-msgstr "暂停"
+msgstr "Pausa"
 
 msgid "Power off the machine"
-msgstr "关闭本机"
+msgstr "Apagar a máquina"
 
 msgid "Progress error"
-msgstr "进程错误"
+msgstr "Produciuse un erro do progreso"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "重编译3.2内核 vboxdrv 模块 ..."
+msgstr "Recompilando o modulo vboxdrv para o kernel 3.2 ..."
 
 msgid "Reset"
-msgstr "重置"
+msgstr "Restabelecer"
 
 msgid "Save the machine state"
-msgstr "保存机器状态"
+msgstr "Gardar o estado da máquina"
 
 msgid "Settings"
-msgstr "设置"
+msgstr "Axustes"
 
 msgid "Show Tab"
-msgstr "显示标签页"
+msgstr "Amosar a lapela"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "显示  phpVirtualBox web 后台的高级配置选项。"
+msgstr "Amosar as opcións avanzadas de configuración na interface phpVirtualBox."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "标签页显示 phpVirtualBox 管理页"
+msgstr "Amosar a lapela que conten o marco phpVirtualBox"
 
 msgid "Start"
-msgstr "开始"
+msgstr "Iniciar"
 
 msgid "Startup Mode"
-msgstr "启动模式"
+msgstr "Modo de inicio"
 
 msgid "Stop"
-msgstr "停止"
+msgstr "Parar"
 
 msgid ""
 "The VirtualBox web interface can be accessed <a href='/virtualbox/' "
 "target='_blank'>here</a>."
-msgstr "VirtualBox Web界面可以点击<a href='/virtualbox/' target='_blank'>这里</a>访问了。"
+msgstr "Pode acceder á interface web VirtualBox desde <a href='/virtualbox/' target='_blank'>>aquí</a>."
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr "该目录是VirtualBox存储虚拟机的位置。"
+msgstr "O lugar onde VirtualBox almacena as máquinas virtuais."
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr "这将重编译backports内核中的vboxdrv模块。"
+msgstr "Isto recompilará vboxdrv para o kernel de backports."
 
 msgid "UUID"
 msgstr "UUID"
 
 msgid "VM directory"
-msgstr "VM目录"
+msgstr "Directorio da MV"
 
 msgid "Virtual Machine"
-msgstr "虚拟机"
+msgstr "Máquina virtual"
 
 msgid "Virtual Machines"
-msgstr "虚拟机"
+msgstr "Máquinas virtuais"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox Web服务器"
+msgstr "Servizo web do VirtualBox"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"

@@ -3,120 +3,120 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# songming <by@songming.me>, 2013-2014
+# Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-11-14 19:52+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/zh_CN/)\n"
+"PO-Revision-Date: 2014-11-17 20:21+0000\n"
+"Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>\n"
+"Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
+"Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "ACPI Shutdown"
-msgstr "ACPI关机"
+msgstr "ACPI 종료"
 
 msgid "Advanced configuration"
-msgstr "高级配置"
+msgstr "고급 구성"
 
 msgid "Automatic"
-msgstr "自动"
+msgstr "자동"
 
 msgid "Changing VM state."
-msgstr "更改VM状态。"
+msgstr "VM 상태 변경."
 
 msgid "Edit Virtual Machine"
-msgstr "编辑虚拟机"
+msgstr "가상 장치 편집"
 
 msgid "Enable"
-msgstr "启用"
+msgstr "활성화"
 
 msgid "Fix module for backports kernels"
-msgstr "修复backports内核模块"
+msgstr "Backports 커널 모듈 수정"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "确认要改变 phpVirtualBox 密码！默认登录帐号和密码是 'admin'。"
+msgstr "phpVirtualBox의 암호를 변경해야 합니다! 기본 로그인 자격 증명은 사용자 이름과 암호 모두 <b>admin</b> 입니다."
 
 msgid "Manual"
-msgstr "手册"
+msgstr "수동"
 
 msgid "Name"
-msgstr "名称"
+msgstr "이름"
 
 msgid "Pause"
-msgstr "暂停"
+msgstr "일시 중지"
 
 msgid "Power off the machine"
-msgstr "关闭本机"
+msgstr "장치 전원 끄기"
 
 msgid "Progress error"
-msgstr "进程错误"
+msgstr "진행 오류"
 
 msgid "Recompile vboxdrv module for 3.2 kernel ..."
-msgstr "重编译3.2内核 vboxdrv 模块 ..."
+msgstr "3.2 커널의 vboxdrv 모듈을 다시 컴파일 ..."
 
 msgid "Reset"
-msgstr "重置"
+msgstr "초기화"
 
 msgid "Save the machine state"
-msgstr "保存机器状态"
+msgstr "장치 상태 저장"
 
 msgid "Settings"
-msgstr "设置"
+msgstr "환경 설정"
 
 msgid "Show Tab"
-msgstr "显示标签页"
+msgstr "탭 보이기"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr "显示  phpVirtualBox web 后台的高级配置选项。"
+msgstr "phpVirtualBox 웹 인터페이스의 고급 구성 선택 사항을 표시합니다."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr "标签页显示 phpVirtualBox 管理页"
+msgstr "phpVirtualBox 틀을 포함하는 탭을 보여줍니다."
 
 msgid "Start"
-msgstr "开始"
+msgstr "시작"
 
 msgid "Startup Mode"
-msgstr "启动模式"
+msgstr "시작 방식"
 
 msgid "Stop"
-msgstr "停止"
+msgstr "중지"
 
 msgid ""
 "The VirtualBox web interface can be accessed <a href='/virtualbox/' "
 "target='_blank'>here</a>."
-msgstr "VirtualBox Web界面可以点击<a href='/virtualbox/' target='_blank'>这里</a>访问了。"
+msgstr "VirtualBox 웹 인터페이스는 <a href='/virtualbox/' target='_blank'>여기</a>에서 접근할 수 있습니다."
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr "该目录是VirtualBox存储虚拟机的位置。"
+msgstr "VirtualBox가 자신의 가상 장치들을 저장하는 장소."
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr "这将重编译backports内核中的vboxdrv模块。"
+msgstr "Backports 커널의 vboxdrv 모듈을 다시 컴파일합니다."
 
 msgid "UUID"
 msgstr "UUID"
 
 msgid "VM directory"
-msgstr "VM目录"
+msgstr "VM 디렉터리"
 
 msgid "Virtual Machine"
-msgstr "虚拟机"
+msgstr "가상 장치"
 
 msgid "Virtual Machines"
-msgstr "虚拟机"
+msgstr "가상 장치"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox Web服务器"
+msgstr "VirtualBox 웹서비스"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"
