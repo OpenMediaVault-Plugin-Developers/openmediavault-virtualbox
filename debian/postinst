@@ -5,8 +5,9 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-DEFAULT_FILE="/etc/default/openmediavault-virtualbox"
-OMV_VBOX_USER="vbox"
+OMV_VIRTUALBOX_DEFAULT_CONF="/etc/default/openmediavault-virtualbox"
+OMV_VIRTUALBOX_USER="vbox"
+OMV_VIRTUALBOX_USER_HOME="/var/lib/vbox"
 
 data_drive_to_shared_folder()
 {
@@ -34,18 +35,24 @@ data_drive_to_shared_folder()
 
 create_vbox_user()
 {
-    # Generate password
+    # Generate the password.
     # TODO: use stronger hash? Only md5 seems to be available
-    # with makepasswd
+    # with makepasswd.
     NPSWD=$(makepasswd --crypt-md5 --chars=10)
     NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
     NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
 
-    # Create the user
-    useradd -d /home/${OMV_VBOX_USER} -c "openmediavault-virtualbox" -m -p ${NPSWD_CRYPT} -N -g vboxusers ${OMV_VBOX_USER}
+    # Create the user.
+    useradd --system \
+            --create-home \
+            --home-dir ${OMV_VIRTUALBOX_USER_HOME} \
+            --no-user-group \
+            --gid vboxusers \
+            --password ${NPSWD_CRYPT} \
+            ${OMV_VIRTUALBOX_USER}
 
-    # Store the password for later use
-    echo "${NPSWD_CLEAR}" > ${DEFAULT_FILE}
+    # Store the password for later use.
+    echo "${NPSWD_CLEAR}" > ${OMV_VIRTUALBOX_DEFAULT_CONF}
 }
 
 case "$1" in
@@ -53,7 +60,7 @@ case "$1" in
         SERVICE_XPATH_NAME="virtualbox"
         SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-        # Add the default configuration
+        # Add the default configuration.
         if ! omv_config_exists "${SERVICE_XPATH}"; then
             omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
@@ -62,18 +69,18 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "show_tab" "0"
         fi
 
-        # Generate the package default file
-        if [ ! -e ${DEFAULT_FILE} ]; then
-            if ! getent passwd ${OMV_VBOX_USER}; then
+        # Generate the package default file.
+        if [ ! -e ${OMV_VIRTUALBOX_DEFAULT_CONF} ]; then
+            if ! getent passwd ${OMV_VIRTUALBOX_USER}; then
                 create_vbox_user
             fi
         fi
 
-        # Set the correct permissions on files
-        chown openmediavault:openmediavault ${DEFAULT_FILE}
-        chmod 0600 ${DEFAULT_FILE}
+        # Set the correct permissions on files.
+        chown openmediavault:openmediavault ${OMV_VIRTUALBOX_DEFAULT_CONF}
+        chmod 0600 ${OMV_VIRTUALBOX_DEFAULT_CONF}
 
-        # Manage vboxinit (origin: phpvirtualbox)
+        # Manage vboxinit (origin: phpvirtualbox).
         if [ -x "/etc/init.d/vboxinit" ]; then
             update-rc.d vboxinit defaults
 
