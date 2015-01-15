@@ -3,10 +3,12 @@
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-SKIP=false
-ARCH="`/bin/uname -r`"
+OMV_VIRTUALBOX_XPATH="/config/services/virtualbox"
 
-case "$ARCH" in
+SKIP=false
+ARCH="$(/bin/uname -r)"
+
+case "${ARCH}" in
     *2.6.32*)
         SKIP=true
         ;;
@@ -18,19 +20,19 @@ case "$ARCH" in
         ;;
 esac
 
-if $SKIP; then
+if ${SKIP}; then
     echo "Not needed."
 else
-    echo "Install build-essential"
+    echo "Install build-essential."
     apt-get --yes --force-yes --fix-missing install build-essential
 
-    echo "Recompile kernel module"
+    echo "Recompile VirtualBox module."
     invoke-rc.d vboxdrv setup
 
-    echo "Load module"
-    modprobe vboxdrv
+    echo "Load VirtualBox module."
+    invoke-rc.d vboxdrv start
 
-    if [ "$(omv_config_get "//services/virtualbox/enable")" != "0" ]; then
+    if [ "$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/enable")" != "0" ]; then
         echo "Restart vboxweb-service"
         invoke-rc.d vboxweb-service restart
     fi
