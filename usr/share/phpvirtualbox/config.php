@@ -22,7 +22,7 @@ use SplFileInfo as FileInfo;
 
 class phpVBoxConfig
 {
-    // Static config items
+    // Static config items.
     public $location = "http://127.0.0.1:18083/";
     public $language = "en";
     public $startStopConfig = true;
@@ -30,7 +30,7 @@ class phpVBoxConfig
     public $password = "";
     public $enableAdvancedConfig = false;
 
-    // Automatic config items
+    // Automatic config items.
     public function __construct()
     {
         $settings = $this->getSettings();
@@ -75,7 +75,7 @@ class phpVBoxConfig
 
         $file = null;
 
-        // Trim the password variable since it may contain a newline char
+        // Trim the password variable since it may contain a newline char.
         return trim($password);
     }
 }

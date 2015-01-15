@@ -20,17 +20,18 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-VIRTUALBOX_SITE_CONF="/etc/nginx/openmediavault-webgui.d/openmediavault-virtualbox.conf"
+OMV_VIRTUALBOX_SITE_CONF="/etc/nginx/openmediavault-webgui.d/openmediavault-virtualbox.conf"
+OMV_VIRTUALBOX_XPATH="/config/services/virtualbox"
 
-if [ -e "${VIRTUALBOX_SITE_CONF}" ]; then
-    rm ${VIRTUALBOX_SITE_CONF}
+if [ -e "${OMV_VIRTUALBOX_SITE_CONF}" ]; then
+    rm ${OMV_VIRTUALBOX_SITE_CONF}
 fi
 
-if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+if [ "$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/enable")" != "1" ]; then
     exit 0
 fi
 
-cat <<EOF > "${VIRTUALBOX_SITE_CONF}"
+cat <<EOF > "${OMV_VIRTUALBOX_SITE_CONF}"
 location /virtualbox/ {
     alias /usr/share/phpvirtualbox/;
     index index.html;

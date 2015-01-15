@@ -22,17 +22,18 @@ set -e
 
 PHP_FPM_POOL_DIR=/etc/php5/fpm/pool.d
 
-VIRTUALBOX_POOL_CONF="${PHP_FPM_POOL_DIR}/openmediavault-virtualbox.conf"
+OMV_VIRTUALBOX_POOL_CONF="${PHP_FPM_POOL_DIR}/openmediavault-virtualbox.conf"
+OMV_VIRTUALBOX_XPATH="/config/services/virtualbox"
 
-if [ -e "${VIRTUALBOX_POOL_CONF}" ]; then
-    rm ${VIRTUALBOX_POOL_CONF}
+if [ -e "${OMV_VIRTUALBOX_POOL_CONF}" ]; then
+    rm ${OMV_VIRTUALBOX_POOL_CONF}
 fi
 
-if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+if [ "$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/enable")" != "1" ]; then
     exit 0
 fi
 
-cat <<EOF > "${VIRTUALBOX_POOL_CONF}"
+cat <<EOF > "${OMV_VIRTUALBOX_POOL_CONF}"
 [openmediavault-virtualbox]
 listen = /var/run/php5-fpm-openmediavault-virtualbox.sock
 listen.owner = www-data

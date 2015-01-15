@@ -21,32 +21,33 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-OMV_VBOX_CONFIG="/etc/default/virtualbox"
-OMV_VBOX_USER="vbox"
+OMV_VIRTUALBOX_DEFAULT_CONF="/etc/default/virtualbox"
+OMV_VIRTUALBOX_USER="vbox"
+OMV_VIRTUALBOX_XPATH="/config/services/virtualbox"
 
 # Only create configuration if service is enabled.
-if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
+if [ "$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/enable")" != "1" ]; then
     exit 0
 fi
 
 # Create vboxweb-service config file.
-cat <<EOF > ${OMV_VBOX_CONFIG}
+cat <<EOF > ${OMV_VIRTUALBOX_DEFAULT_CONF}
 # Defaults for VirtualBox.
 # Sourced by vboxweb-service on startup
 
-VBOXWEB_USER=${OMV_VBOX_USER}
+VBOXWEB_USER=${OMV_VIRTUALBOX_USER}
 VBOXWEB_HOST=127.0.0.1
 
 EOF
 
 # Get machine directory.
-machines_sharedfolderref=$(omv_config_get "//services/virtualbox/machines.sharedfolderref")
+machines_sharedfolderref=$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/machines.sharedfolderref")
 machines_directory="$(omv_get_sharedfolder_path "${machines_sharedfolderref}")"
 
 # Set ownership on directory.
-chown ${OMV_VBOX_USER}:vboxusers "${machines_directory}"
+chown ${OMV_VIRTUALBOX_USER}:vboxusers "${machines_directory}"
 
 # Configure VirtualBox.
-su ${OMV_VBOX_USER} -c "VBoxManage setproperty machinefolder '${machines_directory}'"
+su ${OMV_VIRTUALBOX_USER} -c "VBoxManage setproperty machinefolder '${machines_directory}'"
 
 exit 0
