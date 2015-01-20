@@ -1,3 +1,10 @@
+openmediavault-virtualbox (1.1) stable; urgency=low
+
+  * Create the vbox user as a system user
+  * Set the home location to /var/lib/vbox
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 20 Jan 2015 14:45:47 +0100
+
 openmediavault-virtualbox (1.0.14) stable; urgency=low
 
   * Add custom debian/control field XB-Plugin-Section
