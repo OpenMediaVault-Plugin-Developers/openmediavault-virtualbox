@@ -1,15 +1,16 @@
 Source: openmediavault-virtualbox
 Section: net
-XB-Plugin-Section: virtualization
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 9.0.0)
-Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+XB-Plugin-Section: virtualization
 
 Package: openmediavault-virtualbox
 Architecture: all
-Depends: openmediavault (>= 1.0.7), virtualbox-4.3, virtualbox-extpack-installer,
- phpvirtualbox, makepasswd, build-essential ${misc:Depends}
+Depends: openmediavault (>= 1.0.7), virtualbox-4.3,
+ virtualbox-extpack-installer, phpvirtualbox,
+ build-essential, makepasswd, ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.
  VirtualBox is a powerful x86 and AMD64/Intel64
  virtualization product.

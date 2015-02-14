@@ -64,7 +64,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
 
         // TODO: Wait and hope that they finally fix the init script so
         // that it returns correct exit status.
-        $cmd = "invoke-rc.d vboxweb-service status";
+        $cmd = "export LANG=C; invoke-rc.d vboxweb-service status";
         $this->exec($cmd, $output);
         $running = strpos($output[0], "...running") > 0;
 
@@ -83,7 +83,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     {
         global $xmlConfig;
 
-        $cmd = "omv-mkconf virtualbox 2>&1";
+        $cmd = "export LANG=C; omv-mkconf virtualbox 2>&1";
 
         if (0 !== $this->exec($cmd, $output)) {
             throw new OMVException(

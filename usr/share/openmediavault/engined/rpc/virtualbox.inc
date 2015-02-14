@@ -342,7 +342,9 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if ($pid > 0) { // Parent process.
+
+        if ($pid > 0) {
+            // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -356,7 +358,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
                 $bgOutputFilename
             );
 
-            $cmd = "/usr/local/bin/fixmodule";
+            $cmd = "export LANG=C; omv-virtualbox-fixmodule";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
         } catch (Exception $e) {

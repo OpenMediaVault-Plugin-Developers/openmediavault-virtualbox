@@ -1,4 +1,4 @@
-usr/local/bin/* usr/local/bin
+usr/sbin/* usr/sbin
 usr/share/openmediavault/* usr/share/openmediavault
 usr/share/phpvirtualbox/config.php usr/share/phpvirtualbox
 var/www/openmediavault/* var/www/openmediavault
