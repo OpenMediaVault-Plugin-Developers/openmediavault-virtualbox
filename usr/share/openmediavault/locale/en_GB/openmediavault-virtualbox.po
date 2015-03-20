@@ -3,20 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Zacharie ARNAISE <spacebrain.damage@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-11-14 19:52+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/fr/)\n"
+"PO-Revision-Date: 2013-10-28 15:03+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "ACPI Shutdown"
 msgstr ""
@@ -34,7 +33,7 @@ msgid "Edit Virtual Machine"
 msgstr ""
 
 msgid "Enable"
-msgstr "Activer"
+msgstr ""
 
 msgid "Fix module for backports kernels"
 msgstr ""
@@ -45,10 +44,10 @@ msgid ""
 msgstr ""
 
 msgid "Manual"
-msgstr "Manuel"
+msgstr ""
 
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 msgid "Pause"
 msgstr ""
@@ -69,7 +68,7 @@ msgid "Save the machine state"
 msgstr ""
 
 msgid "Settings"
-msgstr "Paramètres"
+msgstr ""
 
 msgid "Show Tab"
 msgstr ""
