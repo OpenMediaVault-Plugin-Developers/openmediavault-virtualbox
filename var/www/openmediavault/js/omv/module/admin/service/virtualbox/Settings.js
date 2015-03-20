@@ -34,9 +34,13 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
     plugins : [{
         ptype        : "linkedfields",
         correlations : [{
-            conditions  : [
-                { name : "enable", value : true }
+            name : [
+                "enable"
             ],
+            conditions : [{
+                name  : "enable",
+                value : true 
+            }],
             properties : function(valid, field) {
                 this.setButtonDisabled("phpvirtualbox", !valid);
             }

@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.2) stable; urgency=low
+
+  * Fix web client button
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 20 Mar 2015 07:11:13 -0500
+
 openmediavault-virtualbox (1.1) stable; urgency=low
 
   * Create the vbox user as a system user
