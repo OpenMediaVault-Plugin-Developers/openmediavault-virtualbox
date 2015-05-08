@@ -221,6 +221,19 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
             xtype : "tbseparator"
         }]);
 
+        Ext.Array.insert(items, items.length, [{
+            xtype : "tbseparator"
+        },{
+            id      : me.getId() + "-phpvirtualbox",
+            xtype   : "button",
+            text    : _("phpVirtualBox"),
+            icon    : "images/virtualbox.png",
+            iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler : function() {
+                window.open("/virtualbox/");
+            }
+        }]);
+
         return items;
     },
 

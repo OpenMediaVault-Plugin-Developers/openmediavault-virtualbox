@@ -142,8 +142,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
             },
             items : [{
                 border : false,
-                html   : "<p>" + _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "</p>" +
-                         "<p>" + _("The VirtualBox web interface can be accessed <a href='/virtualbox/' target='_blank'>here</a>.") + "</p>"
+                html   : "<p>" + _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "</p>"
             },{
                 xtype      : "checkbox",
                 name       : "enable_advanced",
@@ -162,7 +161,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
     onFixModuleButton : function() {
         Ext.create("OMV.window.Execute", {
-            title          : _("Recompile vboxdrv module for 3.2 kernel ..."),
+            title          : _("Recompile vboxdrv module for backports kernel ..."),
             rpcService     : "VirtualBox",
             rpcMethod      : "fixModule",
             hideStopButton : true,
