@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-19 06:00-0500\n"
+"POT-Creation-Date: 2015-05-08 07:04-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Progress error"
 msgstr ""
 
-msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgid "Recompile vboxdrv module for backports kernel ..."
 msgstr ""
 
 msgid "Reset"
@@ -84,9 +84,6 @@ msgid "Startup Mode"
 msgstr ""
 
 msgid "Stop"
-msgstr ""
-
-msgid "The VirtualBox web interface can be accessed <a href='/virtualbox/' target='_blank'>here</a>."
 msgstr ""
 
 msgid "The location where VirtualBox stores its virtual machines."

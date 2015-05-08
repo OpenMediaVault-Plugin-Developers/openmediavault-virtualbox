@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Seboss666 <sebastien_verdet@seboss666.info>, 2015
 # Zacharie ARNAISE <spacebrain.damage@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-19 06:00-0500\n"
-"PO-Revision-Date: 2014-11-14 19:52+0000\n"
+"POT-Creation-Date: 2015-05-08 07:04-0500\n"
+"PO-Revision-Date: 2015-05-08 12:04+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,30 +20,30 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "ACPI Shutdown"
-msgstr ""
+msgstr "Extinction ACPI"
 
 msgid "Advanced configuration"
-msgstr ""
+msgstr "Configuration avancée"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automatique"
 
 msgid "Changing VM state."
-msgstr ""
+msgstr "Changement d'état de la VM."
 
 msgid "Edit Virtual Machine"
-msgstr ""
+msgstr "Éditer la Machine Virtuelle"
 
 msgid "Enable"
 msgstr "Activer"
 
 msgid "Fix module for backports kernels"
-msgstr ""
+msgstr "Corriger le module pour les noyaux backports"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr ""
+msgstr "N'oubliez pas de modifier le mot de passe dans phpVirtualBox ! Les identifiants par défaut sont 'admin' pour l'utilisateur et le mot de passe."
 
 msgid "Manual"
 msgstr "Manuel"
@@ -51,72 +52,67 @@ msgid "Name"
 msgstr "Nom"
 
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 msgid "Power off the machine"
-msgstr ""
+msgstr "Éteindre la machine"
 
 msgid "Progress error"
-msgstr ""
+msgstr "Erreur de progression"
 
-msgid "Recompile vboxdrv module for 3.2 kernel ..."
+msgid "Recompile vboxdrv module for backports kernel ..."
 msgstr ""
 
 msgid "Reset"
-msgstr ""
+msgstr "Réinitialiser"
 
 msgid "Save the machine state"
-msgstr ""
+msgstr "Sauvegarder l'état de la machine"
 
 msgid "Settings"
 msgstr "Paramètres"
 
 msgid "Show Tab"
-msgstr ""
+msgstr "Afficher l'onglet"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr ""
+msgstr "Afficher les options de configuration avancée dans l'interface web phpVirtualBox."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr ""
+msgstr "Afficher l'onglet contenant le cadre phpVirtualBox."
 
 msgid "Start"
-msgstr ""
+msgstr "Démarrer"
 
 msgid "Startup Mode"
-msgstr ""
+msgstr "Mode de démarrage"
 
 msgid "Stop"
-msgstr ""
-
-msgid ""
-"The VirtualBox web interface can be accessed <a href='/virtualbox/' "
-"target='_blank'>here</a>."
-msgstr ""
+msgstr "Arrêter"
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr ""
+msgstr "Emplacement où VirtualBox stocke les machines virtuelles."
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr ""
+msgstr "Ceci va recompiler le module vboxdrv pour le noyau backports."
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "VM directory"
-msgstr ""
+msgstr "Dossier de la VM"
 
 msgid "Virtual Machine"
-msgstr ""
+msgstr "Machine Virtuelle"
 
 msgid "Virtual Machines"
-msgstr ""
+msgstr "Machines Virtuelles"
 
 msgid "VirtualBox"
-msgstr ""
+msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr ""
+msgstr "WebService VirtualBox"
 
 msgid "phpVirtualBox"
-msgstr ""
+msgstr "phpVirtualBox"
