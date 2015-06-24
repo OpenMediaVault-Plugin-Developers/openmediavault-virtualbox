@@ -1,3 +1,9 @@
+openmediavault-virtualbox (1.4) UNRELEASED; urgency=low
+
+  * Add vbox user to cdrom group
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 24 Jun 2015 13:59:00 -0500
+
 openmediavault-virtualbox (1.3) stable; urgency=low
 
   * Add web client button to Machines tab.

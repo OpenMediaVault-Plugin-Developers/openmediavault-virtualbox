@@ -76,6 +76,11 @@ case "$1" in
             fi
         fi
 
+        # add vbox user to cdrom group
+        if ! id -nG "${OMV_VIRTUALBOX_USER}" | grep -qw "cdrom"; then
+            usermod -a -G cdrom ${OMV_VIRTUALBOX_USER}
+        fi
+
         # Set the correct permissions on files.
         chown openmediavault:openmediavault ${OMV_VIRTUALBOX_DEFAULT_CONF}
         chmod 0600 ${OMV_VIRTUALBOX_DEFAULT_CONF}
@@ -90,8 +95,8 @@ case "$1" in
         fi
 
         if dpkg --compare-versions "$2" lt-nl "1.0.11"; then
-			data_drive_to_shared_folder
-		fi
+            data_drive_to_shared_folder
+        fi
 
         # Activate package triggers. These triggers are only set during the
         # package installation.
