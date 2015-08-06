@@ -8,7 +8,7 @@ XB-Plugin-Section: virtualization
 
 Package: openmediavault-virtualbox
 Architecture: all
-Depends: openmediavault (>= 1.0.7), virtualbox-4.3,
+Depends: openmediavault (>= 1.0.7), virtualbox-5.0,
  virtualbox-extpack-installer, phpvirtualbox,
  build-essential, makepasswd, ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.

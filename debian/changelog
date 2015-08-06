@@ -1,8 +1,9 @@
-openmediavault-virtualbox (1.4) UNRELEASED; urgency=low
+openmediavault-virtualbox (1.4) stable; urgency=low
 
   * Add vbox user to cdrom group
+  * Update to Virtualbox 5.0
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 24 Jun 2015 13:59:00 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 06 Aug 2015 07:40:15 -0500
 
 openmediavault-virtualbox (1.3) stable; urgency=low
 
