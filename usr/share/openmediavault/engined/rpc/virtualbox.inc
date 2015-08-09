@@ -19,9 +19,9 @@
  */
 
 
-require_once "/usr/share/phpvirtualbox/lib/config.php";
-require_once "/usr/share/phpvirtualbox/lib/utils.php";
-require_once "/usr/share/phpvirtualbox/lib/vboxconnector.php";
+require_once "/usr/share/phpvirtualbox/endpoints/lib/config.php";
+require_once "/usr/share/phpvirtualbox/endpoints/lib/utils.php";
+require_once "/usr/share/phpvirtualbox/endpoints/lib/vboxconnector.php";
 require_once "openmediavault/error.inc";
 require_once "openmediavault/notify.inc";
 require_once "openmediavault/object.inc";
