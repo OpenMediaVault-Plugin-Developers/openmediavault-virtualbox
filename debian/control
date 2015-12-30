@@ -8,9 +8,13 @@ XB-Plugin-Section: virtualization
 
 Package: openmediavault-virtualbox
 Architecture: all
-Depends: openmediavault (>= 1.0.7), virtualbox-5.0,
- virtualbox-extpack-installer, phpvirtualbox,
- build-essential, makepasswd, ${misc:Depends}
+Depends: build-essential,
+         makepasswd,
+         openmediavault (>= 3.0),
+         phpvirtualbox,
+         virtualbox-5.0,
+         virtualbox-extpack-installer,
+         ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.
  VirtualBox is a powerful x86 and AMD64/Intel64
  virtualization product.

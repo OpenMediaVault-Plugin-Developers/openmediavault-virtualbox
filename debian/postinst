@@ -9,30 +9,6 @@ OMV_VIRTUALBOX_DEFAULT_CONF="/etc/default/openmediavault-virtualbox"
 OMV_VIRTUALBOX_USER="vbox"
 OMV_VIRTUALBOX_USER_HOME="/var/lib/vbox"
 
-data_drive_to_shared_folder()
-{
-    name="VirtualBoxMachines"
-    comment="VirtualBox machines location"
-    mntentref=$(omv_config_get "//services/virtualbox/mntentref")
-    reldirpath="virtualbox-machines"
-
-    if [ -z "${mntentref}" ]; then
-        omv_config_add_element "/config/virtualbox/mysql" "machines.sharedfolderref"
-
-        return 0
-    fi
-
-    # Prepare JSON data.
-    json="{ \"uuid\": \"undefined\", \"name\": \"${name}\", \"comment\": \"${comment}\", \"mntentref\": \"${mntentref}\", \"reldirpath\": \"${reldirpath}\" }"
-
-    # Call omv-rcp and create the shared folder and then filter out the
-    # uuid of the new shared folder.
-    uuid=$(omv-rpc ShareMgmt set "${json}" | grep -Po '(?<="uuid":")[^"]*')
-
-    # Add the shared folder to the plugin config.
-    omv_config_add_element "/config/services/virtualbox" "machines.sharedfolderref" $uuid
-}
-
 create_vbox_user()
 {
     # Generate the password.
@@ -57,6 +33,13 @@ create_vbox_user()
 
 case "$1" in
     configure)
+        # Set the default settings of the service package to those expected by
+        # OpenMediaVault.
+        if [ -z "${2}" ]; then
+            systemctl stop vboxinit.service
+            systemctl disable vboxinit.service
+        fi
+
         SERVICE_XPATH_NAME="virtualbox"
         SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
@@ -76,7 +59,7 @@ case "$1" in
             fi
         fi
 
-        # add vbox user to cdrom group
+        # Add the vbox user to the cdrom group.
         if ! id -nG "${OMV_VIRTUALBOX_USER}" | grep -qw "cdrom"; then
             usermod -a -G cdrom ${OMV_VIRTUALBOX_USER}
         fi
@@ -84,19 +67,6 @@ case "$1" in
         # Set the correct permissions on files.
         chown openmediavault:openmediavault ${OMV_VIRTUALBOX_DEFAULT_CONF}
         chmod 0600 ${OMV_VIRTUALBOX_DEFAULT_CONF}
-
-        # Manage vboxinit (origin: phpvirtualbox).
-        if [ -x "/etc/init.d/vboxinit" ]; then
-            update-rc.d vboxinit defaults
-
-            if [ "$(omv_config_get "//services/virtualbox/enable")" != "1" ]; then
-                update-rc.d vboxinit disable
-            fi
-        fi
-
-        if dpkg --compare-versions "$2" lt-nl "1.0.11"; then
-            data_drive_to_shared_folder
-        fi
 
         # Activate package triggers. These triggers are only set during the
         # package installation.

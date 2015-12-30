@@ -10,7 +10,7 @@ VIRTUALBOX_POOL_CONF="/etc/php5/fpm/pool.d/openmediavault-virtualbox.conf"
 
 case "$1" in
     purge)
-        omv_config_delete "//services/virtualbox"
+        omv_config_delete "/config/services/virtualbox"
     ;;
 
     remove)
@@ -22,8 +22,8 @@ case "$1" in
             rm ${VIRTUALBOX_POOL_CONF}
         fi
 
-        invoke-rc.d nginx reload
-        invoke-rc.d php5-fpm reload
+        systemctl reload nginx.service
+        systemctl reload php5-fpm.service
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)

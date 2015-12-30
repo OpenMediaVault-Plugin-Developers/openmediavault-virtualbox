@@ -18,7 +18,7 @@
  */
 
 use Exception;
-use SplFileInfo as FileInfo;
+use SplFileInfo;
 
 class phpVBoxConfig
 {
@@ -64,7 +64,7 @@ class phpVBoxConfig
 
     private function getVboxUserPassword()
     {
-        $file = new FileInfo("/etc/default/openmediavault-virtualbox");
+        $file = new SplFileInfo("/etc/default/openmediavault-virtualbox");
 
         if (!$file->isReadable()) {
             throw new Exception("Can't read /etc/defaults/openmediavault-virtualbox");
