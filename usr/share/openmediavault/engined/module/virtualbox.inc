@@ -28,13 +28,15 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     OMVIModuleServiceStatus
 {
     private $eventMessagePath = "org.openmediavault.services.virtualbox";
+    private $phpvirtualboxMachinesUnit = "phpvirtualbox-machines@vbox";
+    private $vboxwebsrvUnit = "virtualbox-web";
 
     /**
      * Get the service configuration XPath.
      *
      * @return string
      */
-    private function getXPath()
+    private function getXpath()
     {
         return "/config/services/virtualbox";
     }
@@ -58,20 +60,20 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
     {
         global $xmlConfig;
 
-        $object = $xmlConfig->get($this->getXPath());
+        $object = $xmlConfig->get($this->getXpath());
 
         if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
+                $this->getXpath()
             );
         }
 
-        $systemCtl = new OMVSystemCtl("vboxweb-service");
+        $systemCtl = new OMVSystemCtl($this->vboxwebsrvUnit);
 
         return [
             "name" => $this->getName(),
-            "title" => gettext("VirtualBox WebService"),
+            "title" => gettext("VirtualBox Web Service"),
             "enabled" => boolval($object["enable"]),
             "running" => $systemCtl->isActive(),
         ];
@@ -101,26 +103,30 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
      * Start the managed service.
      *
      * @return void
+     *
+     * @throws OMVException
      */
     public function startService()
     {
         global $xmlConfig;
 
-        $object = $xmlConfig->get($this->getXPath());
+        $object = $xmlConfig->get($this->getXpath());
 
         if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
+                $this->getXpath()
             );
         }
 
-        if (boolval($object["enable"])) {
-            $systemCtl = new OMVSystemCtl("vboxweb-service");
-            $systemCtl->enable(true);
-            $systemCtl = new OMVSystemCtl("vboxinit");
-            $systemCtl->enable(true);
+        if (!boolval($object["enable"])) {
+            return;
         }
+
+        $systemCtl = new OMVSystemCtl($this->vboxwebsrvUnit);
+        $systemCtl->enable(true);
+        $systemCtl = new OMVSystemCtl($this->phpvirtualboxMachinesUnit);
+        $systemCtl->enable(true);
     }
 
     /**
@@ -130,25 +136,10 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
      */
     public function stopService()
     {
-        global $xmlConfig;
-
-        $object = $xmlConfig->get($this->getXPath());
-
-        if (is_null($object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXPath()
-            );
-        }
-
-        if (!boolval($object["enable"])) {
-            $initd = new OMVSysVInitScript("vboxinit");
-            $initd->exec();
-            $initd = new OMVSysVInitScript("vboxweb-service");
-            $initd->exec();
-        }
-
-        unlink("/etc/default/virtualbox");
+        $systemCtl = new OMVSystemCtl($this->vboxwebsrvUnit);
+        $systemCtl->disable(true);
+        $systemCtl = new OMVSystemCtl($this->phpvirtualboxMachinesUnit);
+        $systemCtl->disable(true);
     }
 
     /**
@@ -163,19 +154,19 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
-            $this->getEventMessagePath(),
+            $this->eventMessagePath,
             [$this, "setDirty"]
         );
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
-            $this->getEventMessagePath(),
+            $this->eventMessagePath,
             [$moduleMgr->getModule("php5fpm"), "setDirty"]
         );
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
-            $this->getEventMessagePath(),
+            $this->eventMessagePath,
             [$moduleMgr->getModule("webserver"), "setDirty"]
         );
     }

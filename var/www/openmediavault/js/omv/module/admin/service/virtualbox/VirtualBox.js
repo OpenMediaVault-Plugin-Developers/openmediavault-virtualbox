@@ -19,9 +19,9 @@
 // require("js/omv/WorkspaceManager.js")
 
 OMV.WorkspaceManager.registerNode({
-    id      : "virtualbox",
-    path    : "/service",
-    text    : _("VirtualBox"),
-    icon16  : "images/virtualbox.png",
-    iconSvg : "images/virtualbox.svg"
+    id: "virtualbox",
+    path: "/service",
+    text: _("VirtualBox"),
+    icon16: "images/virtualbox.png",
+    iconSvg: "images/virtualbox.svg"
 });

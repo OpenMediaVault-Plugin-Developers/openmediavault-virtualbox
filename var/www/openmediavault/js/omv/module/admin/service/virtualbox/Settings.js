@@ -21,164 +21,77 @@
 // require("js/omv/data/Model.js")
 
 Ext.define("OMV.module.admin.service.virtualbox.Settings", {
-    extend : "OMV.workspace.form.Panel",
-    uses   : [
+    extend: "OMV.workspace.form.Panel",
+    uses: [
         "OMV.data.Model",
         "OMV.data.Store"
     ],
 
-    rpcService   : "VirtualBox",
-    rpcGetMethod : "getSettings",
-    rpcSetMethod : "setSettings",
+    rpcService: "VirtualBox",
+    rpcGetMethod: "getSettings",
+    rpcSetMethod: "setSettings",
 
-    plugins : [{
-        ptype        : "linkedfields",
-        correlations : [{
-            name : [
-                "enable"
-            ],
-            conditions : [{
-                name  : "enable",
-                value : true 
-            }],
-            properties : function(valid, field) {
-                this.setButtonDisabled("phpvirtualbox", !valid);
-            }
-        }]
-    }],
+    getButtonItems: function() {
+        var items = this.callParent(arguments);
 
-    initComponent : function() {
-        this.on("load", function () {
-            var checked = this.findField("enable").checked;
-            var showTab = this.findField("show_tab").checked;
-            var parent = this.up("tabpanel");
-
-            if (!parent) {
-                return;
-            }
-
-            var gridPanel = parent.down("grid");
-            var phpVirtualBoxPanel = parent.down("panel[title=" + _("phpVirtualBox") + "]");
-
-            if (gridPanel) {
-                if (checked) {
-                    gridPanel.enable();
-                } else {
-                    gridPanel.disable();
-                }
-            }
-
-            if (phpVirtualBoxPanel) {
-                if (checked) {
-                    phpVirtualBoxPanel.enable();
-                } else {
-                    phpVirtualBoxPanel.disable();
-                }
-
-                if (showTab) {
-                    phpVirtualBoxPanel.tab.show();
-                } else {
-                    phpVirtualBoxPanel.tab.hide();
-                }
-            }
-        }, this);
-
-        this.callParent(arguments);
-    },
-
-    getButtonItems : function() {
-        var me = this;
-        var items = me.callParent(arguments);
         items.push({
-            id       : me.getId() + "-phpvirtualbox",
-            xtype    : "button",
-            text     : _("phpVirtualBox"),
-            icon     : "images/virtualbox.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            disabled : true,
-            scope    : me,
-            handler  : function() {
+            id: this.getId() + "-phpvirtualbox",
+            xtype: "button",
+            text: _("phpVirtualBox"),
+            icon: "images/virtualbox.png",
+            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            scope: this,
+            handler: function() {
                 window.open("/virtualbox/", "_blank");
             }
         });
+
         return items;
     },
 
-    getFormItems : function() {
+    getFormItems: function() {
         return [{
-            xtype    : "fieldset",
-            title    : "General settings",
-            defaults : {
-                labelSeparator : ""
+            xtype: "fieldset",
+            title: "General settings",
+            defaults: {
+                labelSeparator: ""
             },
-            items : [{
-                xtype      : "checkbox",
-                name       : "enable",
-                fieldLabel : _("Enable"),
-                checked    : false
-            },{
-                xtype      : "sharedfoldercombo",
-                name       : "machines.sharedfolderref",
-                fieldLabel : _("VM directory"),
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("The location where VirtualBox stores its virtual machines.")
+            items: [{
+                xtype: "checkbox",
+                name: "enable",
+                fieldLabel: _("Enable"),
+                checked: false
+            }, {
+                xtype: "sharedfoldercombo",
+                name: "machines.sharedfolderref",
+                fieldLabel: _("VM directory"),
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("The location where VirtualBox stores its virtual machines.")
                 }]
-            },{
-                xtype   : "button",
-                name    : "fixmodule",
-                text    : _("Fix module for backports kernels"),
-                scope   : this,
-                handler : Ext.Function.bind(this.onFixModuleButton, this)
-            },{
-                border : false,
-                html   : "<ul><li>" + _("This will recompile the vboxdrv for the backports kernel.") + "</li></ul>"
             }]
-        },{
-            xtype    : "fieldset",
-            title    : "phpVirtualBox",
-            defaults : {
-                labelSeparator : ""
+        }, {
+            xtype: "fieldset",
+            title: "phpVirtualBox",
+            defaults: {
+                labelSeparator: ""
             },
-            items : [{
-                border : false,
-                html   : "<p>" + _("Make sure to change the password in phpVirtualBox! The default login credentials are 'admin' for both the username and password.") + "</p>"
-            },{
-                xtype      : "checkbox",
-                name       : "enable_advanced",
-                fieldLabel : _("Advanced configuration"),
-                boxLabel   : _("Show advanced configuration options in phpVirtualBox web interface."),
-                checked    : false
-            },{
-                xtype      : "checkbox",
-                name       : "show_tab",
-                fieldLabel : _("Show Tab"),
-                boxLabel   : _("Show tab containing phpVirtualBox frame."),
-                checked    : false
+            items: [{
+                xtype: "checkbox",
+                name: "enable_advanced",
+                fieldLabel: _("Advanced configuration"),
+                boxLabel: _("Show advanced configuration options in phpVirtualBox web interface."),
+                checked: false
             }]
         }];
     },
-
-    onFixModuleButton : function() {
-        Ext.create("OMV.window.Execute", {
-            title          : _("Recompile vboxdrv module for backports kernel ..."),
-            rpcService     : "VirtualBox",
-            rpcMethod      : "fixModule",
-            hideStopButton : true,
-            listeners      : {
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    }
 });
 
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "settings",
-    path      : "/service/virtualbox",
-    text      : _("Settings"),
-    position  : 10,
-    className : "OMV.module.admin.service.virtualbox.Settings"
+    id: "settings",
+    path: "/service/virtualbox",
+    text: _("Settings"),
+    position: 10,
+    className: "OMV.module.admin.service.virtualbox.Settings"
 });

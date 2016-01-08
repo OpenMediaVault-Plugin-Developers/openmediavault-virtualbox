@@ -21,63 +21,60 @@
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 
 Ext.define("OMV.module.admin.service.virtualbox.MachineEditWindow", {
-    extend : "OMV.workspace.window.Form",
-    uses   : [
+    extend: "OMV.workspace.window.Form",
+    uses: [
         "OMV.workspace.window.plugin.ConfigObject"
     ],
 
-    rpcService   : "VirtualBox",
-    rpcGetMethod : "getMachine",
-    rpcSetMethod : "setMachine",
+    rpcService: "VirtualBox",
+    rpcGetMethod: "getMachine",
+    rpcSetMethod: "setMachine",
 
-    hideResetButton : true,
-    title           : _("Edit Virtual Machine"),
+    hideResetButton: true,
+    title: _("Edit Virtual Machine"),
 
     plugins: [{
         ptype: "configobject"
     }],
 
-    getFormItems : function() {
-        var me = this;
-
+    getFormItems: function() {
         return [{
-            xtype      : "textfield",
-            name       : "name",
-            fieldLabel : _("Name"),
-            allowBlank : false
-        },{
-            xtype      : "combo",
-            name       : "startupMode",
-            fieldLabel : _("Startup Mode"),
-            queryMode  : "local",
-            store      : Ext.create("Ext.data.SimpleStore", {
-                fields : [
+            xtype: "textfield",
+            name: "name",
+            fieldLabel: _("Name"),
+            allowBlank: false
+        }, {
+            xtype: "combo",
+            name: "startupMode",
+            fieldLabel: _("Startup Mode"),
+            queryMode: "local",
+            store: Ext.create("Ext.data.SimpleStore", {
+                fields: [
                     "value",
                     "text"
                 ],
-                data : [
-                    [ "manual", _("Manual") ],
-                    [ "auto", _("Automatic") ]
+                data: [
+                    ["manual", _("Manual")],
+                    ["auto", _("Automatic")]
                 ]
             }),
-            displayField  : "text",
-            valueField    : "value",
-            allowBlank    : false,
-            editable      : false,
-            triggerAction : "all",
-            value         : Ext.isEmpty(me.startupMode) ? "manual" : me.startupMode
+            displayField: "text",
+            valueField: "value",
+            allowBlank: false,
+            editable: false,
+            triggerAction: "all",
+            value: Ext.isEmpty(this.startupMode) ? "manual" : this.startupMode
         }];
     },
 
-    initComponent : function() {
-        var me = this;
+    initComponent: function() {
+        this.callParent(arguments);
 
-        me.callParent(arguments);
-
-        me.on("load", function() {
-            if (me.sessionState != "Unlocked")
-                me.findField("name").setReadOnly(true);
-        }, me);
+        this.on("load", function() {
+            if (this.sessionState != "Unlocked") {
+                this.findField("name").setReadOnly(true);
+            }
+        }, this);
     }
 
 });

@@ -24,37 +24,36 @@
 // require("js/omv/module/admin/service/virtualbox/MachineEditWindow.js")
 
 Ext.define("OMV.module.admin.service.virtualbox.Machines", {
-    extend   : "OMV.workspace.grid.Panel",
-    requires : [
+    extend: "OMV.workspace.grid.Panel",
+    requires: [
         "OMV.data.Store",
         "OMV.data.Model",
         "OMV.data.proxy.Rpc",
         "OMV.module.admin.service.virtualbox.MachineEditWindow"
     ],
 
-    autoReload         : true,
-    disabled           : true,
-    hidePagingToolbar  : true,
-    hideAddButton      : true,
-    hideEditButton     : false,
-    hideDeleteButton   : true,
-    stateChangeWaitMsg : _("Changing VM state."),
+    autoReload: true,
+    hidePagingToolbar: true,
+    hideAddButton: true,
+    hideEditButton: false,
+    hideDeleteButton: true,
+    stateChangeWaitMsg: _("Changing VM state."),
 
-    columns : [{
-        header    : _("UUID"),
-        hidden    : true,
-        dataIndex : "uuid"
-    },{
-        header    : _("Virtual Machine"),
-        flex      : 1,
-        sortable  : true,
-        dataIndex : "name"
-    },{
-        header    : "State",
-        sortable  : true,
-        dataIndex : "state",
-        renderer  : function(value, metaData, record) {
-            switch(value) {
+    columns: [{
+        header: _("UUID"),
+        hidden: true,
+        dataIndex: "uuid"
+    }, {
+        header: _("Virtual Machine"),
+        flex: 1,
+        sortable: true,
+        dataIndex: "name"
+    }, {
+        header: "State",
+        sortable: true,
+        dataIndex: "state",
+        renderer: function(value, metaData, record) {
+            switch (value) {
                 case "PoweredOff":
                     return "Powered Off";
                 case "LiveSnapshotting":
@@ -75,12 +74,12 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                     return value;
             }
         }
-    },{
-        header    : "Startup Mode",
-        sortable  : true,
-        dataIndex : "startupMode",
-        renderer  : function(value, metaData, record) {
-            if(value == "auto") {
+    }, {
+        header: "Startup Mode",
+        sortable: true,
+        dataIndex: "startupMode",
+        renderer: function(value, metaData, record) {
+            if (value == "auto") {
                 return "Automatic";
             }
 
@@ -88,159 +87,149 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         }
     }],
 
-    store : Ext.create("OMV.data.Store", {
-        autoLoad   : true,
-        remoteSort : false,
-        model      : OMV.data.Model.createImplicit({
-            idProperty : "uuid",
-            fields     : [
-                { name : "uuid" },
-                { name : "name" },
-                { name : "state" },
-                { name : "startupMode" },
-                { name : "OSTypeId" },
-                { name : "sessionState" }
-            ]
+    store: Ext.create("OMV.data.Store", {
+        autoLoad: true,
+        remoteSort: false,
+        model: OMV.data.Model.createImplicit({
+            idProperty: "uuid",
+            fields: [{
+                name: "uuid"
+            }, {
+                name: "name"
+            }, {
+                name: "state"
+            }, {
+                name: "startupMode"
+            }, {
+                name: "OSTypeId"
+            }, {
+                name: "sessionState"
+            }]
         }),
-        proxy : {
-            type    : "rpc",
-            rpcData : {
-                service : "VirtualBox",
-                method  : "getMachines"
+        proxy: {
+            type: "rpc",
+            rpcData: {
+                service: "VirtualBox",
+                method: "getMachines"
             }
         }
     }),
 
-    getTopToolbarItems : function() {
-        var me = this;
-
-        var items = me.callParent(arguments);
+    getTopToolbarItems: function() {
+        var items = this.callParent(arguments);
 
         Ext.Array.insert(items, 0, [{
-            id       : me.getId() + "-start",
-            xtype    : "button",
-            text     : _("Start"),
-            icon     : "images/play.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : me.onStateChangeButton,
-            disabled : true,
-            scope    : me,
-            selectionConfig : {
-                minSelections : 1,
-                maxSelections : 1,
-                enabledFn     : me.vmStateButtonEnabled
+            id: this.getId() + "-start",
+            xtype: "button",
+            text: _("Start"),
+            icon: "images/play.png",
+            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler: Ext.Function.bind(this.onStateChangeButton, this),
+            disabled: true,
+            scope: this,
+            selectionConfig: {
+                minSelections: 1,
+                maxSelections: 1,
+                enabledFn: this.vmStateButtonEnabled
             },
-            action   : "powerUp",
-            vmstates : ["PoweredOff", "Paused", "Saved", "Aborted", "Teleported"]
-        },{
-            id       : me.getId() + "-stop",
-            xtype    : "button",
-            text     : _("Stop"),
-            icon     : "images/shutdown.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            disabled : true,
-            selectionConfig : {
-                minSelections : 1,
-                maxSelections : 1,
-                enabledFn     : me.vmStateButtonEnabled
+            action: "powerUp",
+            vmstates: ["PoweredOff", "Paused", "Saved", "Aborted", "Teleported"]
+        }, {
+            id: this.getId() + "-stop",
+            xtype: "button",
+            text: _("Stop"),
+            icon: "images/shutdown.png",
+            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            disabled: true,
+            selectionConfig: {
+                minSelections: 1,
+                maxSelections: 1,
+                enabledFn: this.vmStateButtonEnabled
             },
-            vmstates : ["Running", "Paused", "Stuck"],
-            menu     : [{
-                id       : me.getId() + "-stop-save-state",
-                text     : _("Save the machine state"),
-                icon     : "images/save.png",
-                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-                handler  : me.onStateChangeButton,
-                scope    : me,
-                selectionConfig : {
-                    minSelections : 1,
-                    maxSelections : 1,
-                    enabledFn     : me.vmStateButtonEnabled
+            vmstates: ["Running", "Paused", "Stuck"],
+            menu: [{
+                id: this.getId() + "-stop-save-state",
+                text: _("Save the machine state"),
+                icon: "images/save.png",
+                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                handler: Ext.Function.bind(this.onStateChangeButton, this),
+                scope: this,
+                selectionConfig: {
+                    minSelections: 1,
+                    maxSelections: 1,
+                    enabledFn: this.vmStateButtonEnabled
                 },
-                action   : "saveState",
-                vmstates : ["Running"]
-            },{
-                id       : me.getId() + "-stop-power-button",
-                text     : _("ACPI Shutdown"),
-                icon     : "images/shutdown.png",
-                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-                handler  : me.onStateChangeButton,
-                scope    : me,
-                selectionConfig : {
-                    minSelections : 1,
-                    maxSelections : 1,
-                    enabledFn     : me.vmStateButtonEnabled
+                action: "saveState",
+                vmstates: ["Running"]
+            }, {
+                id: this.getId() + "-stop-power-button",
+                text: _("ACPI Shutdown"),
+                icon: "images/shutdown.png",
+                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                handler: Ext.Function.bind(this.onStateChangeButton, this),
+                scope: this,
+                selectionConfig: {
+                    minSelections: 1,
+                    maxSelections: 1,
+                    enabledFn: this.vmStateButtonEnabled
                 },
-                action   : "powerButton",
-                vmstates : ["Running"]
-            },{
-                id       : me.getId() + "-stop-pause",
-                text     : _("Pause"),
-                icon     : "images/pause.png",
-                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-                handler  : me.onStateChangeButton,
-                scope    : me,
-                selectionConfig : {
-                    minSelections : 1,
-                    maxSelections : 1,
-                    enabledFn     : me.vmStateButtonEnabled
+                action: "powerButton",
+                vmstates: ["Running"]
+            }, {
+                id: this.getId() + "-stop-pause",
+                text: _("Pause"),
+                icon: "images/pause.png",
+                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                handler: Ext.Function.bind(this.onStateChangeButton, this),
+                scope: this,
+                selectionConfig: {
+                    minSelections: 1,
+                    maxSelections: 1,
+                    enabledFn: this.vmStateButtonEnabled
                 },
-                action   : "pause",
-                vmstates : ["Running"]
-            },{
-                id       : me.getId() + "-stop-power-down",
-                text     : _("Power off the machine"),
-                icon     : "images/shutdown.png",
-                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-                handler  : me.onStateChangeButton,
-                scope    : me,
-                selectionConfig : {
-                    minSelections : 1,
-                    maxSelections : 1,
-                    enabledFn     : me.vmStateButtonEnabled
+                action: "pause",
+                vmstates: ["Running"]
+            }, {
+                id: this.getId() + "-stop-power-down",
+                text: _("Power off the machine"),
+                icon: "images/shutdown.png",
+                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                handler: Ext.Function.bind(this.onStateChangeButton, this),
+                scope: this,
+                selectionConfig: {
+                    minSelections: 1,
+                    maxSelections: 1,
+                    enabledFn: this.vmStateButtonEnabled
                 },
-                action   : "powerDown",
-                vmstates : ["Running", "Paused", "Stuck"]
-            },{
-                id       : me.getId() + "-stop-reset",
-                text     : _("Reset"),
-                icon     : "images/reboot.png",
-                iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-                handler  : me.onStateChangeButton,
-                scope    : me,
-                selectionConfig : {
-                    minSelections : 1,
-                    maxSelections : 1,
-                    enabledFn     : me.vmStateButtonEnabled
+                action: "powerDown",
+                vmstates: ["Running", "Paused", "Stuck"]
+            }, {
+                id: this.getId() + "-stop-reset",
+                text: _("Reset"),
+                icon: "images/reboot.png",
+                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                handler: Ext.Function.bind(this.onStateChangeButton, this),
+                scope: this,
+                selectionConfig: {
+                    minSelections: 1,
+                    maxSelections: 1,
+                    enabledFn: this.vmStateButtonEnabled
                 },
-                action   : "reset",
-                vmstates : ["Running"]
+                action: "reset",
+                vmstates: ["Running"]
             }],
-            scope: me
-        },{
-            xtype : "tbseparator"
-        }]);
-
-        Ext.Array.insert(items, items.length, [{
-            xtype : "tbseparator"
-        },{
-            id      : me.getId() + "-phpvirtualbox",
-            xtype   : "button",
-            text    : _("phpVirtualBox"),
-            icon    : "images/virtualbox.png",
-            iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler : function() {
-                window.open("/virtualbox/");
-            }
+            scope: this
+        }, {
+            xtype: "tbseparator"
         }]);
 
         return items;
     },
 
-    vmStateButtonEnabled : function(item, records) {
+    vmStateButtonEnabled: function(item, records) {
         var state = records[0].get("state");
 
-        if(item.vmstates.indexOf(state) > -1) {
+        if (item.vmstates.indexOf(state) > -1) {
             return true;
         }
 
@@ -248,56 +237,50 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
     },
 
     /* Handlers */
-    onStateChangeButton : function(item, event) {
-        var me = this;
-        var record = me.getSelected();
+    onStateChangeButton: function(item, event) {
+        var record = this.getSelected();
 
-        OMV.MessageBox.wait(null, me.stateChangeWaitMsg);
-        me.doStateChange(record, item.action);
+        OMV.MessageBox.wait(null, this.stateChangeWaitMsg);
+        this.doStateChange(record, item.action);
     },
 
-    onStateChange : function(id, success, response) {
-        var me = this;
-
+    onStateChange: function(id, success, response) {
         if (!success) {
             OMV.MessageBox.hide();
             OMV.MessageBox.error(_("Progress error", response));
         }
 
         OMV.MessageBox.hide();
-        me.doReload();
+        this.doReload();
     },
 
-    doStateChange : function(record, action) {
-        var me = this;
-
+    doStateChange: function(record, action) {
         OMV.Rpc.request({
-            scope    : me,
-            callback : me.onStateChange,
-            rpcData  : {
-                service : "VirtualBox",
-                method  : "setMachineState",
-                params  : {
-                    uuid  : record.get("uuid"),
-                    state : action
+            callback: this.onStateChange,
+            rpcData: {
+                service: "VirtualBox",
+                method: "setMachineState",
+                params: {
+                    uuid: record.get("uuid"),
+                    state: action
                 }
-            }
+            },
+            scope: this
         });
     },
 
-    onEditButton : function() {
-        var me = this;
-        var record = me.getSelected();
+    onEditButton: function() {
+        var record = this.getSelected();
 
         Ext.create("OMV.module.admin.service.virtualbox.MachineEditWindow", {
-            uuid         : record.get("uuid"),
-            sessionState : record.get("sessionState"),
-            startupMode  : record.get("startupMode"),
-            listeners    : {
-                submit : function() {
-                    me.doReload();
+            uuid: record.get("uuid"),
+            sessionState: record.get("sessionState"),
+            startupMode: record.get("startupMode"),
+            listeners: {
+                submit: function() {
+                    this.doReload();
                 },
-                scope   : me
+                scope: this
             }
         }).show();
     }
@@ -305,9 +288,9 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "machines",
-    path      : "/service/virtualbox",
-    text      : _("Virtual Machines"),
-    position  : 20,
-    className : "OMV.module.admin.service.virtualbox.Machines"
+    id: "machines",
+    path: "/service/virtualbox",
+    text: _("Virtual Machines"),
+    position: 20,
+    className: "OMV.module.admin.service.virtualbox.Machines"
 });

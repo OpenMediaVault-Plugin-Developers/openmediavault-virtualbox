@@ -33,13 +33,6 @@ create_vbox_user()
 
 case "$1" in
     configure)
-        # Set the default settings of the service package to those expected by
-        # OpenMediaVault.
-        if [ -z "${2}" ]; then
-            systemctl stop vboxinit.service
-            systemctl disable vboxinit.service
-        fi
-
         SERVICE_XPATH_NAME="virtualbox"
         SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
@@ -49,7 +42,6 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
             omv_config_add_element "${SERVICE_XPATH}" "enable_advanced" "0"
             omv_config_add_element "${SERVICE_XPATH}" "machines.sharedfolderref"
-            omv_config_add_element "${SERVICE_XPATH}" "show_tab" "0"
         fi
 
         # Generate the package default file.
@@ -65,7 +57,7 @@ case "$1" in
         fi
 
         # Set the correct permissions on files.
-        chown openmediavault:openmediavault ${OMV_VIRTUALBOX_DEFAULT_CONF}
+        chown openmediavault-webgui:root ${OMV_VIRTUALBOX_DEFAULT_CONF}
         chmod 0600 ${OMV_VIRTUALBOX_DEFAULT_CONF}
 
         # Activate package triggers. These triggers are only set during the
