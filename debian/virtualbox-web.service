@@ -1,0 +1,13 @@
+[Unit]
+Description=VirtualBox Web Service
+Requires=vboxdrv.service
+After=vboxdrv.service network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/vboxwebsrv --host 127.0.0.1 --port 18083
+User=vbox
+Group=vboxusers
+
+[Install]
+WantedBy=multi-user.target

@@ -40,8 +40,8 @@ listen.owner = www-data
 listen.group = www-data
 listen.mode = 0600
 
-user = openmediavault
-group = openmediavault
+user = openmediavault-webgui
+group = www-data
 
 pm = dynamic
 pm.max_children = 5
@@ -54,8 +54,7 @@ php_value[include_path] = ".:/usr/share/php:/usr/share/phpvirtualbox"
 php_value[post_max_size] = 25M
 php_value[upload_max_filesize] = 25M
 php_value[expose_php] = Off
-php_value[session.name] = VIRTUALBOXSESSID
-
+php_value[session.name] = OMV_PHPVIRTUALBOX_SESSID
 EOF
 
 exit 0

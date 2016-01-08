@@ -64,7 +64,6 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         $this->registerMethod("getMachine");
         $this->registerMethod("setMachine");
         $this->registerMethod("setMachineState");
-        $this->registerMethod("fixModule");
     }
 
     /**
@@ -97,7 +96,6 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         // Modify the result data.
         $object["enable"] = boolval($object["enable"]);
         $object["enable_advanced"] = boolval($object["enable_advanced"]);
-        $object["show_tab"] = boolval($object["show_tab"]);
 
         return $object;
     }
@@ -128,8 +126,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
                 "properties": {
                     "enable": { "type": "boolean" },
                     "machines.sharedfolderref": { '.$GLOBALS["OMV_JSONSCHEMA_UUID"].' },
-                    "enable_advanced": { "type": "boolean" },
-                    "show_tab": { "type": "boolean" }
+                    "enable_advanced": { "type": "boolean" }
                 }
             }'
         );
@@ -139,7 +136,6 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
             "enable" => boolval($params["enable"]),
             "machines.sharedfolderref" => $params["machines.sharedfolderref"],
             "enable_advanced" => boolval($params["enable_advanced"]),
-            "show_tab" => boolval($params["show_tab"]),
         ];
 
         // Set the configuration object.
@@ -196,12 +192,11 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         $settings = $this->getSettings([], $context);
         $objects = [];
 
-        // FIXME: Only connect to VirtualBox and get the machines if the plugin
-        // is enabled. Otherwise it seems to consume a lot of resources doing
-        // something that fails.
+        // Only connect to VirtualBox and get the machines if the plugin
+        // is enabled since there's no vboxwebsrv instance running when the
+        // plugin is disabled.
         //
-        // We should check the vboxweb-service status but it returns a 0
-        // even when the plugin is not running.
+        // FIXME: We should check if vboxwebsrv is running.
         if ($settings["enable"]) {
             $vb = new vboxconnector();
             $vb->skipSessionCheck = true;
@@ -262,8 +257,8 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         $settings = $this->getSettings([], $context);
         $object = [];
 
-        // Only connect to VirtualBox if the plugin is enabled since an
-        // unsuccessful request will for some reason utilize a lot of resources.
+        // Only connect to VirtualBox if the plugin is enabled since vboxwebsrv
+        // is not running when the plugin is disabled.
         if ($settings["enable"]) {
             $vb = new vboxconnector();
             $vb->skipSessionCheck = true;
@@ -388,51 +383,6 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
         unset($vb);
 
         return $response["data"];
-    }
-
-    /**
-     * Fix the kernel module.
-     *
-     * @param array $params The method paramaters.
-     * @param array $context The context of the caller.
-     * @return array
-     *
-     * @throws OMVException
-     */
-    public function fixModule($params, $context)
-    {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
-
-        // Create a background process.
-        $bgStatusFilename = $this->createBgProcStatus();
-        $pid = $this->fork();
-
-        if ($pid > 0) {
-            // Parent process.
-            $this->initializeBgProcStatus($bgStatusFilename, $pid);
-
-            return $bgStatusFilename;
-        }
-
-        // Child process.
-        try {
-            $bgOutputFilename = $this->createBgProcOutput();
-            $this->updateBgProcStatus(
-                $bgStatusFilename,
-                "outputfilename",
-                $bgOutputFilename
-            );
-
-            $cmd = "export LANG=C; omv-virtualbox-fixmodule";
-            $this->exec($cmd, $output, $bgOutputFilename);
-            $this->finalizeBgProcStatus($bgStatusFilename, $output);
-        } catch (Exception $e) {
-            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
-            exit(1);
-        }
     }
 }
 

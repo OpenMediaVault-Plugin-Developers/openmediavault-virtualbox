@@ -35,10 +35,11 @@ cat <<EOF > "${OMV_VIRTUALBOX_SITE_CONF}"
 location /virtualbox/ {
     alias /usr/share/phpvirtualbox/;
     index index.html;
+
     location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        include fastcgi.conf;
+        fastcgi_param SCRIPT_FILENAME \$request_filename;
         fastcgi_pass unix:/var/run/php5-fpm-openmediavault-virtualbox.sock;
-        include fastcgi_params;
     }
 }
 EOF
