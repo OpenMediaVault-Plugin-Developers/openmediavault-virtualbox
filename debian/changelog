@@ -1,3 +1,9 @@
+openmediavault-virtualbox (3.0.1) stable; urgency=medium
+
+  * Update packaging. 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 26 Jan 2016 00:32:23 +0100
+
 openmediavault-virtualbox (3.0) stable; urgency=low
 
   * OMV 3.0 release. 
