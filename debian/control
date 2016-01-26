@@ -13,6 +13,7 @@ Depends: linux-headers-686-pae | linux-headers-amd64,
          openmediavault (>= 3.0.6),
          phpvirtualbox,
          virtualbox,
+         virtualbox-ext-pack | virtualbox-ext-pack-installer,
          ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.
  VirtualBox is a powerful x86 and AMD64/Intel64
