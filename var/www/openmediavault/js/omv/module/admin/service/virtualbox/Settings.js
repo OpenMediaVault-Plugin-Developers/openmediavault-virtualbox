@@ -77,6 +77,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
                 labelSeparator: ""
             },
             items: [{
+                xtype: "displayfield",
+                fieldLabel: "Information",
+                value: _("To log in to phpVirtualBox use the credentials of the admin user or a user in the group vboxusers.")
+            }, {
                 xtype: "checkbox",
                 name: "enable_advanced",
                 fieldLabel: _("Advanced configuration"),
