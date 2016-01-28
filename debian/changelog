@@ -1,3 +1,10 @@
+openmediavault-virtualbox (3.0.2) stable; urgency=medium
+
+  * Add information text describing which credentials can be used with
+    phpVirtualBox.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Jan 2016 01:01:44 +0100
+
 openmediavault-virtualbox (3.0.1) stable; urgency=medium
 
   * Update packaging. 
