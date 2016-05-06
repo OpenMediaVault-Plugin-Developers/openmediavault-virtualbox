@@ -6,6 +6,7 @@ After=vboxdrv.service network.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/vboxwebsrv --host 127.0.0.1 --port 18083
+StandardOutput=null
 User=vbox
 Group=vboxusers
 
