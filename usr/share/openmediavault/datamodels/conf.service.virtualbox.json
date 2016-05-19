@@ -1,0 +1,30 @@
+{
+    "type": "config",
+    "id": "conf.service.virtualbox",
+    "title": "VirtualBox",
+    "queryinfo": {
+        "xpath": "/config/services/virtualbox",
+        "iterable": false
+    },
+    "properties": {
+        "enable": {
+            "type": "boolean",
+            "default": false
+        },
+        "sharedfolderref": {
+            "type": "string",
+            "oneOf": [{
+                "type": "string",
+                "format": "uuidv4"
+            }, {
+                "type": "string",
+                "maxLength": 0
+            }],
+            "default": ""
+        },
+        "enable_advanced": {
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

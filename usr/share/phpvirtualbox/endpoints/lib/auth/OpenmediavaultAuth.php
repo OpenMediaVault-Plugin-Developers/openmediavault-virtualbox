@@ -17,43 +17,46 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "/usr/share/php/openmediavault/rpc.inc";
+require_once '/usr/share/php/openmediavault/autoloader.inc';
+require_once '/usr/share/php/openmediavault/globals.inc';
+
+use OMV\Rpc\Rpc;
 
 class PhpvbAuthOpenmediavaultAuth implements phpvbAuth
 {
     public $capabilities = [
-        "canChangePassword" => false,
-        "canLogout" => true,
-        "canModifyUsers" => false,
+        'canChangePassword' => false,
+        'canLogout' => true,
+        'canModifyUsers' => false,
     ];
 
     public function login($username, $password)
     {
         $omvRpcContext = [
-            "username" => "admin",
-            "role" => OMV_ROLE_ADMINISTRATOR
+            'username' => 'admin',
+            'role' => OMV_ROLE_ADMINISTRATOR,
         ];
 
         try {
-            $result = OMVRpc::exec("UserMgmt", "authUser", [
-                "username" => $username,
-                "password" => $password
+            $result = Rpc::call('UserMgmt', 'authUser', [
+                'username' => $username,
+                'password' => $password,
             ], $omvRpcContext, OMV_RPC_MODE_REMOTE);
 
             // Return early.
-            if (!$result["authenticated"]) {
+            if (!$result['authenticated']) {
                 return;
             }
 
-            $user = OMVRpc::exec("UserMgmt", "getUser", [
-                "name" => $username
+            $user = Rpc::call('UserMgmt', 'getUser', [
+                'name' => $username,
             ], $omvRpcContext, OMV_RPC_MODE_REMOTE);
 
             // Only allow admin or users in the vboxusers group.
-            if ($username === "admin" || in_array("vboxusers", $user["groups"])) {
-                $_SESSION["admin"] = true;
-                $_SESSION["valid"] = true;
-                $_SESSION["user"] = $username;
+            if ($username === 'admin' || in_array('vboxusers', $user['groups'])) {
+                $_SESSION['admin'] = true;
+                $_SESSION['valid'] = true;
+                $_SESSION['user'] = $username;
             }
         } catch (Exception $e) {
             // Do nothing.
@@ -75,7 +78,7 @@ class PhpvbAuthOpenmediavaultAuth implements phpvbAuth
         $_SESSION = [];
         session_destroy();
 
-        $response["data"]["result"] = 1;
+        $response['data']['result'] = 1;
     }
 
     public function listUsers()

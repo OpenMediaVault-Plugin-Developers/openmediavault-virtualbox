@@ -1,0 +1,66 @@
+[{
+    "type": "rpc",
+    "id": "rpc.virtualbox.setsettings",
+    "params": {
+        "type": "object",
+        "properties": {
+            "enable": {
+                "type": "boolean",
+                "required": true
+            },
+            "sharedfolderref": {
+                "type": "string",
+                "oneOf": [{
+                    "type": "string",
+                    "format": "uuidv4"
+                }, {
+                    "type": "string",
+                    "maxLength": 0
+                }],
+                "required": true
+            },
+            "enable_advanced": {
+                "type": "boolean",
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.virtualbox.setmachine",
+    "params": {
+        "type": "object",
+        "properties": {
+            "uuid": {
+                "type": "string",
+                "format": "uuidv4",
+                "required": true
+            },
+            "name": {
+                "type": "string"
+            },
+            "startupMode": {
+                "type": "string",
+                "enum": ["auto", "manual"],
+                "required": true
+            }
+        }
+    }
+}, {
+    "type": "rpc",
+    "id": "rpc.virtualbox.setmachinestate",
+    "params": {
+        "type": "object",
+        "properties": {
+            "uuid": {
+                "type": "string",
+                "format": "uuidv4",
+                "required": true
+            },
+            "state": {
+                "type": "string",
+                "required": true
+            }
+        }
+    }
+}]

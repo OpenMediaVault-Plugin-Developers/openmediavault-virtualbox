@@ -15,11 +15,11 @@ case "$1" in
 
     remove)
         if [ -e "${VIRTUALBOX_SITE_CONF}" ]; then
-            rm ${VIRTUALBOX_SITE_CONF}
+            rm "${VIRTUALBOX_SITE_CONF}"
         fi
 
         if [ -e "${VIRTUALBOX_POOL_CONF}" ]; then
-            rm ${VIRTUALBOX_POOL_CONF}
+            rm "${VIRTUALBOX_POOL_CONF}"
         fi
 
         deb-systemd-invoke reload nginx.service >/dev/null || true

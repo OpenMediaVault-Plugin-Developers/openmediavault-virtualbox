@@ -17,28 +17,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-require_once "openmediavault/config.inc";
-require_once "openmediavault/error.inc";
-require_once "openmediavault/module.inc";
-require_once "openmediavault/notify.inc";
-require_once "openmediavault/systemctl.inc";
 
-class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
-    OMVINotifyListener,
-    OMVIModuleServiceStatus
+namespace OMV\Engined\Module;
+
+use OMV\Config\Database;
+use OMV\Engine\Module\IServiceStatus;
+use OMV\Engine\Module\Manager as ModuleManager;
+use OMV\Engine\Module\ServiceAbstract;
+use OMV\Engine\Notify\Dispatcher;
+use OMV\Engine\Notify\IListener;
+use OMV\System\Process;
+
+class VirtualBox extends ServiceAbstract implements
+    IListener,
+    IServiceStatus
 {
-    private $eventMessagePath = "org.openmediavault.services.virtualbox";
-    private $phpvirtualboxMachinesUnit = "phpvirtualbox-machines@vbox";
-    private $vboxwebsrvUnit = "virtualbox-web";
+    /** @var Database */
+    private $database;
 
-    /**
-     * Get the service configuration XPath.
-     *
-     * @return string
-     */
-    private function getXpath()
+    /** @var string */
+    private $dataModelPath = 'conf.service.virtualbox';
+
+    /** @var string */
+    private $eventMessagePath = 'org.openmediavault.conf.service.virtualbox';
+
+    /** @var string */
+    private $phpvirtualboxMachinesService = 'phpvirtualbox-machines@vbox.service';
+
+    /** @var string */
+    private $vboxwebsrvService = 'virtualbox-web';
+
+    public function __construct(Database $database = null)
     {
-        return "/config/services/virtualbox";
+        $this->database = $database ?: Database::getInstance();
     }
 
     /**
@@ -48,7 +59,7 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
      */
     public function getName()
     {
-        return "virtualbox";
+        return 'virtualbox';
     }
 
     /**
@@ -58,24 +69,14 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
      */
     public function getStatus()
     {
-        global $xmlConfig;
-
-        $object = $xmlConfig->get($this->getXpath());
-
-        if (is_null($object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXpath()
-            );
-        }
-
-        $systemCtl = new OMVSystemCtl($this->vboxwebsrvUnit);
+        $object = $this->database->get($this->dataModelPath);
+        $systemCtl = new SystemCtl($this->vboxwebsrvService);
 
         return [
-            "name" => $this->getName(),
-            "title" => gettext("VirtualBox Web Service"),
-            "enabled" => boolval($object["enable"]),
-            "running" => $systemCtl->isActive(),
+            'name' => $this->getName(),
+            'title' => gettext('VirtualBox Web Service'),
+            'enabled' => $object->get('enable'),
+            'running' => $systemCtl->isActive(),
         ];
     }
 
@@ -86,47 +87,26 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
      */
     public function applyConfig()
     {
-        global $xmlConfig;
-
-        $cmd = "export LANG=C; omv-mkconf virtualbox 2>&1";
-
-        if (0 !== $this->exec($cmd, $output)) {
-            throw new OMVException(
-                OMVErrorMsg::E_EXEC_FAILED,
-                $cmd,
-                implode(PHP_EOL, $output)
-            );
-        }
+        $cmd = new Process('omv-mkconf', $this->getName());
+        $cmd->setRedirect2to1();
+        $cmd->execute();
     }
 
     /**
      * Start the managed service.
      *
      * @return void
-     *
-     * @throws OMVException
      */
     public function startService()
     {
-        global $xmlConfig;
+        $object = $this->database->get($this->dataModelPath);
 
-        $object = $xmlConfig->get($this->getXpath());
-
-        if (is_null($object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXpath()
-            );
+        if ($object->get('enable')) {
+            $systemCtl = new SystemCtl($this->vboxwebsrvService);
+            $systemCtl->enable(true);
+            $systemCtl = new SystemCtl($this->phpvirtualboxMachinesService);
+            $systemCtl->enable(true);
         }
-
-        if (!boolval($object["enable"])) {
-            return;
-        }
-
-        $systemCtl = new OMVSystemCtl($this->vboxwebsrvUnit);
-        $systemCtl->enable(true);
-        $systemCtl = new OMVSystemCtl($this->phpvirtualboxMachinesUnit);
-        $systemCtl->enable(true);
     }
 
     /**
@@ -136,42 +116,39 @@ class OMVModuleVirtualBox extends OMVModuleServiceAbstract implements
      */
     public function stopService()
     {
-        $systemCtl = new OMVSystemCtl($this->vboxwebsrvUnit);
+        $systemCtl = new SystemCtl($this->vboxwebsrvService);
         $systemCtl->disable(true);
-        $systemCtl = new OMVSystemCtl($this->phpvirtualboxMachinesUnit);
+        $systemCtl = new SystemCtl($this->phpvirtualboxMachinesService);
         $systemCtl->disable(true);
     }
 
     /**
      * Bind listeners.
      *
-     * @param OMVNotifyDispatcher $dispatcher
+     * @param Dispatcher $dispatcher
+     *
      * @return void
      */
-    public function bindListeners(OMVNotifyDispatcher $dispatcher)
+    public function bindListeners(Dispatcher $dispatcher)
     {
-        $moduleMgr = &OMVModuleMgr::getInstance();
+        $moduleManager = ModuleManager::getInstance();
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->eventMessagePath,
-            [$this, "setDirty"]
+            [$this, 'setDirty']
         );
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->eventMessagePath,
-            [$moduleMgr->getModule("php5fpm"), "setDirty"]
+            [$moduleManager->getModule('php5fpm'), 'setDirty']
         );
 
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             $this->eventMessagePath,
-            [$moduleMgr->getModule("webserver"), "setDirty"]
+            [$moduleManager->getModule('webserver'), 'setDirty']
         );
     }
 }
-
-// Register the module.
-$moduleMgr = &OMVModuleMgr::getInstance();
-$moduleMgr->registerModule(new OMVModuleVirtualBox());

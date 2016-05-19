@@ -30,12 +30,12 @@ if [ "$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/enable")" != "1" ]; then
 fi
 
 # Get machine directory.
-machines_sharedfolderref=$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/machines.sharedfolderref")
+machines_sharedfolderref=$(omv_config_get "${OMV_VIRTUALBOX_XPATH}/sharedfolderref")
 machines_directory="$(omv_get_sharedfolder_path "${machines_sharedfolderref}")"
 
-# TODO: We should avoid managing directory permissions in scripts since it can
+# FIXME: We should avoid managing directory permissions in scripts since it can
 # screw with the users own settings for the directory.
-# Set ownership on directory.
+# Set ownership on the machines directory.
 chown ${OMV_VIRTUALBOX_USER}:vboxusers "${machines_directory}"
 
 # Configure VirtualBox.

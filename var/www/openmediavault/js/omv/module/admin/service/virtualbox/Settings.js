@@ -20,29 +20,29 @@
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 
-Ext.define("OMV.module.admin.service.virtualbox.Settings", {
-    extend: "OMV.workspace.form.Panel",
+Ext.define('OMV.module.admin.service.virtualbox.Settings', {
+    extend: 'OMV.workspace.form.Panel',
     uses: [
-        "OMV.data.Model",
-        "OMV.data.Store"
+        'OMV.data.Model',
+        'OMV.data.Store'
     ],
 
-    rpcService: "VirtualBox",
-    rpcGetMethod: "getSettings",
-    rpcSetMethod: "setSettings",
+    rpcService: 'VirtualBox',
+    rpcGetMethod: 'getSettings',
+    rpcSetMethod: 'setSettings',
 
     getButtonItems: function() {
         var items = this.callParent(arguments);
 
         items.push({
-            id: this.getId() + "-phpvirtualbox",
-            xtype: "button",
-            text: _("phpVirtualBox"),
-            icon: "images/virtualbox.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-phpvirtualbox',
+            xtype: 'button',
+            text: _('phpVirtualBox'),
+            icon: 'images/virtualbox.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             scope: this,
             handler: function() {
-                window.open("/virtualbox/", "_blank");
+                window.open('/virtualbox/', '_blank');
             }
         });
 
@@ -51,40 +51,40 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
     getFormItems: function() {
         return [{
-            xtype: "fieldset",
-            title: "General settings",
+            xtype: 'fieldset',
+            title: 'General settings',
             defaults: {
-                labelSeparator: ""
+                labelSeparator: ''
             },
             items: [{
-                xtype: "checkbox",
-                name: "enable",
-                fieldLabel: _("Enable"),
+                xtype: 'checkbox',
+                name: 'enable',
+                fieldLabel: _('Enable'),
                 checked: false
             }, {
-                xtype: "sharedfoldercombo",
-                name: "machines.sharedfolderref",
-                fieldLabel: _("VM directory"),
+                xtype: 'sharedfoldercombo',
+                name: 'sharedfolderref',
+                fieldLabel: _('VM directory'),
                 plugins: [{
-                    ptype: "fieldinfo",
-                    text: _("The location where VirtualBox stores its virtual machines.")
+                    ptype: 'fieldinfo',
+                    text: _('The location where VirtualBox stores its virtual machines.')
                 }]
             }]
         }, {
-            xtype: "fieldset",
-            title: "phpVirtualBox",
+            xtype: 'fieldset',
+            title: 'phpVirtualBox',
             defaults: {
-                labelSeparator: ""
+                labelSeparator: ''
             },
             items: [{
-                xtype: "displayfield",
-                fieldLabel: "Information",
-                value: _("To log in to phpVirtualBox use the credentials of the admin user or a user in the group vboxusers.")
+                xtype: 'displayfield',
+                fieldLabel: 'Information',
+                value: _('To log in to phpVirtualBox use the credentials of the admin user or a user in the group vboxusers.')
             }, {
-                xtype: "checkbox",
-                name: "enable_advanced",
-                fieldLabel: _("Advanced configuration"),
-                boxLabel: _("Show advanced configuration options in phpVirtualBox web interface."),
+                xtype: 'checkbox',
+                name: 'enable_advanced',
+                fieldLabel: _('Advanced configuration'),
+                boxLabel: _('Show advanced configuration options in phpVirtualBox web interface.'),
                 checked: false
             }]
         }];
@@ -93,9 +93,9 @@ Ext.define("OMV.module.admin.service.virtualbox.Settings", {
 
 
 OMV.WorkspaceManager.registerPanel({
-    id: "settings",
-    path: "/service/virtualbox",
-    text: _("Settings"),
+    id: 'settings',
+    path: '/service/virtualbox',
+    text: _('Settings'),
     position: 10,
-    className: "OMV.module.admin.service.virtualbox.Settings"
+    className: 'OMV.module.admin.service.virtualbox.Settings'
 });

@@ -18,27 +18,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "openmediavault/config.inc";
-require_once "openmediavault/error.inc";
-require_once "openmediavault/notify.inc";
-require_once "openmediavault/rpcservice.inc";
+namespace OMV\Engined\Rpc;
 
-require_once "/usr/share/phpvirtualbox/endpoints/lib/config.php";
-require_once "/usr/share/phpvirtualbox/endpoints/lib/utils.php";
-require_once "/usr/share/phpvirtualbox/endpoints/lib/vboxconnector.php";
+use OMV\Config\Database;
+use OMV\Engine\Notify\Dispatcher;
+use OMV\Rpc\ServiceAbstract;
+use vboxconnector as VirtualboxConnector;
 
-class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
+class VirtualBox extends ServiceAbstract
 {
-    private $eventMessagePath = "org.openmediavault.services.virtualbox";
+    /** @var Database */
+    private $database;
 
-    /**
-     * Get the service configuration XPath.
-     *
-     * @return string
-     */
-    private function getXpath()
+    /** @var string */
+    private $dataModelPath = 'conf.service.virtualbox';
+
+    /** @var Dispatcher */
+    private $dispatcher;
+
+    /** @var string */
+    private $eventMessagePath = 'org.openmediavault.conf.service.virtualbox';
+
+    public function __construct(Database $database = null, Dispatcher $dispatcher = null)
     {
-        return "/config/services/virtualbox";
+        $this->database = $database ?: Database::getInstance();
+        $this->dispatcher = $dispatcher ?: Dispatcher::getInstance();
     }
 
     /**
@@ -48,7 +52,7 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
      */
     public function getName()
     {
-        return "VirtualBox";
+        return 'VirtualBox';
     }
 
     /**
@@ -58,334 +62,208 @@ class OMVRpcServiceVirtualBox extends OMVRpcServiceAbstract
      */
     public function initialize()
     {
-        $this->registerMethod("getSettings");
-        $this->registerMethod("setSettings");
-        $this->registerMethod("getMachines");
-        $this->registerMethod("getMachine");
-        $this->registerMethod("setMachine");
-        $this->registerMethod("setMachineState");
+        $this->registerMethod('getSettings');
+        $this->registerMethod('setSettings');
+        $this->registerMethod('getMachines');
+        $this->registerMethod('getMachine');
+        $this->registerMethod('setMachine');
+        $this->registerMethod('setMachineState');
     }
 
     /**
      * Get the settings of the service.
      *
-     * @param array $params The method paramaters.
+     * @param array $params  The method paramaters.
      * @param array $context The context of the caller.
-     * @return array
      *
-     * @throws OMVException
+     * @return array
      */
     public function getSettings($params, $context)
     {
-        global $xmlConfig;
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
 
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
+        $object = $this->database->get($this->dataModelPath);
 
-        // Get the configuration object.
-        $object = $xmlConfig->get($this->getXpath());
-        if (is_null($object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
-                $this->getXpath()
-            );
-        }
-
-        // Modify the result data.
-        $object["enable"] = boolval($object["enable"]);
-        $object["enable_advanced"] = boolval($object["enable_advanced"]);
-
-        return $object;
+        return $object->getAssoc();
     }
 
     /**
      * Set the settings of the service.
      *
-     * @param array $params The method paramaters.
+     * @param array $params  The method paramaters.
      * @param array $context The context of the caller.
-     * @return array
      *
-     * @throws OMVException
+     * @return array
      */
     public function setSettings($params, $context)
     {
-        global $xmlConfig;
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $this->validateMethodParams($params, 'rpc.virtualbox.setsettings');
 
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
+        $object = $this->database->get($this->dataModelPath);
+        $object->setAssoc($params);
 
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams(
-            $params,
-            '{
-                "type": "object",
-                "properties": {
-                    "enable": { "type": "boolean" },
-                    "machines.sharedfolderref": { '.$GLOBALS["OMV_JSONSCHEMA_UUID"].' },
-                    "enable_advanced": { "type": "boolean" }
-                }
-            }'
-        );
+        $this->database->set($object);
+        $this->dispatcher->notify(OMV_NOTIFY_MODIFY, $this->eventMessagePath, $object);
 
-        // Prepare the configuration data.
-        $object = [
-            "enable" => boolval($params["enable"]),
-            "machines.sharedfolderref" => $params["machines.sharedfolderref"],
-            "enable_advanced" => boolval($params["enable_advanced"]),
-        ];
-
-        // Set the configuration object.
-        if (false === $xmlConfig->replace($this->getXpath(), $object)) {
-            throw new OMVException(
-                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
-                $this->getXpath()
-            );
-        }
-
-        // Notify about the configuration changes.
-        $dispatcher = &OMVNotifyDispatcher::getInstance();
-        $dispatcher->notify(
-            OMV_NOTIFY_MODIFY,
-            $this->eventMessagePath,
-            $object
-        );
-
-        return $object;
+        return $object->getAssoc();
     }
 
     /**
      * Get a list of available machines.
      *
-     * @param array $params The method paramaters.
+     * @param array $params  The method paramaters.
      * @param array $context The context of the caller.
-     * @return array
      *
-     * @throws OMVException
+     * @return array
      */
     public function getMachines($params, $context)
     {
-        global $xmlConfig;
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $this->validateMethodParams($params, 'rpc.common.getlist');
 
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
-
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams(
-            $params,
-            '{
-                "type": "object",
-                "properties": {
-                    "start": { "type": "integer" },
-                    "limit": { '.$GLOBALS["OMV_JSONSCHEMA_COUNTFIELD"].' },
-                    "sortfield": { '.$GLOBALS["OMV_JSONSCHEMA_SORTFIELD"].' },
-                    "sortdir": { '.$GLOBALS["OMV_JSONSCHEMA_SORTDIR"].' }
-                }
-            }'
-        );
-
-        $settings = $this->getSettings([], $context);
         $objects = [];
+        $settings = $this->database->get($this->dataModelPath);
 
         // Only connect to VirtualBox and get the machines if the plugin
         // is enabled since there's no vboxwebsrv instance running when the
         // plugin is disabled.
         //
         // FIXME: We should check if vboxwebsrv is running.
-        if ($settings["enable"]) {
-            $vb = new vboxconnector();
-            $vb->skipSessionCheck = true;
-            $vb->connect();
+        if ($settings->get('enable')) {
+            $connector = new VirtualboxConnector();
+            $connector->skipSessionCheck = true;
+            $connector->connect();
 
-            foreach ($vb->vbox->machines as $machine) {
+            foreach ($connector->vbox->machines as $machine) {
                 $objects[] = [
-                    "uuid" => $machine->id,
-                    "name" => $machine->name,
-                    "state" => $machine->state->__toString(),
-                    "startupMode" => $machine->getExtraData("pvbx/startupMode"),
-                    "OSTypeId" => $machine->getOSTypeId(),
-                    "sessionState" => $machine->sessionState->__toString(),
+                    'uuid' => $machine->id,
+                    'name' => $machine->name,
+                    'state' => $machine->state->__toString(),
+                    'startupMode' => $machine->getExtraData('pvbx/startupMode'),
+                    'OSTypeId' => $machine->getOSTypeId(),
+                    'sessionState' => $machine->sessionState->__toString(),
                 ];
             }
 
-            unset($vb);
+            unset($connector);
         }
 
         return $this->applyFilter(
             $objects,
-            $params["start"],
-            $params["limit"],
-            $params["sortfield"],
-            $params["sortdir"]
+            $params['start'],
+            $params['limit'],
+            $params['sortfield'],
+            $params['sortdir']
         );
     }
 
     /**
      * Get a machine by its ID.
      *
-     * @param array $params The method paramaters.
+     * @param array $params  The method paramaters.
      * @param array $context The context of the caller.
-     * @return array
      *
-     * @throws OMVException
+     * @return array
      */
     public function getMachine($params, $context)
     {
-        global $xmlConfig;
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $this->validateMethodParams($params, 'rpc.common.objectuuid');
 
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
+        $settings = $this->database->get($this->dataModelPath);
 
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams(
-            $params,
-            '{
-                "type": "object",
-                "properties": {
-                    "uuid": { '.$GLOBALS["OMV_JSONSCHEMA_UUID_NONE"].' }
-                }
-            }'
-        );
+        // Only connect to VirtualBox and get the machines if the plugin
+        // is enabled since there's no vboxwebsrv instance running when the
+        // plugin is disabled.
+        //
+        // FIXME: We should check if vboxwebsrv is running.
+        if ($settings->get('enable')) {
+            $connector = new VirtualboxConnector();
+            $connector->skipSessionCheck = true;
+            $connector->connect();
 
-        $settings = $this->getSettings([], $context);
-        $object = [];
+            $machine = $connector->vbox->findMachine($params['uuid']);
 
-        // Only connect to VirtualBox if the plugin is enabled since vboxwebsrv
-        // is not running when the plugin is disabled.
-        if ($settings["enable"]) {
-            $vb = new vboxconnector();
-            $vb->skipSessionCheck = true;
-            $vb->connect();
-
-            $machine = $vb->vbox->findMachine($params["uuid"]);
             $object = [
-                "uuid" => $machine->id,
-                "name" => $machine->name,
-                "state" => $machine->state->__toString(),
-                "startupMode" => $machine->getExtraData("pvbx/startupMode"),
-                "OSTypeId" => $machine->getOSTypeId(),
-                "sessionState" => $machine->sessionState->__toString(),
+                'uuid' => $machine->id,
+                'name' => $machine->name,
+                'state' => $machine->state->__toString(),
+                'startupMode' => $machine->getExtraData('pvbx/startupMode'),
+                'OSTypeId' => $machine->getOSTypeId(),
+                'sessionState' => $machine->sessionState->__toString(),
             ];
 
-            unset($vb);
-        }
+            unset($connector);
 
-        return $object;
+            return $object;
+        }
     }
 
     /**
      * Set a machine.
      *
-     * @param array $params The method paramaters.
+     * @param array $params  The method paramaters.
      * @param array $context The context of the caller.
-     * @return void
      *
-     * @throws OMVException
+     * @return void
      */
     public function setMachine($params, $context)
     {
-        global $xmlConfig;
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $this->validateMethodParams($params, 'rpc.virtualbox.setmachine');
 
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
+        $connector = new VirtualboxConnector();
+        $connector->skipSessionCheck = true;
+        $connector->connect();
 
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams(
-            $params,
-            '{
-                "type": "object",
-                "properties": {
-                    "uuid": {'.$GLOBALS["OMV_JSONSCHEMA_UUID_NONE"].'},
-                    "name": { "type": "string", "optional": true },
-                    "startupMode": { "type": "string", "enum": ["auto", "manual"] }
-                }
-            }'
-        );
+        $machine = $connector->vbox->findMachine($params['uuid']);
+        $isMachineRunning = ($machine->state->__toString() == 'Running');
 
-        $vb = new vboxconnector();
-        $vb->skipSessionCheck = true;
-        $vb->connect();
+        $connector->session = $connector->websessionManager->getSessionObject($connector->vbox->handle);
+        $machine->lockMachine($connector->session->handle, ($isMachineRunning ? 'Shared' : 'Write'));
 
-        $machine = $vb->vbox->findMachine($params["uuid"]);
-        $vmRunning = ($machine->state->__toString() == "Running");
+        $sessionMachine = $connector->session->machine;
 
-        $vb->session = $vb->websessionManager->getSessionObject($vb->vbox->handle);
-        $machine->lockMachine($vb->session->handle, ($vmRunning ? "Shared" : "Write"));
-
-        $m = &$vb->session->machine;
-
-        if (!$vmRunning &&
-            isset($params["name"]) &&
-            !empty($params["name"]) &&
-            $m->name != $params["name"]
-        ) {
-            $m->name = $params["name"];
+        if (!$isMachineRunning && !empty($params['name']) && $sessionMachine->name !== $params['name']) {
+            $sessionMachine->name = $params['name'];
         }
 
-        $m->setExtraData("pvbx/startupMode", $params["startupMode"]);
+        $sessionMachine->setExtraData('pvbx/startupMode', $params['startupMode']);
 
-        $vb->session->machine->saveSettings();
-        $vb->session->unlockMachine();
-        $vb->session->releaseRemote();
-        unset($vb->session);
-        unset($vb);
+        $connector->session->machine->saveSettings();
+        $connector->session->unlockMachine();
+        $connector->session->releaseRemote();
+
+        unset($connector->session);
+        unset($connector);
     }
 
     /**
      * Set the machine state of a machine.
      *
-     * @param array $params The method paramaters.
+     * @param array $params  The method paramaters.
      * @param array $context The context of the caller.
-     * @return mixed
      *
-     * @throws OMVException
+     * @return mixed
      */
     public function setMachineState($params, $context)
     {
-        global $xmlConfig;
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $this->validateMethodParams($params, 'rpc.virtualbox.setmachinestate');
 
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, [
-            "role" => OMV_ROLE_ADMINISTRATOR,
-        ]);
-
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams(
-            $params,
-            '{
-                "type": "object",
-                "properties": {
-                    "uuid": { '.$GLOBALS["OMV_JSONSCHEMA_UUID_NONE"].' },
-                    "state": { "type": "string" }
-                }
-            }'
-        );
-
-        $vb = new vboxconnector();
-        $vb->skipSessionCheck = true;
-
-        $args = [
-            "vm" => $params["uuid"],
-            "state" => $params["state"],
-        ];
+        $connector = new VirtualboxConnector();
+        $connector->skipSessionCheck = true;
 
         $response = [];
-        $vb->machineSetState($args, [&$response]);
-        unset($vb);
 
-        return $response["data"];
+        $connector->machineSetState(
+            ['vm' => $params['uuid'], 'state' => $params['state']],
+            [&$response]
+        );
+
+        unset($connector);
+
+        return $response['data'];
     }
 }
-
-// Register the RPC service.
-$rpcServiceMgr = &OMVRpcServiceMgr::getInstance();
-$rpcServiceMgr->registerService(new OMVRpcServiceVirtualBox());

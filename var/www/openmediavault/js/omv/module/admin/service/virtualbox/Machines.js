@@ -23,13 +23,13 @@
 // require("js/omv/data/proxy/Rpc.js")
 // require("js/omv/module/admin/service/virtualbox/MachineEditWindow.js")
 
-Ext.define("OMV.module.admin.service.virtualbox.Machines", {
-    extend: "OMV.workspace.grid.Panel",
+Ext.define('OMV.module.admin.service.virtualbox.Machines', {
+    extend: 'OMV.workspace.grid.Panel',
     requires: [
-        "OMV.data.Store",
-        "OMV.data.Model",
-        "OMV.data.proxy.Rpc",
-        "OMV.module.admin.service.virtualbox.MachineEditWindow"
+        'OMV.data.Store',
+        'OMV.data.Model',
+        'OMV.data.proxy.Rpc',
+        'OMV.module.admin.service.virtualbox.MachineEditWindow'
     ],
 
     autoReload: true,
@@ -37,80 +37,80 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
     hideAddButton: true,
     hideEditButton: false,
     hideDeleteButton: true,
-    stateChangeWaitMsg: _("Changing VM state."),
+    stateChangeWaitMsg: _('Changing VM state.'),
 
     columns: [{
-        header: _("UUID"),
+        header: _('UUID'),
         hidden: true,
-        dataIndex: "uuid"
+        dataIndex: 'uuid'
     }, {
-        header: _("Virtual Machine"),
+        header: _('Virtual Machine'),
         flex: 1,
         sortable: true,
-        dataIndex: "name"
+        dataIndex: 'name'
     }, {
-        header: "State",
+        header: 'State',
         sortable: true,
-        dataIndex: "state",
+        dataIndex: 'state',
         renderer: function(value, metaData, record) {
             switch (value) {
-                case "PoweredOff":
-                    return "Powered Off";
-                case "LiveSnapshotting":
-                    return "Live Snapshotting";
-                case "TeleportingPausedVM":
-                    return "Teleporting Paused VM";
-                case "TeleportingIn":
-                    return "Teleporting In";
-                case "TakingLiveSnapshot":
-                    return "Taking Live Snapshot";
-                case "RestoringSnapshot":
-                    return "Restoring Snapshot";
-                case "DeletingSnapshot":
-                    return "Deleting Snapshot";
-                case "SettingUp":
-                    return "Setting Up";
+                case 'PoweredOff':
+                    return 'Powered Off';
+                case 'LiveSnapshotting':
+                    return 'Live Snapshotting';
+                case 'TeleportingPausedVM':
+                    return 'Teleporting Paused VM';
+                case 'TeleportingIn':
+                    return 'Teleporting In';
+                case 'TakingLiveSnapshot':
+                    return 'Taking Live Snapshot';
+                case 'RestoringSnapshot':
+                    return 'Restoring Snapshot';
+                case 'DeletingSnapshot':
+                    return 'Deleting Snapshot';
+                case 'SettingUp':
+                    return 'Setting Up';
                 default:
                     return value;
             }
         }
     }, {
-        header: "Startup Mode",
+        header: 'Startup Mode',
         sortable: true,
-        dataIndex: "startupMode",
+        dataIndex: 'startupMode',
         renderer: function(value, metaData, record) {
-            if (value == "auto") {
-                return "Automatic";
+            if (value == 'auto') {
+                return 'Automatic';
             }
 
-            return "Manual";
+            return 'Manual';
         }
     }],
 
-    store: Ext.create("OMV.data.Store", {
+    store: Ext.create('OMV.data.Store', {
         autoLoad: true,
         remoteSort: false,
         model: OMV.data.Model.createImplicit({
-            idProperty: "uuid",
+            idProperty: 'uuid',
             fields: [{
-                name: "uuid"
+                name: 'uuid'
             }, {
-                name: "name"
+                name: 'name'
             }, {
-                name: "state"
+                name: 'state'
             }, {
-                name: "startupMode"
+                name: 'startupMode'
             }, {
-                name: "OSTypeId"
+                name: 'OSTypeId'
             }, {
-                name: "sessionState"
+                name: 'sessionState'
             }]
         }),
         proxy: {
-            type: "rpc",
+            type: 'rpc',
             rpcData: {
-                service: "VirtualBox",
-                method: "getMachines"
+                service: 'VirtualBox',
+                method: 'getMachines'
             }
         }
     }),
@@ -119,11 +119,11 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         var items = this.callParent(arguments);
 
         Ext.Array.insert(items, 0, [{
-            id: this.getId() + "-start",
-            xtype: "button",
-            text: _("Start"),
-            icon: "images/play.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-start',
+            xtype: 'button',
+            text: _('Start'),
+            icon: 'images/play.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             handler: Ext.Function.bind(this.onStateChangeButton, this),
             disabled: true,
             scope: this,
@@ -132,26 +132,26 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                 maxSelections: 1,
                 enabledFn: this.vmStateButtonEnabled
             },
-            action: "powerUp",
-            vmstates: ["PoweredOff", "Paused", "Saved", "Aborted", "Teleported"]
+            action: 'powerUp',
+            vmstates: ['PoweredOff', 'Paused', 'Saved', 'Aborted', 'Teleported']
         }, {
-            id: this.getId() + "-stop",
-            xtype: "button",
-            text: _("Stop"),
-            icon: "images/shutdown.png",
-            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            id: this.getId() + '-stop',
+            xtype: 'button',
+            text: _('Stop'),
+            icon: 'images/shutdown.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             disabled: true,
             selectionConfig: {
                 minSelections: 1,
                 maxSelections: 1,
                 enabledFn: this.vmStateButtonEnabled
             },
-            vmstates: ["Running", "Paused", "Stuck"],
+            vmstates: ['Running', 'Paused', 'Stuck'],
             menu: [{
-                id: this.getId() + "-stop-save-state",
-                text: _("Save the machine state"),
-                icon: "images/save.png",
-                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                id: this.getId() + '-stop-save-state',
+                text: _('Save the machine state'),
+                icon: 'images/save.png',
+                iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
                 handler: Ext.Function.bind(this.onStateChangeButton, this),
                 scope: this,
                 selectionConfig: {
@@ -159,13 +159,13 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                     maxSelections: 1,
                     enabledFn: this.vmStateButtonEnabled
                 },
-                action: "saveState",
-                vmstates: ["Running"]
+                action: 'saveState',
+                vmstates: ['Running']
             }, {
-                id: this.getId() + "-stop-power-button",
-                text: _("ACPI Shutdown"),
-                icon: "images/shutdown.png",
-                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                id: this.getId() + '-stop-power-button',
+                text: _('ACPI Shutdown'),
+                icon: 'images/shutdown.png',
+                iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
                 handler: Ext.Function.bind(this.onStateChangeButton, this),
                 scope: this,
                 selectionConfig: {
@@ -173,13 +173,13 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                     maxSelections: 1,
                     enabledFn: this.vmStateButtonEnabled
                 },
-                action: "powerButton",
-                vmstates: ["Running"]
+                action: 'powerButton',
+                vmstates: ['Running']
             }, {
-                id: this.getId() + "-stop-pause",
-                text: _("Pause"),
-                icon: "images/pause.png",
-                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                id: this.getId() + '-stop-pause',
+                text: _('Pause'),
+                icon: 'images/pause.png',
+                iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
                 handler: Ext.Function.bind(this.onStateChangeButton, this),
                 scope: this,
                 selectionConfig: {
@@ -187,13 +187,13 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                     maxSelections: 1,
                     enabledFn: this.vmStateButtonEnabled
                 },
-                action: "pause",
-                vmstates: ["Running"]
+                action: 'pause',
+                vmstates: ['Running']
             }, {
-                id: this.getId() + "-stop-power-down",
-                text: _("Power off the machine"),
-                icon: "images/shutdown.png",
-                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                id: this.getId() + '-stop-power-down',
+                text: _('Power off the machine'),
+                icon: 'images/shutdown.png',
+                iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
                 handler: Ext.Function.bind(this.onStateChangeButton, this),
                 scope: this,
                 selectionConfig: {
@@ -201,13 +201,13 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                     maxSelections: 1,
                     enabledFn: this.vmStateButtonEnabled
                 },
-                action: "powerDown",
-                vmstates: ["Running", "Paused", "Stuck"]
+                action: 'powerDown',
+                vmstates: ['Running', 'Paused', 'Stuck']
             }, {
-                id: this.getId() + "-stop-reset",
-                text: _("Reset"),
-                icon: "images/reboot.png",
-                iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+                id: this.getId() + '-stop-reset',
+                text: _('Reset'),
+                icon: 'images/reboot.png',
+                iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
                 handler: Ext.Function.bind(this.onStateChangeButton, this),
                 scope: this,
                 selectionConfig: {
@@ -215,19 +215,19 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
                     maxSelections: 1,
                     enabledFn: this.vmStateButtonEnabled
                 },
-                action: "reset",
-                vmstates: ["Running"]
+                action: 'reset',
+                vmstates: ['Running']
             }],
             scope: this
         }, {
-            xtype: "tbseparator"
+            xtype: 'tbseparator'
         }]);
 
         return items;
     },
 
     vmStateButtonEnabled: function(item, records) {
-        var state = records[0].get("state");
+        var state = records[0].get('state');
 
         if (item.vmstates.indexOf(state) > -1) {
             return true;
@@ -247,7 +247,7 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
     onStateChange: function(id, success, response) {
         if (!success) {
             OMV.MessageBox.hide();
-            OMV.MessageBox.error(_("Progress error", response));
+            OMV.MessageBox.error(_('Progress error', response));
         }
 
         OMV.MessageBox.hide();
@@ -258,10 +258,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
         OMV.Rpc.request({
             callback: this.onStateChange,
             rpcData: {
-                service: "VirtualBox",
-                method: "setMachineState",
+                service: 'VirtualBox',
+                method: 'setMachineState',
                 params: {
-                    uuid: record.get("uuid"),
+                    uuid: record.get('uuid'),
                     state: action
                 }
             },
@@ -272,10 +272,10 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
     onEditButton: function() {
         var record = this.getSelected();
 
-        Ext.create("OMV.module.admin.service.virtualbox.MachineEditWindow", {
-            uuid: record.get("uuid"),
-            sessionState: record.get("sessionState"),
-            startupMode: record.get("startupMode"),
+        Ext.create('OMV.module.admin.service.virtualbox.MachineEditWindow', {
+            uuid: record.get('uuid'),
+            sessionState: record.get('sessionState'),
+            startupMode: record.get('startupMode'),
             listeners: {
                 submit: function() {
                     this.doReload();
@@ -288,9 +288,9 @@ Ext.define("OMV.module.admin.service.virtualbox.Machines", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id: "machines",
-    path: "/service/virtualbox",
-    text: _("Virtual Machines"),
+    id: 'machines',
+    path: '/service/virtualbox',
+    text: _('Virtual Machines'),
     position: 20,
-    className: "OMV.module.admin.service.virtualbox.Machines"
+    className: 'OMV.module.admin.service.virtualbox.Machines'
 });

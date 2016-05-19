@@ -15,8 +15,8 @@ create_vbox_user()
     # TODO: use stronger hash? Only md5 seems to be available
     # with makepasswd.
     NPSWD=$(makepasswd --crypt-md5 --chars=10)
-    NPSWD_CLEAR=$(echo ${NPSWD} | awk '{ print $1 }')
-    NPSWD_CRYPT=$(echo ${NPSWD} | awk '{ print $2 }')
+    NPSWD_CLEAR=$(echo "${NPSWD}" | awk '{ print $1 }')
+    NPSWD_CRYPT=$(echo "${NPSWD}" | awk '{ print $2 }')
 
     # Create the user.
     useradd --system \
@@ -24,7 +24,7 @@ create_vbox_user()
             --home-dir ${OMV_VIRTUALBOX_USER_HOME} \
             --no-user-group \
             --gid vboxusers \
-            --password ${NPSWD_CRYPT} \
+            --password "${NPSWD_CRYPT}" \
             ${OMV_VIRTUALBOX_USER}
 
     # Store the password for later use.
@@ -41,7 +41,7 @@ case "$1" in
             omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
             omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
             omv_config_add_element "${SERVICE_XPATH}" "enable_advanced" "0"
-            omv_config_add_element "${SERVICE_XPATH}" "machines.sharedfolderref"
+            omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref"
         fi
 
         # Generate the package default file.
@@ -59,6 +59,11 @@ case "$1" in
         # Set the correct permissions on files.
         chown openmediavault-webgui:root ${OMV_VIRTUALBOX_DEFAULT_CONF}
         chmod 0600 ${OMV_VIRTUALBOX_DEFAULT_CONF}
+
+        # Migrations.
+        if dpkg --compare-versions "$2" lt-nl "3.0.4"; then
+            omv_config_rename "${SERVICE_XPATH}/machines.sharedfolderref" "sharedfolderref"
+        fi
 
         # Activate package triggers. These triggers are only set during the
         # package installation.
