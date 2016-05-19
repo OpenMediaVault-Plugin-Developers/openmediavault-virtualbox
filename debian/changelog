@@ -1,3 +1,9 @@
+openmediavault-virtualbox (3.0.4) stable; urgency=medium
+
+  * OMV 3.0.15 compatibility. 
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 19 May 2016 19:00:51 +0200
+
 openmediavault-virtualbox (3.0.3) stable; urgency=low
 
   * Changed dependency of OMV Package to = 3.0.13 to avoid accidental
@@ -14,13 +20,13 @@ openmediavault-virtualbox (3.0.2) stable; urgency=medium
 
 openmediavault-virtualbox (3.0.1) stable; urgency=medium
 
-  * Update packaging. 
+  * Update packaging.
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 26 Jan 2016 00:32:23 +0100
 
 openmediavault-virtualbox (3.0) stable; urgency=low
 
-  * OMV 3.0 release. 
+  * OMV 3.0 release.
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 30 Dec 2015 21:35:31 +0100
 
@@ -66,13 +72,13 @@ openmediavault-virtualbox (1.0.13) stable; urgency=low
 
 openmediavault-virtualbox (1.0.12.1) stable; urgency=low
 
-  * Correctly call applyFilter 
+  * Correctly call applyFilter
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 29 Oct 2014 17:30:34 +0100
 
 openmediavault-virtualbox (1.0.11) stable; urgency=low
 
-  * Use shared folder instead of drive for machines 
+  * Use shared folder instead of drive for machines
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 11 Sep 2014 23:51:08 +0200
 
@@ -96,7 +102,7 @@ openmediavault-virtualbox (1.0.9.1) stable; urgency=low
 
 openmediavault-virtualbox (1.0.9) stable; urgency=low
 
-  * Fix misspelled service name in postrm 
+  * Fix misspelled service name in postrm
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 28 Jul 2014 21:51:51 +0200
 
@@ -117,7 +123,7 @@ openmediavault-virtualbox (1.0.7) stable; urgency=low
 openmediavault-virtualbox (0.6.2.1) stable; urgency=low
 
   * Conform to OMV 0.6.0.6 trigger standards
-  * Update to work with Nginx 
+  * Update to work with Nginx
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 28 Apr 2014 23:22:10 +0200
 
@@ -137,7 +143,7 @@ openmediavault-virtualbox (0.6.1) stable; urgency=medium
 
 openmediavault-virtualbox (0.6) stable; urgency=medium
 
-  * OMV kralizec compatibility 
+  * OMV kralizec compatibility
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 16 Mar 2014 14:56:59 -0500
 

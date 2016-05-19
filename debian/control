@@ -10,7 +10,7 @@ Package: openmediavault-virtualbox
 Architecture: all
 Depends: linux-headers-686-pae | linux-headers-amd64,
          makepasswd,
-         openmediavault (= 3.0.13),
+         openmediavault (>= 3.0.15),
          phpvirtualbox,
          virtualbox,
          virtualbox-ext-pack | virtualbox-ext-pack-installer,
