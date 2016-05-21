@@ -27,6 +27,7 @@ use OMV\Engine\Module\ServiceAbstract;
 use OMV\Engine\Notify\Dispatcher;
 use OMV\Engine\Notify\IListener;
 use OMV\System\Process;
+use OMV\System\SystemCtl;
 
 class VirtualBox extends ServiceAbstract implements
     IListener,
