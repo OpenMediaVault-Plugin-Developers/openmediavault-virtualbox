@@ -19,6 +19,6 @@
  */
 
 // Require specific files from phpvirtualbox.
-require_once "/usr/share/phpvirtualbox/endpoints/lib/config.php";
+require_once "/usr/share/phpvirtualbox/config.php";
 require_once "/usr/share/phpvirtualbox/endpoints/lib/utils.php";
 require_once "/usr/share/phpvirtualbox/endpoints/lib/vboxconnector.php";

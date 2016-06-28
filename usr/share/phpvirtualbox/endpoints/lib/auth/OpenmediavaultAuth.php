@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once '/usr/share/php/openmediavault/autoloader.inc';
+//require_once '/usr/share/php/openmediavault/autoloader.inc';
 require_once '/usr/share/php/openmediavault/globals.inc';
 
 use OMV\Rpc\Rpc;
@@ -41,7 +41,7 @@ class PhpvbAuthOpenmediavaultAuth implements phpvbAuth
             $result = Rpc::call('UserMgmt', 'authUser', [
                 'username' => $username,
                 'password' => $password,
-            ], $omvRpcContext, OMV_RPC_MODE_REMOTE);
+            ], $omvRpcContext, Rpc::MODE_REMOTE, true);
 
             // Return early.
             if (!$result['authenticated']) {
@@ -50,7 +50,7 @@ class PhpvbAuthOpenmediavaultAuth implements phpvbAuth
 
             $user = Rpc::call('UserMgmt', 'getUser', [
                 'name' => $username,
-            ], $omvRpcContext, OMV_RPC_MODE_REMOTE);
+            ], $omvRpcContext, Rpc::MODE_REMOTE, true);
 
             // Only allow admin or users in the vboxusers group.
             if ($username === 'admin' || in_array('vboxusers', $user['groups'])) {
