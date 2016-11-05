@@ -1,3 +1,9 @@
+openmediavault-virtualbox (3.0.6) stable; urgency=low
+
+  * Add build-essential to dependencies
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 05 Nov 2016 08:31:35 -0500
+
 openmediavault-virtualbox (3.0.5) stable; urgency=low
 
   * Update authorization for OMV 3.0.25
