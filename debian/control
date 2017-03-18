@@ -11,7 +11,7 @@ Architecture: all
 Depends: build-essential,
          linux-headers-686-pae | linux-headers-amd64,
          makepasswd,
-         openmediavault (>= 3.0.25),
+         openmediavault (>= 3.0.67),
          phpvirtualbox,
          virtualbox,
          virtualbox-ext-pack | virtualbox-ext-pack-installer,
