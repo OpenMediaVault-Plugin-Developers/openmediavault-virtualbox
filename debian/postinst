@@ -33,17 +33,6 @@ create_vbox_user()
 
 case "$1" in
     configure)
-        SERVICE_XPATH_NAME="virtualbox"
-        SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
-
-        # Add the default configuration.
-        if ! omv_config_exists "${SERVICE_XPATH}"; then
-            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
-            omv_config_add_element "${SERVICE_XPATH}" "enable" "0"
-            omv_config_add_element "${SERVICE_XPATH}" "enable_advanced" "0"
-            omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref"
-        fi
-
         # Generate the package default file.
         if [ ! -e ${OMV_VIRTUALBOX_DEFAULT_CONF} ]; then
             if ! getent passwd ${OMV_VIRTUALBOX_USER}; then
@@ -60,15 +49,17 @@ case "$1" in
         chown openmediavault-webgui:root ${OMV_VIRTUALBOX_DEFAULT_CONF}
         chmod 0600 ${OMV_VIRTUALBOX_DEFAULT_CONF}
 
-        # Migrations.
-        if dpkg --compare-versions "$2" lt-nl "3.0.4"; then
-            omv_config_rename "${SERVICE_XPATH}/machines.sharedfolderref" "sharedfolderref"
-        fi
-
         # Activate package triggers. These triggers are only set during the
         # package installation.
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
+
+        # Initialize and migrate configuration database.
+        echo "Updating configuration database ..."
+        omv-confdbadm create "conf.service.virtualbox"
+        if [ -n "$2" ]; then
+            omv-confdbadm migrate "conf.service.virtualbox" "${2}"
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
