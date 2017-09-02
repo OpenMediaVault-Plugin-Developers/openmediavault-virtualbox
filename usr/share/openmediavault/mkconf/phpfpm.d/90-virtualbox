@@ -20,7 +20,7 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-PHP_FPM_POOL_DIR=/etc/php5/fpm/pool.d
+PHP_FPM_POOL_DIR=/etc/php/7.0/fpm/pool.d
 
 OMV_VIRTUALBOX_POOL_CONF="${PHP_FPM_POOL_DIR}/openmediavault-virtualbox.conf"
 OMV_VIRTUALBOX_XPATH="/config/services/virtualbox"
@@ -35,7 +35,7 @@ fi
 
 cat <<EOF > "${OMV_VIRTUALBOX_POOL_CONF}"
 [openmediavault-virtualbox]
-listen = /var/run/php5-fpm-openmediavault-virtualbox.sock
+listen = /var/run/php-fpm-openmediavault-virtualbox.sock
 listen.owner = www-data
 listen.group = www-data
 listen.mode = 0600

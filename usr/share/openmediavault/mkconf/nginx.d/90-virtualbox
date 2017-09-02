@@ -39,7 +39,7 @@ location /virtualbox/ {
     location ~ \.php$ {
         include fastcgi.conf;
         fastcgi_param SCRIPT_FILENAME \$request_filename;
-        fastcgi_pass unix:/var/run/php5-fpm-openmediavault-virtualbox.sock;
+        fastcgi_pass unix:/var/run/php-fpm-openmediavault-virtualbox.sock;
     }
 }
 EOF
