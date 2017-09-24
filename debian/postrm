@@ -6,7 +6,7 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 VIRTUALBOX_SITE_CONF="/etc/nginx/openmediavault-webgui.d/openmediavault-virtualbox.conf"
-VIRTUALBOX_POOL_CONF="/etc/php5/fpm/pool.d/openmediavault-virtualbox.conf"
+VIRTUALBOX_POOL_CONF="/etc/php/7.0/fpm/pool.d/openmediavault-virtualbox.conf"
 
 case "$1" in
     purge)
@@ -23,7 +23,7 @@ case "$1" in
         fi
 
         deb-systemd-invoke reload nginx.service >/dev/null || true
-        deb-systemd-invoke reload php5-fpm.service >/dev/null || true
+        deb-systemd-invoke reload php7.0-fpm.service >/dev/null || true
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
