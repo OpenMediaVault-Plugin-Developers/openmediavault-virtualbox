@@ -1,7 +1,5 @@
 [Unit]
 Description=VirtualBox Web Service
-Requires=vboxdrv.service
-After=vboxdrv.service network.target
 
 [Service]
 Type=simple

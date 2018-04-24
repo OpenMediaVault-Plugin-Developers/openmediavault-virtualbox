@@ -1,3 +1,9 @@
+openmediavault-virtualbox (4.1) stable; urgency=low
+
+  * Update for virtualbox 5.2.8
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 24 Apr 2018 07:10:27 -0500
+
 openmediavault-virtualbox (4.0) stable; urgency=low
 
   * Update for OMV 4.x

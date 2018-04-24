@@ -11,10 +11,10 @@ Architecture: all
 Depends: build-essential,
          linux-headers-686-pae | linux-headers-amd64,
          makepasswd,
-         openmediavault (>= 4.0.4),
+         openmediavault (>= 4.1.4),
          php7.0-soap,
-         phpvirtualbox,
-         virtualbox,
+         phpvirtualbox (>= 5.2-0-1),
+         virtualbox (>= 5.2.8),
          virtualbox-ext-pack-installer,
          ${misc:Depends}
 Description: VirtualBox plugin for OpenMediaVault.
