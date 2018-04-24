@@ -4,16 +4,16 @@
 # 
 # Translators:
 # David Hönel <davidh1990@gmx.de>, 2013
-# Ettore Atalan <atalanttore@googlemail.com>, 2014
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # Jan Neumann <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-08 07:04-0500\n"
-"PO-Revision-Date: 2015-05-08 12:04+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/de/)\n"
+"PO-Revision-Date: 2017-09-19 20:48+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-virtualbox/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,18 +33,18 @@ msgid "Changing VM state."
 msgstr "VM-Status wird geändert."
 
 msgid "Edit Virtual Machine"
-msgstr "Virtuelle Machine bearbeiten"
+msgstr "Virtuelle Maschine bearbeiten"
 
 msgid "Enable"
 msgstr "Aktivieren"
 
 msgid "Fix module for backports kernels"
-msgstr ""
+msgstr "Modul für Rückportierungskernel reparieren"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr "Stelle sicher dass du das password in phpVirtualBox änderst! Die standard Logindaten sind 'admin' für Benutzername und Passwort."
+msgstr "Stellen Sie sichern dass Sie das Passwort in phpVirtualBox ändern! Die Standard-Anmeldedaten sind 'admin' sowohl für den Benutzernamen als auch für das Passwort."
 
 msgid "Manual"
 msgstr "Anleitung"
@@ -59,22 +59,22 @@ msgid "Power off the machine"
 msgstr "Maschine ausschalten"
 
 msgid "Progress error"
-msgstr ""
+msgstr "Fortschrittsfehler"
 
 msgid "Recompile vboxdrv module for backports kernel ..."
-msgstr ""
+msgstr "Kompilieren Sie das vboxdrv-Modul für den Rückportierungskernel neu ..."
 
 msgid "Reset"
 msgstr "Zurücksetzen"
 
 msgid "Save the machine state"
-msgstr ""
+msgstr "Maschinenzustand speichern"
 
 msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Show Tab"
-msgstr "Zeige Tab"
+msgstr "Tab anzeigen"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
 msgstr "Erweiterte Konfigurationsoptionen in der phpVirtualBox-Weboberfläche anzeigen."
@@ -86,16 +86,16 @@ msgid "Start"
 msgstr "Start"
 
 msgid "Startup Mode"
-msgstr "Startup Mode"
+msgstr "Startmodus"
 
 msgid "Stop"
-msgstr "Stop"
+msgstr "Stopp"
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr ""
+msgstr "Der Speicherort, wo VirtualBox seine virtuellen Maschinen speichert."
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr ""
+msgstr "Dies wird vboxdrv für den Rückportierungskernel neu kompilieren."
 
 msgid "UUID"
 msgstr "UUID"
@@ -107,13 +107,13 @@ msgid "Virtual Machine"
 msgstr "Virtuelle Maschine"
 
 msgid "Virtual Machines"
-msgstr "Virtuelle Machinen"
+msgstr "Virtuelle Maschinen"
 
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
 msgid "VirtualBox WebService"
-msgstr "VirtualBox WebService"
+msgstr "VirtualBox-Webdienst"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"

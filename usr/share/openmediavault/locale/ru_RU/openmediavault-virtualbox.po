@@ -5,15 +5,16 @@
 # Translators:
 # Alexander Savchenko, 2013
 # Alexander Savchenko, 2014
-# артур Мудрых <arturmon82@gmail.com>, 2013
+# Артур Мудрых <arturmon82@gmail.com>, 2013
+# Артур Мудрых <arturmon82@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-virtualbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-08 07:04-0500\n"
-"PO-Revision-Date: 2015-05-08 12:04+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-virtualbox/language/ru/)\n"
+"PO-Revision-Date: 2017-09-19 20:49+0000\n"
+"Last-Translator: Артур Мудрых <arturmon82@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-virtualbox/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "ACPI Shutdown"
-msgstr ""
+msgstr "Выключение ACPI"
 
 msgid "Advanced configuration"
 msgstr "Расширенные настройки"
@@ -30,7 +31,7 @@ msgid "Automatic"
 msgstr "Автоматический"
 
 msgid "Changing VM state."
-msgstr ""
+msgstr "Изменение состояния VM."
 
 msgid "Edit Virtual Machine"
 msgstr "Редактировать виртуальную машину"
@@ -39,12 +40,12 @@ msgid "Enable"
 msgstr "Включить"
 
 msgid "Fix module for backports kernels"
-msgstr ""
+msgstr "Исправить модуль для ядер backports"
 
 msgid ""
 "Make sure to change the password in phpVirtualBox! The default login "
 "credentials are 'admin' for both the username and password."
-msgstr ""
+msgstr "Обязательно смените пароль в phpVirtualBox! Учетными данными по умолчанию являются «admin» для имени пользователя и пароля."
 
 msgid "Manual"
 msgstr "Ручной"
@@ -59,10 +60,10 @@ msgid "Power off the machine"
 msgstr "Выключить машину"
 
 msgid "Progress error"
-msgstr ""
+msgstr "Ошибка выполнения"
 
 msgid "Recompile vboxdrv module for backports kernel ..."
-msgstr ""
+msgstr "Перекомпилируйте модуль vboxdrv для ядра backports ..."
 
 msgid "Reset"
 msgstr "Сбросить"
@@ -74,13 +75,13 @@ msgid "Settings"
 msgstr "Настройки"
 
 msgid "Show Tab"
-msgstr ""
+msgstr "Показать вкладку"
 
 msgid "Show advanced configuration options in phpVirtualBox web interface."
-msgstr ""
+msgstr "Показать дополнительные параметры конфигурации в веб-интерфейсе phpVirtualBox."
 
 msgid "Show tab containing phpVirtualBox frame."
-msgstr ""
+msgstr "Показать вкладку, содержащую окно phpVirtualBox."
 
 msgid "Start"
 msgstr "Запустить"
@@ -92,16 +93,16 @@ msgid "Stop"
 msgstr "Остановить"
 
 msgid "The location where VirtualBox stores its virtual machines."
-msgstr ""
+msgstr "Место, где VirtualBox хранит свои виртуальные машины."
 
 msgid "This will recompile the vboxdrv for the backports kernel."
-msgstr ""
+msgstr "Перекомпилирировать vboxdrv для ядра backports."
 
 msgid "UUID"
 msgstr "UUID"
 
 msgid "VM directory"
-msgstr ""
+msgstr "Каталог VM"
 
 msgid "Virtual Machine"
 msgstr "Виртуальная машина"
