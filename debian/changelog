@@ -1,3 +1,9 @@
+openmediavault-virtualbox (4.1.2) stable; urgency=low
+
+  * Add proxmox kernel headers as an option for headers
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 05 Oct 2019 11:14:04 -0500
+
 openmediavault-virtualbox (4.1.1) stable; urgency=low
 
   * Fix dependency

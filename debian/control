@@ -9,7 +9,7 @@ XB-Plugin-Section: virtualization
 Package: openmediavault-virtualbox
 Architecture: all
 Depends: build-essential,
-         linux-headers-686-pae | linux-headers-amd64,
+         linux-headers-686-pae | linux-headers-amd64 | pve-headers,
          makepasswd,
          openmediavault (>= 4.1.4),
          php7.0-soap,
